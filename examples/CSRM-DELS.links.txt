@@ -1,0 +1,118 @@
+20 candidate links between CSRM and DELS (confidence >= 0.5):
+
+1.00  01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.4_Attitude Determination and Control Components::L4.1.4.2_Structures::Actuator  [Class<<Component>>]
+      <->  PLANT::Resource::ControlActuator::Actuator  [Class<<Block>>]
+      because: shared terms: actuator; identical name
+      disagree: stereotype: <<Component>> vs <<Block>>
+      disagree: ownership: lives under 'L4.1.4.2_Structures' vs 'ControlActuator'
+1.00  02 - CSRM Elements, Examples and Illustrations::7 - CSRM Population::7.2 - CSRM Elements::Equipment  [Class<<Equipment>>]
+      <->  PLANT::Resource::ISA95ResourceDef::Equipment  [Class<<Block>>]
+      because: shared terms: equipment; identical name
+      disagree: stereotype: <<Equipment>> vs <<Block>>
+      disagree: ownership: lives under '7.2 - CSRM Elements' vs 'ISA95ResourceDef'
+1.00  02 - CSRM Elements, Examples and Illustrations::7 - CSRM Population::7.2 - CSRM Elements::Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility; identical name
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: ownership: lives under '7.2 - CSRM Elements' vs 'Facility'
+1.00  01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems  [Package]
+      <->  PLANT::Resource::Subsystems  [Package]
+      because: shared terms: subsystem
+      disagree: term: 'L3_Subsystems' vs 'Subsystems'
+      disagree: ownership: lives under '5 - Architecture' vs 'Resource'
+1.00  01 - CubeSat System Reference Model::4 - Requirements::L5 CubeSat Deployer Interface Rqts::Materials  [Class<<Group>>]
+      <->  PLANT::Resource::ISA95ResourceDef::Material  [Class<<Block>>]
+      because: shared terms: material
+      disagree: stereotype: <<Group>> vs <<Block>>
+      disagree: term: 'Materials' vs 'Material'
+      disagree: ownership: lives under 'L5 CubeSat Deployer Interface Rqts' vs 'ISA95ResourceDef'
+0.75  02 - CSRM Elements, Examples and Illustrations::7 - CSRM Population::7.2 - CSRM Elements::Facility  [Class<<Facility>>]
+      <->  PLANT::Facility  [Package]
+      because: shared terms: facility; identical name
+      disagree: kind: CSRM models it as Class, DELS as Package
+      disagree: stereotype: <<Facility>> vs <<->>
+      disagree: ownership: lives under '7.2 - CSRM Elements' vs 'PLANT'
+0.75  02 - CSRM Elements, Examples and Illustrations::7 - CSRM Population::7.2 - CSRM Elements::Subsystem  [Class<<Subsystem>>]
+      <->  PLANT::Resource::Subsystems  [Package]
+      because: shared terms: subsystem
+      disagree: kind: CSRM models it as Class, DELS as Package
+      disagree: stereotype: <<Subsystem>> vs <<->>
+      disagree: term: 'Subsystem' vs 'Subsystems'
+      disagree: ownership: lives under '7.2 - CSRM Elements' vs 'Resource'
+0.65  02 - CSRM Elements, Examples and Illustrations::7 - CSRM Population::7.2 - CSRM Elements::Equipment  [Class<<Equipment>>]
+      <->  PLANT::Resource::Resource  [Class<<Block>>]
+      because: synonyms: equipment~resource
+      disagree: stereotype: <<Equipment>> vs <<Block>>
+      disagree: term: 'Equipment' vs 'Resource'
+      disagree: ownership: lives under '7.2 - CSRM Elements' vs 'Resource'
+0.65  01 - CubeSat System Reference Model::5 - Architecture::L4_Components  [Package]
+      <->  PLANT::Resource::Subsystems  [Package]
+      because: synonyms: component~subsystem
+      disagree: term: 'L4_Components' vs 'Subsystems'
+      disagree: ownership: lives under '5 - Architecture' vs 'Resource'
+0.65  01 - CubeSat System Reference Model::4 - Requirements::L5 CubeSat Deployer Interface Rqts::Materials  [Class<<Group>>]
+      <->  PLANT::Product::Product  [Class<<Block>>]
+      because: synonyms: material~product
+      disagree: stereotype: <<Group>> vs <<Block>>
+      disagree: term: 'Materials' vs 'Product'
+      disagree: ownership: lives under 'L5 CubeSat Deployer Interface Rqts' vs 'Product'
+0.55  02 - CSRM Elements, Examples and Illustrations::1 - Stakeholders::1.2 Mission Stakeholders::1.2.1 - Mission Stakeholders - Examples::Acquirer  [Class<<Stakeholder>>]
+      <->  PLANT::Resource::ControlActuator::ResourceAcquirer  [Class<<Block>>]
+      because: shared terms: acquirer
+      disagree: stereotype: <<Stakeholder>> vs <<Block>>
+      disagree: term: 'Acquirer' vs 'ResourceAcquirer'
+      disagree: interfaces: DELS exposes ports ['acquiredresource', 'availableresource', 'intask', 'outtask']; CSRM exposes none
+      disagree: ownership: lives under '1.2.1 - Mission Stakeholders - Examples' vs 'ControlActuator'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::Facilities::Design Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: term: 'Design Facility' vs 'Facility'
+      disagree: ownership: lives under 'Facilities' vs 'Facility'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::Facilities::Development Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: term: 'Development Facility' vs 'Facility'
+      disagree: ownership: lives under 'Facilities' vs 'Facility'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::Facilities::Integration Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: term: 'Integration Facility' vs 'Facility'
+      disagree: ownership: lives under 'Facilities' vs 'Facility'
+0.55  01 - CubeSat System Reference Model::4 - Requirements::L3 Subsystem Rqts  [Package]
+      <->  PLANT::Resource::Subsystems  [Package]
+      because: shared terms: subsystem
+      disagree: term: 'L3 Subsystem Rqts' vs 'Subsystems'
+      disagree: ownership: lives under '4 - Requirements' vs 'Resource'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.2_Ground Subsystems  [Package]
+      <->  PLANT::Resource::Subsystems  [Package]
+      because: shared terms: subsystem
+      disagree: term: 'L3.2_Ground Subsystems' vs 'Subsystems'
+      disagree: ownership: lives under 'L3_Subsystems' vs 'Resource'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.2_Ground Subsystems Components  [Package]
+      <->  PLANT::Resource::Subsystems  [Package]
+      because: shared terms: subsystem
+      disagree: term: 'L4.2_Ground Subsystems Components' vs 'Subsystems'
+      disagree: ownership: lives under 'L4_Components' vs 'Resource'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::Facilities::Operations Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: term: 'Operations Facility' vs 'Facility'
+      disagree: ownership: lives under 'Facilities' vs 'Facility'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::Facilities::Production Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: term: 'Production Facility' vs 'Facility'
+      disagree: ownership: lives under 'Facilities' vs 'Facility'
+0.55  01 - CubeSat System Reference Model::5 - Architecture::Facilities::Test Facility  [Class<<Facility>>]
+      <->  PLANT::Facility::Facility  [Class<<Block>>]
+      because: shared terms: facility
+      disagree: stereotype: <<Facility>> vs <<Block>>
+      disagree: term: 'Test Facility' vs 'Facility'
+      disagree: ownership: lives under 'Facilities' vs 'Facility'
+
+0 links with no disagreements; 20 flag a term/kind/interface/ownership mismatch.
