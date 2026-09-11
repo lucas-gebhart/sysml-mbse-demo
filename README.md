@@ -1,0 +1,79 @@
+# sysml-mbse-demo
+
+Internal tooling for the Cameo / Teamwork Cloud MBSE capability demo: ingest a SysML v1 model
+exported from MagicDraw/Cameo, answer systems-engineering questions about it, generate SysML v2
+textual notation with a validated migration-gap report, and link/impact-analyse across
+independently owned models.
+
+This repo is the rehearsal harness. The customer sees the live session, the reports and the pilot
+proposal, not the code. See `docs/RUNBOOK.md` for the demo script.
+
+## Layout
+
+```
+sysml_demo/
+  ingest.py        .mdzip / XMI / XML -> Model (elements, stereotypes, tags, refs, diagrams, docs)
+  model.py         normalised element index + navigation helpers
+  queries.py       overview, requirements table, trace, structure, interfaces, profile usage, health check
+  link.py          cross-model concept matching (with rationale + disagreements), impact traversal, Mermaid
+  v2/profile.py    resolve custom stereotypes through their generalisation chain to a SysML base concept
+  v2/transform.py  SysML v1 -> v2 textual notation; every element gets a clean/lossy/decision/unsupported record
+  v2/validate.py   run the generated text through the OMG pilot-implementation kernel, parse diagnostics
+  v2/report.py     migration gap report (Markdown + JSON)
+  cli.py           `python -m sysml_demo <command>` – the entry points used live
+models/            public source models (see models/README.md for provenance)
+examples/          committed sample outputs (CSRM + DELS reports, generated .sysml, impact graph)
+scripts/           setup_sysml_kernel.sh – installs the pilot kernel into a micromamba env
+tests/             pytest suite (synthetic fixture + the real models)
+```
+
+## Setup
+
+```bash
+pip install -e ".[dev]"
+bash scripts/setup_sysml_kernel.sh      # SysML v2 pilot kernel (~2 min, conda-forge). Optional; --no-validate works without it.
+pytest -q && ruff check . && mypy sysml_demo
+```
+
+## Commands
+
+```bash
+python -m sysml_demo overview      models/CSRM.mdzip
+python -m sysml_demo requirements  models/CSRM.mdzip --filter Mission
+python -m sysml_demo trace         models/CSRM.mdzip "Subsystem Requirement Name"
+python -m sysml_demo structure     models/CSRM.mdzip "CubeSat Mission Enterprise" --depth 3
+python -m sysml_demo interfaces    models/DELS.xml Queue Router
+python -m sysml_demo profile       models/CSRM.mdzip --profile models/CSRM-Profile.mdzip
+python -m sysml_demo health        models/CSRM.mdzip --profile models/CSRM-Profile.mdzip
+python -m sysml_demo migrate       models/CSRM.mdzip --profile models/CSRM-Profile.mdzip --out out
+python -m sysml_demo migrate       models/CSRM.mdzip --profile models/CSRM-Profile.mdzip --subset "Power Subsystem" --out out
+python -m sysml_demo show-v2       models/CSRM.mdzip --profile models/CSRM-Profile.mdzip --subset "Power Subsystem"
+python -m sysml_demo link          models/CSRM.mdzip models/DELS.xml
+python -m sysml_demo impact        models/CSRM.mdzip models/DELS.xml "Power Subsystem" --mermaid out/impact.mmd
+```
+
+## What the migration does and does not claim
+
+The transformer follows the OMG SysML v1-to-v2 transformation mapping for the structural,
+requirements and interface subset (blocks, value types, parts, ports, interface blocks, flow
+properties, connectors, requirements, satisfy/verify/derive/refine/trace, comments, enumerations,
+custom stereotypes as `metadata def`). Output is validated by the pilot implementation; current
+results: CSRM 0 errors / 0 warnings, DELS 0 errors / 47 warnings (inherited duplicate members
+from the source model's redefinition style).
+
+Every source element gets a mapping record. The gap report distinguishes:
+
+- **clean** – direct v2 equivalent emitted
+- **lossy** – emitted, but information dropped (activity internals, opaque constraints, expression multiplicities, some redefinitions)
+- **decision** – emitted as a placeholder that needs a human choice (satisfy/verify target usage, cross-definition item flows, unstereotyped classes, allocations)
+- **unsupported** – no v2 equivalent produced (diagrams and layout, MagicDraw customisations/DSL, derived properties, PackageMerge, tables/matrices)
+
+Diagram layout never migrates; v2 views/viewpoints and target-tool layout are re-authored.
+Custom profile *semantics* migrate as metadata; tool-side behaviour (icons, validation rules,
+derived properties, tables) does not.
+
+## Not in this repo (pilot scope)
+
+- Teamwork Cloud REST (`/osmc`) adapter – the live-ingest path into the customer's 19.x server.
+  The ingest layer is deliberately file-format based so the adapter slots in behind `load()`.
+- Opening generated `.sysml` in Cameo/CATIA Magic 2026x SysML v2 (round-trip proof).
