@@ -1,0 +1,721 @@
+{
+  "model": "CSRM",
+  "subset": "Power Subsystem",
+  "source": {
+    "exporter": "MagicDraw UML 2024x v6",
+    "elements": 1704
+  },
+  "totals": {
+    "clean": 12,
+    "lossy": 0,
+    "decision": 1,
+    "unsupported": 1,
+    "records": 14
+  },
+  "validation": {
+    "ok": true,
+    "errors": 0,
+    "warnings": 0,
+    "sysml_lines": 40,
+    "diagnostics": []
+  },
+  "table": [
+    {
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "count": 6,
+      "clean": 6,
+      "lossy": 0,
+      "decision": 0,
+      "unsupported": 0,
+      "worst": "clean",
+      "notes": []
+    },
+    {
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "count": 6,
+      "clean": 6,
+      "lossy": 0,
+      "decision": 0,
+      "unsupported": 0,
+      "worst": "clean",
+      "notes": [
+        "outside the requested subset; declaration-only stub so references resolve"
+      ]
+    },
+    {
+      "v1_construct": "Subsystem (custom)",
+      "v2_construct": "part def + metadata",
+      "count": 1,
+      "clean": 0,
+      "lossy": 0,
+      "decision": 1,
+      "unsupported": 0,
+      "worst": "decision",
+      "notes": [
+        "specialises MagicDraw analysis pattern MassRollUpPattern: tool-specific; re-create as a v2 calc (e.g. total mass = sum of parts) or drop"
+      ]
+    },
+    {
+      "v1_construct": "Diagram: SysML Block Definition Diagram",
+      "v2_construct": "-",
+      "count": 1,
+      "clean": 0,
+      "lossy": 0,
+      "decision": 0,
+      "unsupported": 1,
+      "worst": "unsupported",
+      "notes": [
+        "v2 has no diagram-layout interchange; views/viewpoints must be re-authored in the target tool"
+      ]
+    }
+  ],
+  "custom_profile": {
+    "StakeholderConcern": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "MissionObjective": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "MissionNeed": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "MissionConstraint": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "MissionRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "CubeSatRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "SatelliteRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "GroundSegmentRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "SegmentRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SubsystemRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "ComponentRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "DeployerRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SpaceSegmentRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "SegmentRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Group": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SpacecraftRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SegmentRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SatelliteRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "SpacecraftRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "moeSpecification": {
+      "root": "Block",
+      "parents": [
+        "MeasurementSpecification"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "mopSpecification": {
+      "root": "Block",
+      "parents": [
+        "MeasurementSpecification"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "tpmSpecification": {
+      "root": "Block",
+      "parents": [
+        "MeasurementSpecification"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "mop": {
+      "root": "Property",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "TPM": {
+      "root": "Property",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "kppSpecification": {
+      "root": "Block",
+      "parents": [
+        "MeasurementSpecification"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "KPP": {
+      "root": "Property",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "MeasurementSpecification": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [
+        "summary",
+        "Id"
+      ],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "mopRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "performanceRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "tpmRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "performanceRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "moeRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "performanceRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "kppRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "performanceRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Component": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Segment": {
+      "root": "Block",
+      "parents": [
+        "SystemContext"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "CubeSat": {
+      "root": "Block",
+      "parents": [
+        "Satellite"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Facility": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Equipment": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Stakeholder": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "GroundSegment": {
+      "root": "Block",
+      "parents": [
+        "Segment"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SpaceSegment": {
+      "root": "Block",
+      "parents": [
+        "Segment"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Spacecraft": {
+      "root": "Block",
+      "parents": [
+        "System"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Satellite": {
+      "root": "Block",
+      "parents": [
+        "Spacecraft"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "CubeSatDeployer": {
+      "root": "Block",
+      "parents": [
+        "System"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Mission": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "ConcernOf": {
+      "root": "Dependency",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "ValidationActivity": {
+      "root": "Behavior",
+      "parents": [],
+      "tags": [
+        "A_Plan",
+        "B_Procedure",
+        "C_Conduct",
+        "D_Result",
+        "E_Status"
+      ],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Validation": {
+      "root": "Trace",
+      "parents": [
+        "Trace"
+      ],
+      "tags": [
+        "validated"
+      ],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "VerificationActivity": {
+      "root": "Behavior",
+      "parents": [],
+      "tags": [
+        "verificationMethod",
+        "verifies"
+      ],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Verification": {
+      "root": "Verify",
+      "parents": [
+        "Verify"
+      ],
+      "tags": [
+        "verified"
+      ],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Explanation": {
+      "root": "Comment",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "HowTo": {
+      "root": "Comment",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "performanceRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "ExtRequirement"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "MoE": {
+      "root": "Property",
+      "parents": [],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "ExtRequirement": {
+      "root": "Requirement",
+      "parents": [
+        "Requirement"
+      ],
+      "tags": [
+        "source",
+        "risk",
+        "validatedBy"
+      ],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "System": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "SystemContext": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    },
+    "Subsystem": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 1,
+      "in_v2_profile": true
+    },
+    "Domain": {
+      "root": "Block",
+      "parents": [
+        "Block"
+      ],
+      "tags": [],
+      "applied": 0,
+      "in_v2_profile": false
+    }
+  },
+  "standing_gaps": [
+    {
+      "topic": "Diagrams / layout",
+      "detail": "SysML v2 interchange carries semantics, not diagram layout. Views must be re-authored in the target tool (Cameo 2026x v2 plugin generates views from the model)."
+    },
+    {
+      "topic": "Custom profile stereotypes",
+      "detail": "Carried as `metadata def`s so every tagged element keeps its classification and tag values, but the tool-side behaviour (icons, validation rules, DSL customisations, derived properties, table definitions) is not expressible in v2 and has to be re-created."
+    },
+    {
+      "topic": "Satisfy / Verify",
+      "detail": "v2 `satisfy ... by` requires a part *usage*; v1 satisfies typically point at Blocks (definitions). Emitted as tagged dependencies until the satisfying usage is chosen."
+    },
+    {
+      "topic": "Item flows between blocks",
+      "detail": "v2 flows need a common part context; v1 InformationFlows drawn between features of unrelated blocks are kept as tagged dependencies."
+    },
+    {
+      "topic": "Activity / state-machine internals",
+      "detail": "Action and transition graphs are structurally different in v2 (succession-based). Signatures are migrated; bodies flagged for re-modelling."
+    },
+    {
+      "topic": "Operations",
+      "detail": "v2 has no operations; emitted as nested actions for review."
+    },
+    {
+      "topic": "Units / quantity kinds",
+      "detail": "MagicDraw ISO-80000 / SI library imports map to the v2 `ISQ` and `SI` libraries but need an explicit mapping table."
+    },
+    {
+      "topic": "Instance specifications",
+      "detail": "v2 has no instances; use individuals/snapshots or attribute defaults."
+    },
+    {
+      "topic": "PackageMerge",
+      "detail": "No v2 support (per the OMG transformation document)."
+    }
+  ],
+  "records": [
+    {
+      "element_id": "_18_0_6_3e4019a_1472151609455_663772_15839",
+      "element_name": "Power Subsystem",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem",
+      "v1_construct": "Subsystem (custom)",
+      "v2_construct": "part def + metadata",
+      "status": "decision",
+      "note": "specialises MagicDraw analysis pattern MassRollUpPattern: tool-specific; re-create as a v2 calc (e.g. total mass = sum of parts) or drop"
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505054942784_329966_60744",
+      "element_name": "Power Subsystem bdd",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::Power Subsystem bdd",
+      "v1_construct": "Diagram: SysML Block Definition Diagram",
+      "v2_construct": "-",
+      "status": "unsupported",
+      "note": "v2 has no diagram-layout interchange; views/viewpoints must be re-authored in the target tool"
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505055429243_836355_61106",
+      "element_name": "batteries",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::batteries",
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "status": "clean",
+      "note": ""
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505055437901_455231_61136",
+      "element_name": "regulators and Converters",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::regulators and Converters",
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "status": "clean",
+      "note": ""
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505055446934_155733_61166",
+      "element_name": "solar Arrays",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::solar Arrays",
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "status": "clean",
+      "note": ""
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505055483722_439147_61248",
+      "element_name": "power Circuits and Switches",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::power Circuits and Switches",
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "status": "clean",
+      "note": ""
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505055492849_150646_61278",
+      "element_name": "processor and Memory",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::processor and Memory",
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "status": "clean",
+      "note": ""
+    },
+    {
+      "element_id": "_18_5_1_3880181_1505055502585_243540_61308",
+      "element_name": "software",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L3_Subsystems::L3.1_CubeSat Subsystems::L3.1.2_Structures::Power Subsystem::software",
+      "v1_construct": "PartProperty",
+      "v2_construct": "part usage",
+      "status": "clean",
+      "note": ""
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489768621567_166101_15770",
+      "element_name": "Processor and Memory",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Processor and Memory",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489769180766_666463_15798",
+      "element_name": "Software",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Software",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489769190724_172852_15800",
+      "element_name": "Solar Arrays",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Solar Arrays",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489769201063_373794_15802",
+      "element_name": "Batteries",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Batteries",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489769207094_764375_15804",
+      "element_name": "Regulators and Converters",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Regulators and Converters",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489769219591_806033_15806",
+      "element_name": "Power Circuits and Switches",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Power Circuits and Switches",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    }
+  ]
+}

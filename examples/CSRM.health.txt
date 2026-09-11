@@ -1,0 +1,9 @@
+Summary:
+  warn  dangling-ref                 145
+  warn  requirement-text             68
+  info  requirement-unsatisfied      69
+  info  requirement-unverified       69
+  info  empty-package                26
+  info  stereotype-unused            22
+  info  orphan-block                 20
+  info  duplicate-name               10

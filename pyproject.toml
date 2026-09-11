@@ -1,0 +1,36 @@
+[project]
+name = "sysml-mbse-demo"
+version = "0.1.0"
+description = "Cameo/MagicDraw SysML v1 ingest, model Q&A, v1->v2 migration gap report, cross-model linkage"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+validate = ["jupyter_client>=8"]
+dev = ["pytest", "ruff", "mypy"]
+
+[project.scripts]
+sysml-demo = "sysml_demo.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["sysml_demo*"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["B905", "E741"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

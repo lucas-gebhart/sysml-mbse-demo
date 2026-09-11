@@ -30,7 +30,7 @@ tests/             pytest suite (synthetic fixture + the real models)
 ## Setup
 
 ```bash
-pip install -e ".[dev]"
+pip install -e ".[dev]"          # or, on older pip without PEP 660: pip install pytest ruff mypy jupyter_client
 bash scripts/setup_sysml_kernel.sh      # SysML v2 pilot kernel (~2 min, conda-forge). Optional; --no-validate works without it.
 pytest -q && ruff check . && mypy sysml_demo
 ```
