@@ -1,7 +1,7 @@
 # SysML v1 → v2 migration gap report: CSRM / Power Subsystem
 
 Source: MagicDraw UML 2024x v6 export, 1704 model elements.  
-Generated SysML v2: 40 lines, pilot-implementation validation **PASSED** (0 errors, 0 warnings).
+Generated SysML v2: 40 lines, pilot-implementation validation **PASSED** (0 errors, 0 warnings; PASSED means the text parses and resolves with no errors, warnings are listed under Validation diagnostics).
 
 ## Summary
 

@@ -4,10 +4,14 @@ graph LR
     a997891_14609["CubeSat"]
     a645083_14608["Space Segment"]
     a394124_14029["CubeSat Mission Enterprise"]
+    a529585_12343["L3_Subsystems (package)"]
+    a663772_15839 -. owned by .-> a529585_12343
   end
   subgraph DELS
+    b193062_25985["Subsystems"]
   end
   a663772_15839 --> a997891_14609
   a663772_15839 --> a645083_14608
   a663772_15839 --> a394124_14029
+  a529585_12343 -. "1.00" .-> b193062_25985
   classDef changed fill:#f96,stroke:#333

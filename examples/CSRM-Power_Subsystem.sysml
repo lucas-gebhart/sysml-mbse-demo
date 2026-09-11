@@ -20,11 +20,11 @@ package '01 - CubeSat System Reference Model' {
             package 'L4.1_CubeSat Subsystems Components' {
                 package 'L4.1.7_Power Components' {
                     package 'L4.1.7.2_Structures' {
-                        part def Batteries;
-                        part def Software;
                         part def 'Processor and Memory';
-                        part def 'Regulators and Converters';
+                        part def Software;
                         part def 'Solar Arrays';
+                        part def Batteries;
+                        part def 'Regulators and Converters';
                         part def 'Power Circuits and Switches';
                     }
                 }

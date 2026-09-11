@@ -16,7 +16,8 @@
     "ok": true,
     "errors": 0,
     "warnings": 0,
-    "sysml_lines": 1566
+    "sysml_lines": 1567,
+    "diagnostics": []
   },
   "table": [
     {

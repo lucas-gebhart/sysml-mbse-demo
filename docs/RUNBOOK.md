@@ -119,9 +119,12 @@ Q11 "If the power subsystem changes, what's affected across both models?"
 ```
 python -m sysml_demo impact models/CSRM.mdzip models/DELS.xml "Power Subsystem" --mermaid out/impact.mmd
 ```
-Evidence: local chain CubeSat → Space Segment → CubeSat Mission Enterprise; crosses into DELS via
-the `Subsystems` link (0.50, with its disagreements listed). Render `out/impact.mmd` if a visual
-helps. For a denser DELS-side blast radius use `impact ... "Facility"` (Resource → 30+ dependents).
+Evidence: local chain CubeSat → Space Segment → CubeSat Mission Enterprise. `Power Subsystem` itself
+has no DELS counterpart; the bridge is its owning package `L3_Subsystems ↔ PLANT::Resource::Subsystems`
+(1.00, shown as "(owning package)" with the term/ownership disagreements). Say so out loud: a change
+inside a package is a change to what that package represents in the other model. Render
+`out/impact.mmd` (committed copy in `examples/impact.mmd`) if a visual helps. For a denser DELS-side
+blast radius use `impact ... "Facility"` (Resource → 30+ dependents).
 Voice track: this is the drift check that runs on a schedule in the pilot.
 
 ## Open floor (3 min)

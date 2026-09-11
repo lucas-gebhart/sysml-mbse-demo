@@ -16,7 +16,8 @@
     "ok": true,
     "errors": 0,
     "warnings": 0,
-    "sysml_lines": 40
+    "sysml_lines": 40,
+    "diagnostics": []
   },
   "table": [
     {
@@ -663,9 +664,9 @@
       "note": ""
     },
     {
-      "element_id": "_18_4_1_3e4019a_1489769201063_373794_15802",
-      "element_name": "Batteries",
-      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Batteries",
+      "element_id": "_18_4_1_3e4019a_1489768621567_166101_15770",
+      "element_name": "Processor and Memory",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Processor and Memory",
       "v1_construct": "Component",
       "v2_construct": "part def (stub)",
       "status": "clean",
@@ -681,9 +682,18 @@
       "note": "outside the requested subset; declaration-only stub so references resolve"
     },
     {
-      "element_id": "_18_4_1_3e4019a_1489768621567_166101_15770",
-      "element_name": "Processor and Memory",
-      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Processor and Memory",
+      "element_id": "_18_4_1_3e4019a_1489769190724_172852_15800",
+      "element_name": "Solar Arrays",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Solar Arrays",
+      "v1_construct": "Component",
+      "v2_construct": "part def (stub)",
+      "status": "clean",
+      "note": "outside the requested subset; declaration-only stub so references resolve"
+    },
+    {
+      "element_id": "_18_4_1_3e4019a_1489769201063_373794_15802",
+      "element_name": "Batteries",
+      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Batteries",
       "v1_construct": "Component",
       "v2_construct": "part def (stub)",
       "status": "clean",
@@ -693,15 +703,6 @@
       "element_id": "_18_4_1_3e4019a_1489769207094_764375_15804",
       "element_name": "Regulators and Converters",
       "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Regulators and Converters",
-      "v1_construct": "Component",
-      "v2_construct": "part def (stub)",
-      "status": "clean",
-      "note": "outside the requested subset; declaration-only stub so references resolve"
-    },
-    {
-      "element_id": "_18_4_1_3e4019a_1489769190724_172852_15800",
-      "element_name": "Solar Arrays",
-      "qualified_name": "01 - CubeSat System Reference Model::5 - Architecture::L4_Components::L4.1_CubeSat Subsystems Components::L4.1.7_Power Components::L4.1.7.2_Structures::Solar Arrays",
       "v1_construct": "Component",
       "v2_construct": "part def (stub)",
       "status": "clean",

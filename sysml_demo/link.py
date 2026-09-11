@@ -266,13 +266,16 @@ def impact(m: Model, start: Element, max_depth: int = 3) -> list[ImpactNode]:
 
 
 def cross_impact(ma: Model, mb: Model, start: Element, links: list[Link], max_depth: int = 3) -> dict:
+    """Local impact in `ma`, then every link whose A-side is an affected element or an owning
+    package of one (a change inside a package is a change to what that package represents)."""
     local = impact(ma, start, max_depth)
     touched = {start.id} | {n.element.id for n in local}
-    bridged = [l for l in links if l.a.id in touched]
+    owners = {o.id for t in touched for o in ma.owner_chain(t) if o.kind in ("Package", "Profile")} - touched
+    bridged = [l for l in links if l.a.id in touched or l.a.id in owners]
     remote: dict[str, list[ImpactNode]] = {}
     for l in bridged:
         remote[l.b.id] = impact(mb, l.b, max_depth - 1)
-    return {"start": start, "local": local, "links": bridged, "remote": remote}
+    return {"start": start, "local": local, "links": bridged, "remote": remote, "via_owner": owners}
 
 
 def render_impact(ma: Model, mb: Model, res: dict) -> list[str]:
@@ -285,7 +288,8 @@ def render_impact(ma: Model, mb: Model, res: dict) -> list[str]:
         lines.append(f"  {'  ' * (n.depth - 1)}- {n.element.name} [{_kind_label(n.element)}]  <- {n.via}")
     lines += ["", f"Crosses into {mb.name} via {len(res['links'])} link(s):"]
     for l in res["links"]:
-        lines.append(f"  {l.a.name}  ~{l.confidence:.2f}~  {mb.qualified_name(l.b.id)}   ({'; '.join(l.rationale)})")
+        how = " (owning package)" if l.a.id in res.get("via_owner", set()) else ""
+        lines.append(f"  {l.a.name}{how}  ~{l.confidence:.2f}~  {mb.qualified_name(l.b.id)}   ({'; '.join(l.rationale)})")
         for n in res["remote"].get(l.b.id, []):
             lines.append(f"    {'  ' * (n.depth - 1)}- {n.element.name} [{_kind_label(n.element)}]  <- {n.via}")
         if l.disagreements:
@@ -303,6 +307,10 @@ def mermaid(ma: Model, mb: Model, res: dict, limit: int = 40) -> str:
     out = ["graph LR", f"  subgraph {ma.name}", f'    {nid("a", res["start"])}["{label(res["start"])}"]:::changed']
     for n in res["local"][:limit]:
         out.append(f'    {nid("a", n.element)}["{label(n.element)}"]')
+    for l in res["links"]:
+        if l.a.id in res.get("via_owner", set()):
+            out.append(f'    {nid("a", l.a)}["{label(l.a)} (package)"]')
+            out.append(f"    {nid('a', res['start'])} -. owned by .-> {nid('a', l.a)}")
     out.append("  end")
     out.append(f"  subgraph {mb.name}")
     for l in res["links"]:

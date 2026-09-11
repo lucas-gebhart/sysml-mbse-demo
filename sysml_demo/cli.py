@@ -194,9 +194,9 @@ def cmd_migrate(a: argparse.Namespace) -> None:
         else:
             t = time.time()
             v = validate(res.cells)
+            verdict = "FAILED" if not v.ok else ("PASSED WITH WARNINGS" if v.warnings else "PASSED")
             print(
-                f"[pilot validation {'PASSED' if v.ok else 'FAILED'} in {time.time() - t:.1f}s: "
-                f"{len(v.errors)} errors, {len(v.warnings)} warnings]",
+                f"[pilot validation {verdict} in {time.time() - t:.1f}s: {len(v.errors)} errors, {len(v.warnings)} warnings]",
                 file=sys.stderr,
             )
             if v.errors or a.show_warnings:

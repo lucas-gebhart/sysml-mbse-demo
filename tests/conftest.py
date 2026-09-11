@@ -24,7 +24,11 @@ TINY_XMI = """<?xml version='1.0' encoding='UTF-8'?>
         <ownedAttribute xmi:type='uml:Property' xmi:id='veh_part' name='part' type='eng' aggregation='composite'/>
         <ownedAttribute xmi:type='uml:Port' xmi:id='veh_p' name='power in' type='pwr'/>
       </packagedElement>
-      <packagedElement xmi:type='uml:Class' xmi:id='eng' name='Engine'/>
+      <packagedElement xmi:type='uml:Class' xmi:id='eng' name='Engine'>
+        <ownedAttribute xmi:type='uml:Property' xmi:id='eng_pst' name='piston' type='pst' aggregation='composite'/>
+        <ownedAttribute xmi:type='uml:Property' xmi:id='eng_veh' name='vehicle' type='veh'/>
+      </packagedElement>
+      <packagedElement xmi:type='uml:Class' xmi:id='pst' name='Piston'/>
       <packagedElement xmi:type='uml:Class' xmi:id='pwr' name='PowerIF'/>
       <packagedElement xmi:type='uml:DataType' xmi:id='real' name='Real'/>
       <packagedElement xmi:type='uml:Class' xmi:id='orphan' name='Orphan'/>
@@ -41,6 +45,7 @@ TINY_XMI = """<?xml version='1.0' encoding='UTF-8'?>
   </uml:Model>
   <sysml:Block xmi:id='s1' base_Class='veh'/>
   <sysml:Block xmi:id='s2' base_Class='eng'/>
+  <sysml:Block xmi:id='s10' base_Class='pst'/>
   <sysml:InterfaceBlock xmi:id='s3' base_Class='pwr'/>
   <sysml:Block xmi:id='s9' base_Class='orphan'/>
   <sysml:ValueType xmi:id='s4' base_DataType='real'/>

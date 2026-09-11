@@ -1,8 +1,11 @@
+import subprocess
+from collections import Counter
+
 import pytest
 
 from sysml_demo.v2 import validate
 from sysml_demo.v2.report import build_report, render_json, render_markdown
-from sysml_demo.v2.transform import CLEAN, DECISION, LOSSY, UNSUPPORTED, transform, v2name
+from sysml_demo.v2.transform import CLEAN, DECISION, LOSSY, UNSUPPORTED, transform, v2name, v2string
 
 needs_kernel = pytest.mark.skipif(not validate.kernel_available(), reason="SysML v2 pilot kernel not installed")
 
@@ -14,6 +17,11 @@ def test_v2name_quoting():
     assert v2name("1 - Structure") == "'1 - Structure'"
     assert v2name("it's") == "'it\\'s'"
     assert v2name("") == "''"
+
+
+def test_v2string_escaping():
+    assert v2string('say "hi"\nnow') == '"say \\"hi\\"\\nnow"'
+    assert v2string("a\\b") == '"a\\\\b"'
 
 
 def test_tiny_transform_text(tiny):
@@ -31,9 +39,11 @@ def test_tiny_transform_text(tiny):
     assert "#Satisfy dependency from '1 - Structure'::Vehicle to '2 - Requirements'::Range;" in text
     statuses = {r.status for r in res.records}
     assert statuses <= {CLEAN, LOSSY, DECISION, UNSUPPORTED}
-    by_id = {r.element_id: r for r in res.records if r.status != LOSSY}
+    assert max(Counter(r.element_id for r in res.records).values()) == 1  # one record per source element
+    by_id = {r.element_id: r for r in res.records}
     assert by_id["veh"].v2_construct.startswith("part def")
     assert by_id["r1"].v2_construct.startswith("requirement")
+    assert by_id["r2"].status == LOSSY and "Range_2" in by_id["r2"].note  # rename folded into the element's record
     assert by_id["sat"].status == DECISION  # satisfy needs a chosen part usage in v2
     assert by_id["orphan"].status == DECISION or by_id["orphan"].status == CLEAN
 
@@ -42,6 +52,8 @@ def test_csrm_full_transform_records(csrm, csrm_profile):
     res = transform(csrm, csrm_profile)
     assert "#Component" in res.model_text
     assert "metadata def Component" in res.profile_text
+    assert '@moeSpecification { summary = "' in res.model_text  # custom tag values survive
+    assert max(Counter(r.element_id for r in res.records).values()) == 1
     counts = {}
     for r in res.records:
         counts[r.status] = counts.get(r.status, 0) + 1
@@ -59,8 +71,9 @@ def test_csrm_subset_has_stubs(csrm, csrm_profile):
 
 def test_dels_redefinition_is_lossy_or_redefines(dels):
     res = transform(dels)
-    redef = [r for r in res.records if r.v1_construct == "Property (redefinition)"]
-    assert redef and all(r.status == LOSSY for r in redef)
+    redef = [r for r in res.records if "redefinition of" in r.note]
+    assert redef and all(r.status == LOSSY and r.v2_construct != "-" for r in redef)
+    assert max(Counter(r.element_id for r in res.records).values()) == 1
     assert ":>>" in res.model_text
     assert "[self." not in res.model_text
 
@@ -74,6 +87,16 @@ def test_report_rendering(tiny):
     assert "not run" in md.lower() or "validation" in md.lower()
     js = render_json(rep)
     assert '"records"' in js
+
+
+def test_validate_timeout_is_a_failed_result(monkeypatch, tmp_path):
+    def boom(*_a, **_k):
+        raise subprocess.TimeoutExpired("kernel", 1)
+
+    monkeypatch.setattr(validate, "kernel_available", lambda env: True)
+    monkeypatch.setattr(validate.subprocess, "run", boom)
+    v = validate.validate("package P;", env=tmp_path, timeout=1)
+    assert not v.ok and "timed out" in v.raw
 
 
 @needs_kernel

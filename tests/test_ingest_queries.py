@@ -41,6 +41,30 @@ def test_structure_tree(tiny):
     tree = queries.structure_tree(tiny, veh)
     assert tree["name"] == "Vehicle"
     assert {p["role"] for p in tree["parts"]} == {"engine", "part"}
+    # both usages typed by Engine expand; only a true ancestry cycle is cut
+    for child in tree["parts"]:
+        assert [g["role"] for g in child["parts"]] == ["piston"]
+
+
+def test_structure_tree_cycle_guard(tiny):
+    eng = tiny.elements["eng"]
+    eng_veh = tiny.elements["eng_veh"]
+    eng_veh.attrs["aggregation"] = "composite"
+    try:
+        tree = queries.structure_tree(tiny, eng, depth=5)
+        veh = next(p for p in tree["parts"] if p["role"] == "vehicle")
+        back = next(p for p in veh["parts"] if p["role"] == "engine")
+        assert back["cycle"] is True and back["parts"] == []
+    finally:
+        del eng_veh.attrs["aggregation"]
+
+
+def test_interfaces_closure_is_composite_only(tiny):
+    veh, eng = tiny.elements["veh"], tiny.elements["eng"]
+    res = queries.interfaces_between(tiny, eng, veh)
+    # Engine.vehicle is a reference property: Vehicle (and its port) must not join Engine's subtree
+    assert res["ports_a"] == []
+    assert {p.name for p in res["ports_b"]} == {"power in"}
 
 
 def test_csrm_loads_with_diagrams_and_profile(csrm):

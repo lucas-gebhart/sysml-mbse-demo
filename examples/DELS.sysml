@@ -214,32 +214,85 @@ package PLANT {
             action def NonMaterialProcess;
         }
         package Control {
-            action def ChangeState { in targetResource : PLANT::Resource::Resource; in newState; out overheadTask : CONTEXT::Task; }
+            action def ChangeState {
+                in targetResource : PLANT::Resource::Resource;
+                in newState;
+                out overheadTask : CONTEXT::Task;
+            }
             action def Control;
-            action def Admit { in incomingTasks : CONTEXT::Task; out availableTasks : CONTEXT::Task; in admissionDecision : ScalarValues::Boolean; out rejectedTasks : CONTEXT::Task; }
-            action def Route { in inTask : CONTEXT::Task; in assignedResource : PLANT::Resource::Resource; out outTask : CONTEXT::Task; in updatedProcessPlan; }
-            action def Sequence { in availableTasks : CONTEXT::Task; in index : ScalarValues::Integer; out orderedTasks : CONTEXT::Task; }
-            action def ResourceAcquire { in targetTask : CONTEXT::Task; in resourceAssignment : PLANT::Resource::Resource; in availableResources : PLANT::Resource::Resource; out acquiredResources : PLANT::Resource::Resource; }
-            action def UpdateProcessPlan { in inTask : CONTEXT::Task; out outTask : CONTEXT::Task; in processPlan; }
+            action def Admit {
+                in incomingTasks : CONTEXT::Task;
+                out availableTasks : CONTEXT::Task;
+                in admissionDecision : ScalarValues::Boolean;
+                out rejectedTasks : CONTEXT::Task;
+            }
+            action def Route {
+                in inTask : CONTEXT::Task;
+                in assignedResource : PLANT::Resource::Resource;
+                out outTask : CONTEXT::Task;
+                in updatedProcessPlan;
+            }
+            action def Sequence {
+                in availableTasks : CONTEXT::Task;
+                in index : ScalarValues::Integer;
+                out orderedTasks : CONTEXT::Task;
+            }
+            action def ResourceAcquire {
+                in targetTask : CONTEXT::Task;
+                in resourceAssignment : PLANT::Resource::Resource;
+                in availableResources : PLANT::Resource::Resource;
+                out acquiredResources : PLANT::Resource::Resource;
+            }
+            action def UpdateProcessPlan {
+                in inTask : CONTEXT::Task;
+                out outTask : CONTEXT::Task;
+                in processPlan;
+            }
             package Implementations {
-                action def RouteToResource { in inTask : CONTEXT::Task; in assignedResource : PLANT::Resource::Resource; out outTask : CONTEXT::Task; in updatedProcessPlan; }
+                action def RouteToResource {
+                    in inTask : CONTEXT::Task;
+                    in assignedResource : PLANT::Resource::Resource;
+                    out outTask : CONTEXT::Task;
+                    in updatedProcessPlan;
+                }
                 action def RouteToTask;
-                action def MoveTaskToResource { in input; out output : CONTEXT::Task; }
+                action def MoveTaskToResource {
+                    in input;
+                    out output : CONTEXT::Task;
+                }
                 action def SeizeResourceForTask;
                 action def RequestResourceForTask;
-                action def AcceptJobIntoWorkCell { in incomingTask : CONTEXT::Task; out availableTasks : CONTEXT::Task; in admissionDecision : ScalarValues::Boolean; out rejectedTasks : CONTEXT::Task; }
+                action def AcceptJobIntoWorkCell {
+                    in incomingTask : CONTEXT::Task;
+                    out availableTasks : CONTEXT::Task;
+                    in admissionDecision : ScalarValues::Boolean;
+                    out rejectedTasks : CONTEXT::Task;
+                }
             }
-            action def ExecuteSchedule { in resourceAssignment : PLANT::Resource::Resource; in availableResources : PLANT::Resource::Resource; out acquiredResources : PLANT::Resource::Resource; in availableTasks : CONTEXT::Task; in index : ScalarValues::Integer; out orderedTasks : CONTEXT::Task; }
+            action def ExecuteSchedule {
+                in resourceAssignment : PLANT::Resource::Resource;
+                in availableResources : PLANT::Resource::Resource;
+                out acquiredResources : PLANT::Resource::Resource;
+                in availableTasks : CONTEXT::Task;
+                in index : ScalarValues::Integer;
+                out orderedTasks : CONTEXT::Task;
+            }
         }
         action def Process;
         action def Make;
         action def Control_2;
-        action def Move { inout targetItem; in destination; in origin; }
+        action def Move {
+            inout targetItem;
+            in destination;
+            in origin;
+        }
         action def Store;
         action def MeasureTest;
         action def Load;
         action def Unload;
-        action def Get { out output : CONTEXT::Task; }
+        action def Get {
+            out output : CONTEXT::Task;
+        }
         action def Put;
     }
     package Product {
@@ -465,7 +518,10 @@ package CONTROL {
     package DecisionSupport {
         package Admission {
             part def Propose {
-                action def Propose_PriceLeadTime { out LeadTime; in Price; }
+                action def Propose_PriceLeadTime {
+                    out LeadTime;
+                    in Price;
+                }
                 part def proposeLeadTime {
                     action admission { in incomingTask; in price; out leadTime; }
                 }
@@ -479,7 +535,10 @@ package CONTROL {
                     state AdmitTask;
                     state RejectTask;
                 }
-                action def SimpleCapacity_2 { in incomingTask : CONTEXT::Task; out admissionResult : ScalarValues::Boolean; }
+                action def SimpleCapacity_2 {
+                    in incomingTask : CONTEXT::Task;
+                    out admissionResult : ScalarValues::Boolean;
+                }
                 attribute threshold : ScalarValues::Integer;
                 action admission { in incomingTask; }
             }
@@ -488,7 +547,10 @@ package CONTROL {
                     state AdmitTask;
                     state RejectTask;
                 }
-                action def capacitatedPriority_2 { in incomingTask : CONTEXT::Task; out admissionResult : ScalarValues::Boolean; }
+                action def capacitatedPriority_2 {
+                    in incomingTask : CONTEXT::Task;
+                    out admissionResult : ScalarValues::Boolean;
+                }
                 attribute capacityThreshold : ScalarValues::Integer;
                 attribute priorityThreshold : ScalarValues::Integer;
                 action admission { in incomingTask; }
@@ -497,7 +559,10 @@ package CONTROL {
         }
         package Sequencing {
             part def FIFO {
-                action def sequencing { out sequenceIndex : ScalarValues::Integer; in taskList : CONTEXT::Task; }
+                action def sequencing {
+                    out sequenceIndex : ScalarValues::Integer;
+                    in taskList : CONTEXT::Task;
+                }
                 attribute sortKey = "task.ageInQueue";
                 action sequencing_2 { out sequenceIndex; in taskSet; }
             }

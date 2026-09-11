@@ -1103,8 +1103,9 @@ package '01 - CubeSat System Reference Model' {
             package '2.1.1 MOE' {
                 doc /* Repository for MOEs */
                 package '2.1.1.1 MOE Specifications' {
-                    #moeSpecification part def 'MoeA Specification' {
+                    part def 'MoeA Specification' {
                         doc /* Technical measure description */
+                        @moeSpecification { summary = "The system shall exhibit the property \"MOE Name\" that has a minimum of x and maximum of y,"; }
                     }
                     #moeSpecification part def 'MoeB Specification' {
                         doc /* Technical measure description */

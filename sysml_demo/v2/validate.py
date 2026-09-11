@@ -66,9 +66,12 @@ def validate(cells: list[str] | str, env: Path = DEFAULT_ENV, timeout: int = 300
 
     py = env / "bin/python"
     runner = Path(__file__).with_name("_kernel_runner.py")
-    proc = subprocess.run(
-        [str(py), str(runner)], input=json.dumps(cells), capture_output=True, text=True, env=_env_for_kernel(env), timeout=timeout
-    )
+    try:
+        proc = subprocess.run(
+            [str(py), str(runner)], input=json.dumps(cells), capture_output=True, text=True, env=_env_for_kernel(env), timeout=timeout
+        )
+    except subprocess.TimeoutExpired:
+        return ValidationResult(ok=False, raw=f"SysML v2 validation timed out after {timeout}s")
     if proc.returncode != 0 or "@@RESULT@@" not in proc.stdout:
         return ValidationResult(ok=False, raw=proc.stderr or proc.stdout)
     out = json.loads(proc.stdout.rsplit("@@RESULT@@", 1)[1])

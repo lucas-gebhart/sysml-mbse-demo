@@ -6,17 +6,66 @@
     "elements": 1610
   },
   "totals": {
-    "clean": 427,
-    "lossy": 56,
+    "clean": 419,
+    "lossy": 44,
     "decision": 97,
     "unsupported": 54,
-    "records": 634
+    "records": 614
   },
   "validation": {
     "ok": true,
     "errors": 0,
     "warnings": 47,
-    "sysml_lines": 675
+    "sysml_lines": 740,
+    "diagnostics": [
+      "WARNING cell 2 line 45:22 Duplicate of inherited member name 'controller' from ActiveResource",
+      "WARNING cell 2 line 61:21 Duplicate of inherited member name 'canExecute' from ActiveResource",
+      "WARNING cell 2 line 84:21 Duplicate of inherited member name 'canExecute' from ResourceAcquirer",
+      "WARNING cell 2 line 85:22 Duplicate of inherited member name 'inTask' from ReadWriteProcessPlan, ResourceAcquirer",
+      "WARNING cell 2 line 86:22 Duplicate of inherited member name 'outTask' from ReadWriteProcessPlan, ResourceAcquirer",
+      "WARNING cell 2 line 83:13 Duplicate of inherited member name 'inTask' from ReadWriteProcessPlan, ResourceAcquirer",
+      "WARNING cell 2 line 83:13 Duplicate of inherited member name 'outTask' from ReadWriteProcessPlan, ResourceAcquirer",
+      "WARNING cell 2 line 92:22 Duplicate of inherited member name 'targetResource' from ActiveResource",
+      "WARNING cell 2 line 108:13 Duplicate of inherited member name 'canExecute' from Queue, ResourceAcquirer",
+      "WARNING cell 2 line 108:13 Duplicate of inherited member name 'inTask' from Queue, ResourceAcquirer",
+      "WARNING cell 2 line 108:13 Duplicate of inherited member name 'outTask' from Queue, ResourceAcquirer",
+      "WARNING cell 2 line 109:17 Duplicate of inherited member name 'canExecute' from ActiveResource, Queue",
+      "WARNING cell 2 line 142:24 Duplicate of inherited member name 'queryState' from DiscreteStateResource",
+      "WARNING cell 2 line 159:13 Duplicate of inherited member name 'deallocateCapacity' from CapacitatedResource, ConsumableResource",
+      "WARNING cell 2 line 171:24 Duplicate of inherited member name 'deallocateCapacity' from CapacitatedResource",
+      "WARNING cell 2 line 641:9 Duplicate of inherited member name 'controller' from ActiveResource, DELS",
+      "WARNING cell 2 line 641:9 Duplicate of inherited member name 'relationshipBetween' from ActiveResource, DELS",
+      "WARNING cell 2 line 672:14 Duplicate of inherited member name 'controller' from ActiveResource",
+      "WARNING cell 2 line 687:13 Duplicate of inherited member name 'relationshipBetween' from ActiveResource",
+      "WARNING cell 2 line 666:9 Duplicate of inherited member name 'canExecute' from ActiveResource, Queue",
+      "WARNING cell 2 line 669:9 Duplicate of inherited member name 'canExecute' from ActiveResource, Queue",
+      "WARNING cell 2 line 671:9 Duplicate of inherited member name 'canExecute' from ResourceAcquirer, Router",
+      "WARNING cell 2 line 671:9 Duplicate of inherited member name 'inTask' from ReadWriteProcessPlan, ResourceAcquirer, Router",
+      "WARNING cell 2 line 671:9 Duplicate of inherited member name 'outTask' from ReadWriteProcessPlan, ResourceAcquirer, Router",
+      "WARNING cell 2 line 674:9 Duplicate of inherited member name 'targetResource' from ActiveResource, ChangeState",
+      "WARNING cell 2 line 681:9 Duplicate of inherited member name 'controller' from ActiveResource, DELS",
+      "WARNING cell 2 line 681:9 Duplicate of inherited member name 'relationshipBetween' from ActiveResource, DELS",
+      "WARNING cell 2 line 682:9 Duplicate of inherited member name 'controller' from ActiveResource, DELS",
+      "WARNING cell 2 line 682:9 Duplicate of inherited member name 'relationshipBetween' from ActiveResource, DELS",
+      "WARNING cell 2 line 683:9 Duplicate of inherited member name 'controller' from ActiveResource, DELS",
+      "WARNING cell 2 line 683:9 Duplicate of inherited member name 'relationshipBetween' from ActiveResource, DELS",
+      "WARNING cell 2 line 691:9 Duplicate of inherited member name 'controller' from ActiveResource, DELS",
+      "WARNING cell 2 line 691:9 Duplicate of inherited member name 'relationshipBetween' from ActiveResource, DELS",
+      "WARNING cell 2 line 697:9 Duplicate of inherited member name 'canExecute' from Queue, ResourceAcquirer",
+      "WARNING cell 2 line 697:9 Duplicate of inherited member name 'inTask' from Queue, ResourceAcquirer",
+      "WARNING cell 2 line 697:9 Duplicate of inherited member name 'outTask' from Queue, ResourceAcquirer",
+      "WARNING cell 2 line 703:17 Duplicate of inherited member name 'canExecute' from ResourceAcquirer, Router",
+      "WARNING cell 2 line 703:17 Duplicate of inherited member name 'inTask' from ReadWriteProcessPlan, ResourceAcquirer, Router",
+      "WARNING cell 2 line 703:17 Duplicate of inherited member name 'outTask' from ReadWriteProcessPlan, ResourceAcquirer, Router",
+      "WARNING cell 2 line 703:28 Duplicate of inherited member name 'canExecute' from ActiveResource, Queue",
+      "WARNING cell 2 line 704:17 Duplicate of inherited member name 'targetResource' from ActiveResource, ChangeState",
+      "WARNING cell 2 line 718:26 Duplicate of other owned member name",
+      "WARNING cell 2 line 719:26 Duplicate of other owned member name",
+      "WARNING cell 2 line 720:26 Duplicate of other owned member name",
+      "WARNING cell 2 line 721:26 Duplicate of other owned member name",
+      "WARNING cell 2 line 724:26 Duplicate of other owned member name",
+      "WARNING cell 2 line 727:26 Duplicate of other owned member name"
+    ]
   },
   "table": [
     {
@@ -50,25 +99,29 @@
       "v1_construct": "Property (value)",
       "v2_construct": "attribute usage",
       "count": 47,
-      "clean": 47,
-      "lossy": 0,
+      "clean": 45,
+      "lossy": 2,
       "decision": 0,
       "unsupported": 0,
-      "worst": "clean",
+      "worst": "lossy",
       "notes": [
-        "untyped in the source model"
+        "untyped in the source model",
+        "multiplicity expression 'self.nDims * self.nDims'..'self.nDims * self.nDims' dropped; use a v2 calc/constraint",
+        "multiplicity expression 'self.nDims'..'self.nDims' dropped; use a v2 calc/constraint"
       ]
     },
     {
       "v1_construct": "ReferenceProperty",
       "v2_construct": "ref part",
       "count": 40,
-      "clean": 40,
-      "lossy": 0,
+      "clean": 39,
+      "lossy": 1,
       "decision": 0,
       "unsupported": 0,
-      "worst": "clean",
-      "notes": []
+      "worst": "lossy",
+      "notes": [
+        "sibling name clash; emitted as 'resource_2'"
+      ]
     },
     {
       "v1_construct": "Association (composite)",
@@ -85,9 +138,9 @@
     },
     {
       "v1_construct": "Activity",
-      "v2_construct": "action def, renamed",
-      "count": 35,
-      "clean": 28,
+      "v2_construct": "action def",
+      "count": 32,
+      "clean": 25,
       "lossy": 7,
       "decision": 0,
       "unsupported": 0,
@@ -100,16 +153,16 @@
     },
     {
       "v1_construct": "Operation",
-      "v2_construct": "action (nested), renamed",
-      "count": 32,
+      "v2_construct": "action (nested)",
+      "count": 31,
       "clean": 0,
-      "lossy": 1,
+      "lossy": 0,
       "decision": 31,
       "unsupported": 0,
       "worst": "decision",
       "notes": [
         "v2 has no operations; emitted as nested action, calls must be re-modelled",
-        "sibling name clash; emitted as 'sequencing_2'"
+        "v2 has no operations; emitted as nested action, calls must be re-modelled; sibling name clash; emitted as 'sequencing_2'"
       ]
     },
     {
@@ -151,10 +204,10 @@
     },
     {
       "v1_construct": "Property",
-      "v2_construct": "ref, renamed",
-      "count": 24,
+      "v2_construct": "ref",
+      "count": 23,
       "clean": 0,
-      "lossy": 1,
+      "lossy": 0,
       "decision": 23,
       "unsupported": 0,
       "worst": "decision",
@@ -168,12 +221,14 @@
       "v1_construct": "PartProperty",
       "v2_construct": "part usage",
       "count": 21,
-      "clean": 21,
-      "lossy": 0,
+      "clean": 19,
+      "lossy": 2,
       "decision": 0,
       "unsupported": 0,
-      "worst": "clean",
-      "notes": []
+      "worst": "lossy",
+      "notes": [
+        "redefinition of 'controller' dropped: redefined feature has a different v2 kind"
+      ]
     },
     {
       "v1_construct": "Class (unstereotyped)",
@@ -185,7 +240,8 @@
       "unsupported": 0,
       "worst": "decision",
       "notes": [
-        "plain UML class: treated as part def; confirm it is structural"
+        "plain UML class: treated as part def; confirm it is structural",
+        "plain UML class: treated as part def; confirm it is structural; sibling name clash; emitted as 'DecisionSupport_2'"
       ]
     },
     {
@@ -221,7 +277,8 @@
       "worst": "decision",
       "notes": [
         "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency",
-        "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved"
+        "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved",
+        "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; sibling name clash; emitted as 'flow for Task_2'"
       ]
     },
     {
@@ -245,7 +302,8 @@
       "unsupported": 0,
       "worst": "lossy",
       "notes": [
-        "shared aggregation semantics approximated by reference"
+        "shared aggregation semantics approximated by reference",
+        "shared aggregation semantics approximated by reference; redefinition of 'memberResource' dropped: redefined feature has a different v2 kind"
       ]
     },
     {
@@ -283,21 +341,6 @@
       "worst": "unsupported",
       "notes": [
         "v2 has no diagram-layout interchange; views/viewpoints must be re-authored in the target tool"
-      ]
-    },
-    {
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "count": 9,
-      "clean": 0,
-      "lossy": 9,
-      "decision": 0,
-      "unsupported": 0,
-      "worst": "lossy",
-      "notes": [
-        "sibling name clash; emitted as 'flow for Task_2'",
-        "sibling name clash; emitted as 'flow for Task_3'",
-        "sibling name clash; emitted as 'flow for Task_4'"
       ]
     },
     {
@@ -401,20 +444,6 @@
       "notes": []
     },
     {
-      "v1_construct": "Property (redefinition)",
-      "v2_construct": "-",
-      "count": 3,
-      "clean": 0,
-      "lossy": 3,
-      "decision": 0,
-      "unsupported": 0,
-      "worst": "lossy",
-      "notes": [
-        "redefinition of 'controller' dropped: redefined feature has a different v2 kind",
-        "redefinition of 'memberResource' dropped: redefined feature has a different v2 kind"
-      ]
-    },
-    {
       "v1_construct": "AssociationClass",
       "v2_construct": "-",
       "count": 3,
@@ -437,20 +466,6 @@
       "unsupported": 0,
       "worst": "clean",
       "notes": []
-    },
-    {
-      "v1_construct": "Property (expression multiplicity)",
-      "v2_construct": "attribute usage",
-      "count": 2,
-      "clean": 0,
-      "lossy": 2,
-      "decision": 0,
-      "unsupported": 0,
-      "worst": "lossy",
-      "notes": [
-        "multiplicity expression 'self.nDims * self.nDims'..'self.nDims * self.nDims' dropped; use a v2 calc/constraint",
-        "multiplicity expression 'self.nDims'..'self.nDims' dropped; use a v2 calc/constraint"
-      ]
     },
     {
       "v1_construct": "Comment <<Problem>>",
@@ -487,19 +502,6 @@
       "worst": "unsupported",
       "notes": [
         "no mapping implemented"
-      ]
-    },
-    {
-      "v1_construct": "Class",
-      "v2_construct": "renamed",
-      "count": 1,
-      "clean": 0,
-      "lossy": 1,
-      "decision": 0,
-      "unsupported": 0,
-      "worst": "lossy",
-      "notes": [
-        "sibling name clash; emitted as 'DecisionSupport_2'"
       ]
     },
     {
@@ -802,19 +804,10 @@
       "element_id": "_18_5_1_412017e_1555009199813_289348_21357",
       "element_name": "controller",
       "qualified_name": "PLANT::Resource::ISA95ResourceDef::Equipment::controller",
-      "v1_construct": "Property (redefinition)",
-      "v2_construct": "-",
-      "status": "lossy",
-      "note": "redefinition of 'controller' dropped: redefined feature has a different v2 kind"
-    },
-    {
-      "element_id": "_18_5_1_412017e_1555009199813_289348_21357",
-      "element_name": "controller",
-      "qualified_name": "PLANT::Resource::ISA95ResourceDef::Equipment::controller",
       "v1_construct": "PartProperty",
       "v2_construct": "part usage",
-      "status": "clean",
-      "note": ""
+      "status": "lossy",
+      "note": "redefinition of 'controller' dropped: redefined feature has a different v2 kind"
     },
     {
       "element_id": "_18_5_1_412017e_1555009232236_753031_21363",
@@ -1594,19 +1587,10 @@
       "element_id": "_18_0_2_f95033a_1444426592630_887727_21363",
       "element_name": "resourcePool",
       "qualified_name": "PLANT::Resource::OZONEResourceDef::AggregateResource::resourcePool",
-      "v1_construct": "Property (redefinition)",
-      "v2_construct": "-",
-      "status": "lossy",
-      "note": "redefinition of 'memberResource' dropped: redefined feature has a different v2 kind"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1444426592630_887727_21363",
-      "element_name": "resourcePool",
-      "qualified_name": "PLANT::Resource::OZONEResourceDef::AggregateResource::resourcePool",
       "v1_construct": "SharedProperty",
       "v2_construct": "ref part",
       "status": "lossy",
-      "note": "shared aggregation semantics approximated by reference"
+      "note": "shared aggregation semantics approximated by reference; redefinition of 'memberResource' dropped: redefined feature has a different v2 kind"
     },
     {
       "element_id": "_18_0_2_f95033a_1444426115548_908633_21089",
@@ -1954,19 +1938,10 @@
       "element_id": "_18_5_1_412017e_1513346821610_288757_40603",
       "element_name": "resource",
       "qualified_name": "PLANT::Resource::ActiveResource::resource",
-      "v1_construct": "Property",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'resource_2'"
-    },
-    {
-      "element_id": "_18_5_1_412017e_1513346821610_288757_40603",
-      "element_name": "resource",
-      "qualified_name": "PLANT::Resource::ActiveResource::resource",
       "v1_construct": "ReferenceProperty",
       "v2_construct": "ref part",
-      "status": "clean",
-      "note": ""
+      "status": "lossy",
+      "note": "sibling name clash; emitted as 'resource_2'"
     },
     {
       "element_id": "_18_5_1_412017e_1513346846699_613197_40771",
@@ -2433,15 +2408,6 @@
       "qualified_name": "PLANT::Process::Control",
       "v1_construct": "Activity",
       "v2_construct": "action def",
-      "status": "clean",
-      "note": ""
-    },
-    {
-      "element_id": "_18_4_1_412017e_1490796328705_464722_30801",
-      "element_name": "Control",
-      "qualified_name": "PLANT::Process::Control",
-      "v1_construct": "Activity",
-      "v2_construct": "renamed",
       "status": "lossy",
       "note": "sibling name clash; emitted as 'Control_2'"
     },
@@ -3259,19 +3225,10 @@
       "element_id": "_17_0_4_2_937029c_1471893022422_412697_27515",
       "element_name": "elements",
       "qualified_name": "PLANT::Facility::Layout::Geometry::SquareMatrixOfReals::elements",
-      "v1_construct": "Property (expression multiplicity)",
+      "v1_construct": "Property (value)",
       "v2_construct": "attribute usage",
       "status": "lossy",
       "note": "multiplicity expression 'self.nDims * self.nDims'..'self.nDims * self.nDims' dropped; use a v2 calc/constraint"
-    },
-    {
-      "element_id": "_17_0_4_2_937029c_1471893022422_412697_27515",
-      "element_name": "elements",
-      "qualified_name": "PLANT::Facility::Layout::Geometry::SquareMatrixOfReals::elements",
-      "v1_construct": "Property (value)",
-      "v2_construct": "attribute usage",
-      "status": "clean",
-      "note": ""
     },
     {
       "element_id": "_17_0_4_2_937029c_1471893022422_500493_27516",
@@ -3304,19 +3261,10 @@
       "element_id": "_17_0_4_2_937029c_1471893022423_744564_27519",
       "element_name": "elements",
       "qualified_name": "PLANT::Facility::Layout::Geometry::VectorOfReals::elements",
-      "v1_construct": "Property (expression multiplicity)",
+      "v1_construct": "Property (value)",
       "v2_construct": "attribute usage",
       "status": "lossy",
       "note": "multiplicity expression 'self.nDims'..'self.nDims' dropped; use a v2 calc/constraint"
-    },
-    {
-      "element_id": "_17_0_4_2_937029c_1471893022423_744564_27519",
-      "element_name": "elements",
-      "qualified_name": "PLANT::Facility::Layout::Geometry::VectorOfReals::elements",
-      "v1_construct": "Property (value)",
-      "v2_construct": "attribute usage",
-      "status": "clean",
-      "note": ""
     },
     {
       "element_id": "_17_0_4_2_937029c_1471893021786_684848_27375",
@@ -4386,15 +4334,6 @@
       "qualified_name": "CONTROL::DecisionSupport::Admission::simpleCapacity::SimpleCapacity",
       "v1_construct": "Activity",
       "v2_construct": "action def",
-      "status": "clean",
-      "note": ""
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1445548316602_693925_20178",
-      "element_name": "SimpleCapacity",
-      "qualified_name": "CONTROL::DecisionSupport::Admission::simpleCapacity::SimpleCapacity",
-      "v1_construct": "Activity",
-      "v2_construct": "renamed",
       "status": "lossy",
       "note": "sibling name clash; emitted as 'SimpleCapacity_2'"
     },
@@ -4440,15 +4379,6 @@
       "qualified_name": "CONTROL::DecisionSupport::Admission::capacitatedPriority::capacitatedPriority",
       "v1_construct": "Activity",
       "v2_construct": "action def",
-      "status": "clean",
-      "note": ""
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1445552570005_310212_20868",
-      "element_name": "capacitatedPriority",
-      "qualified_name": "CONTROL::DecisionSupport::Admission::capacitatedPriority::capacitatedPriority",
-      "v1_construct": "Activity",
-      "v2_construct": "renamed",
       "status": "lossy",
       "note": "sibling name clash; emitted as 'capacitatedPriority_2'"
     },
@@ -4531,16 +4461,7 @@
       "v1_construct": "Operation",
       "v2_construct": "action (nested)",
       "status": "decision",
-      "note": "v2 has no operations; emitted as nested action, calls must be re-modelled"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1446920767464_155982_28333",
-      "element_name": "sequencing",
-      "qualified_name": "CONTROL::DecisionSupport::Sequencing::FIFO::sequencing",
-      "v1_construct": "Operation",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'sequencing_2'"
+      "note": "v2 has no operations; emitted as nested action, calls must be re-modelled; sibling name clash; emitted as 'sequencing_2'"
     },
     {
       "element_id": "_18_0_2_f95033a_1445609901928_115406_21991",
@@ -4813,15 +4734,6 @@
       "note": ""
     },
     {
-      "element_id": "_18_0_2_f95033a_1445544169041_619179_40380",
-      "element_name": "DecisionSupport",
-      "qualified_name": "CONTROL::DecisionSupport",
-      "v1_construct": "Class",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'DecisionSupport_2'"
-    },
-    {
       "element_id": "_18_0_2_f95033a_1447092905737_485647_29182",
       "element_name": "decisionSupport",
       "qualified_name": "CONTROL::OperationalController::decisionSupport",
@@ -4900,7 +4812,7 @@
       "v1_construct": "Class (unstereotyped)",
       "v2_construct": "part def",
       "status": "decision",
-      "note": "plain UML class: treated as part def; confirm it is structural"
+      "note": "plain UML class: treated as part def; confirm it is structural; sibling name clash; emitted as 'DecisionSupport_2'"
     },
     {
       "element_id": "_18_5_1_412017e_1585935377511_729190_22989",
@@ -5500,19 +5412,10 @@
       "element_id": "_17_0_4_2_937029c_1468359614875_742831_17773",
       "element_name": "controller",
       "qualified_name": "DELS::controller",
-      "v1_construct": "Property (redefinition)",
-      "v2_construct": "-",
-      "status": "lossy",
-      "note": "redefinition of 'controller' dropped: redefined feature has a different v2 kind"
-    },
-    {
-      "element_id": "_17_0_4_2_937029c_1468359614875_742831_17773",
-      "element_name": "controller",
-      "qualified_name": "DELS::controller",
       "v1_construct": "PartProperty",
       "v2_construct": "part usage",
-      "status": "clean",
-      "note": ""
+      "status": "lossy",
+      "note": "redefinition of 'controller' dropped: redefined feature has a different v2 kind"
     },
     {
       "element_id": "_17_0_4_2_937029c_1468430542542_774878_18605",
@@ -6025,16 +5928,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1447101251724_601111_30217",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_2'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; sibling name clash; emitted as 'flow for Task_2'"
     },
     {
       "element_id": "_18_0_2_f95033a_1447101302314_832164_30241",
@@ -6043,16 +5937,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1447101302314_832164_30241",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_3'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved; sibling name clash; emitted as 'flow for Task_3'"
     },
     {
       "element_id": "_17_0_4_2_937029c_1469555415823_205307_21215",
@@ -6070,16 +5955,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency"
-    },
-    {
-      "element_id": "_18_4_1_412017e_1497984032052_864087_33958",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_4'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; sibling name clash; emitted as 'flow for Task_4'"
     },
     {
       "element_id": "_18_5_1_412017e_1512672906355_135518_33448",
@@ -6088,16 +5964,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency"
-    },
-    {
-      "element_id": "_18_5_1_412017e_1512672906355_135518_33448",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_5'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; sibling name clash; emitted as 'flow for Task_5'"
     },
     {
       "element_id": "_18_5_1_412017e_1512771162426_432643_34853",
@@ -6115,16 +5982,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved"
-    },
-    {
-      "element_id": "_18_5_1_412017e_1512771219013_449376_34857",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_6'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved; sibling name clash; emitted as 'flow for Task_6'"
     },
     {
       "element_id": "_18_5_1_412017e_1513689102404_339824_44901",
@@ -6142,16 +6000,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1447101451547_579919_30307",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_7'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; sibling name clash; emitted as 'flow for Task_7'"
     },
     {
       "element_id": "_18_0_2_f95033a_1447100257008_504844_29918",
@@ -6160,16 +6009,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1447100257008_504844_29918",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_8'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved; sibling name clash; emitted as 'flow for Task_8'"
     },
     {
       "element_id": "_18_0_2_f95033a_1447100783933_54728_30108",
@@ -6178,16 +6018,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved"
-    },
-    {
-      "element_id": "_18_0_2_f95033a_1447100783933_54728_30108",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_9'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; conveyed item type unresolved; sibling name clash; emitted as 'flow for Task_9'"
     },
     {
       "element_id": "_19_0_3_412017e_1603041739543_540162_14080",
@@ -6196,16 +6027,7 @@
       "v1_construct": "ItemFlow / InformationFlow",
       "v2_construct": "#ItemFlow dependency",
       "status": "decision",
-      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency"
-    },
-    {
-      "element_id": "_19_0_3_412017e_1603041739543_540162_14080",
-      "element_name": "flow for Task",
-      "qualified_name": "flow for Task",
-      "v1_construct": "InformationFlow",
-      "v2_construct": "renamed",
-      "status": "lossy",
-      "note": "sibling name clash; emitted as 'flow for Task_10'"
+      "note": "v2 flows need a common part context (connect a.port to b.port inside an owner); ends live in different definitions, so the flow is kept as a traced dependency; sibling name clash; emitted as 'flow for Task_10'"
     },
     {
       "element_id": "_17_0_4_2_937029c_1471893022455_755188_27614",

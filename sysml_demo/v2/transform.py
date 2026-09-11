@@ -21,6 +21,7 @@ from ..model import Element, Model
 from .profile import ProfileIndex
 
 CLEAN, LOSSY, DECISION, UNSUPPORTED = "clean", "lossy", "decision", "unsupported"
+SEVERITY = {CLEAN: 0, LOSSY: 1, DECISION: 2, UNSUPPORTED: 3}
 
 V2_KEYWORDS = {
     "about",
@@ -228,6 +229,11 @@ class TransformResult:
         return out
 
 
+def v2string(value: str) -> str:
+    """KerML string literal."""
+    return '"' + value.replace("\\", "\\\\").replace('"', '\\"').replace("\r", "").replace("\n", "\\n") + '"'
+
+
 def v2name(name: str) -> str:
     name = name.strip()
     if not name:
@@ -257,6 +263,9 @@ class Transformer:
         self._deferred: list[Element] = []
         self.scope: set[str] | None = None
         self.referenced: set[str] = set()
+        self._by_id: dict[str, MapRecord] = {}
+        self._tag_values: dict[str, list[tuple[str, dict[str, str]]]] = defaultdict(list)
+        self._pending: dict[str, list[tuple[str, str]]] = defaultdict(list)  # element -> [(status, note)] before its record exists
 
     # ------------------------------------------------------------------ public
     def run(self) -> TransformResult:
@@ -269,6 +278,15 @@ class Transformer:
             self._emit_model_root_members(lines)
             self._emit_deferred_relationships(lines)
         self._record_unsupported_leftovers()
+        for eid in list(self._tag_values):
+            for name, values in self._tag_values.pop(eid):
+                self.loss(self.m.elements[eid], LOSSY, f"<<{name}>> tag values {sorted(values)} dropped: v2 construct has no body")
+        for eid in list(self._pending):
+            losses = self._pending.pop(eid)
+            el = self.m.elements[eid]
+            self.rec(el, el.kind, "-", *losses[0])
+            for status, note in losses[1:]:
+                self.loss(el, status, note)
         profile_lines = self._profile_package()
         return TransformResult("\n".join(profile_lines), "\n".join(lines), self.records, self.metadata_defs)
 
@@ -282,7 +300,7 @@ class Transformer:
         rel_lines: list[str] = []
         for rel in self._deferred:
             self._emit_relationship(rel, rel_lines, "")
-        stubs = [self.m.elements[i] for i in self.referenced if i not in self.scope and i in self.m.elements]
+        stubs = [self.m.elements[i] for i in sorted(self.referenced) if i not in self.scope and i in self.m.elements]
         tree: dict[str, dict] = {}
         self._tree_insert(tree, root, body)
         for s in stubs:
@@ -342,17 +360,7 @@ class Transformer:
             kw = "package"
         elif el.kind in ("Property", "Port"):
             kw = "ref"
-        self.records.append(
-            MapRecord(
-                el.id,
-                el.name,
-                self.m.qualified_name(el.id),
-                st or el.kind,
-                f"{kw} (stub)",
-                CLEAN,
-                "outside the requested subset; declaration-only stub so references resolve",
-            )
-        )
+        self.rec(el, st or el.kind, f"{kw} (stub)", CLEAN, "outside the requested subset; declaration-only stub so references resolve")
         return [f"{kw} {v2name(self.unique_name(el))};"]
 
     # ------------------------------------------------------------------ helpers
@@ -384,8 +392,23 @@ class Transformer:
             lines.append("}")
 
     def rec(self, el: Element, v1: str, v2: str, status: str, note: str = "") -> None:
+        """One record per source element; losses noted earlier by helpers are folded in."""
         self.emitted.add(el.id)
-        self.records.append(MapRecord(el.id, el.name, self.m.qualified_name(el.id), v1, v2, status, note))
+        r = MapRecord(el.id, el.name, self.m.qualified_name(el.id), v1, v2, status, note)
+        self.records.append(r)
+        self._by_id[el.id] = r
+        for s, n in self._pending.pop(el.id, []):
+            self.loss(el, s, n)
+
+    def loss(self, el: Element, status: str, note: str) -> None:
+        """Attach a partial loss to the element's record, promoting its status to the worse of the two."""
+        r = self._by_id.get(el.id)
+        if r is None:
+            self._pending[el.id].append((status, note))
+            return
+        if SEVERITY[status] > SEVERITY[r.status]:
+            r.status = status
+        r.note = f"{r.note}; {note}" if r.note else note
 
     def stereo(self, el: Element) -> list[str]:
         return [s.name for s in el.stereotypes if s.name not in NOISE]
@@ -404,14 +427,40 @@ class Transformer:
         info = self.profile.stereotypes.get(name)
         return info is not None
 
-    def metadata_prefix(self, el: Element) -> str:
+    def metadata_prefix(self, el: Element, skip: tuple[str, ...] = ()) -> str:
+        """`#Stereotype` prefix for custom stereotypes. Applications that carry tag values cannot
+        use the prefix form; they are parked for `metadata_body` (emitted as `@Stereotype { tag = ...; }`
+        inside the element). `skip` names tags already carried by the v2 construct (e.g. requirement Id/Text)."""
         out = []
         for s in el.stereotypes:
             if s.name in NOISE or not self.custom(s.name):
                 continue
             self.metadata_defs.setdefault(s.name, sorted(s.tags))
-            out.append(f"#{v2name(s.name)}")
+            values = {t: v for t, v in s.tags.items() if t not in skip and v}
+            if values:
+                self._tag_values[el.id].append((s.name, values))
+            else:
+                out.append(f"#{v2name(s.name)}")
         return (" ".join(out) + " ") if out else ""
+
+    def metadata_body(self, el: Element, ind: str) -> list[str]:
+        """`@Stereotype { tag = "value"; }` members for the applications parked by `metadata_prefix`."""
+        out = []
+        for name, values in self._tag_values.pop(el.id, []):
+            body = " ".join(f"{v2name(t)} = {v2string(v)};" for t, v in sorted(values.items()))
+            out.append(f"{ind}@{v2name(name)} {{ {body} }}")
+        return out
+
+    def _decl(self, el: Element, lines: list[str], ind: str, head: str, body: list[str] | None = None) -> None:
+        """Emit `head;` or, when there is a body (features, docs, metadata values), `head { ... }`."""
+        inner = ind + "    "
+        body = (body or []) + self.metadata_body(el, inner)
+        if body:
+            lines.append(f"{ind}{head} {{")
+            lines.extend(body)
+            lines.append(f"{ind}}}")
+        else:
+            lines.append(f"{ind}{head};")
 
     def unique_name(self, el: Element) -> str:
         """v2 name unique among siblings (v1 allows same-named siblings via different metaclasses)."""
@@ -424,11 +473,7 @@ class Transformer:
             name = f"{base}_{n}"
             n += 1
         if name != base:
-            self.records.append(
-                MapRecord(
-                    el.id, el.name, self.m.qualified_name(el.id), el.kind, "renamed", LOSSY, f"sibling name clash; emitted as {name!r}"
-                )
-            )
+            self.loss(el, LOSSY, f"sibling name clash; emitted as {name!r}")
         self._local_names[owner][name] = el.id
         self._v2_names[el.id] = name
         return name
@@ -465,17 +510,7 @@ class Transformer:
         if lo is None and hi is None:
             return ""
         if not all(x is None or x.lstrip("-").isdigit() or x == "*" for x in (lo, hi)):
-            self.records.append(
-                MapRecord(
-                    prop.id,
-                    prop.name,
-                    self.m.qualified_name(prop.id),
-                    "Property (expression multiplicity)",
-                    "attribute usage",
-                    LOSSY,
-                    f"multiplicity expression {lo!r}..{hi!r} dropped; use a v2 calc/constraint",
-                )
-            )
+            self.loss(prop, LOSSY, f"multiplicity expression {lo!r}..{hi!r} dropped; use a v2 calc/constraint")
             return ""
         lo = lo or "0"
         hi = "*" if hi in ("*", "-1") else (hi or lo)
@@ -497,6 +532,7 @@ class Transformer:
         self.rec(pkg, pkg.kind, "package", CLEAN)
         lines.append(f"{ind}{self.metadata_prefix(pkg)}package {v2name(self.unique_name(pkg))} {{")
         inner = ind + "    "
+        lines.extend(self.metadata_body(pkg, inner))
         if ind == "":
             lines.append(f"{inner}private import {v2name(self.m.name + ' Profile')}::*;")
             lines.append(f"{inner}private import RequirementDerivation::*;")
@@ -519,7 +555,7 @@ class Transformer:
             self._emit_activity(el, lines, ind)
         elif k == "UseCase":
             self.rec(el, "UseCase", "use case def", CLEAN)
-            lines.append(f"{ind}{self.metadata_prefix(el)}use case def {v2name(self.unique_name(el))};")
+            self._decl(el, lines, ind, f"{self.metadata_prefix(el)}use case def {v2name(self.unique_name(el))}")
         elif k == "Actor":
             self.rec(el, "Actor", "part def (actor)", CLEAN, "v2 actors are parts; role assigned per use case")
             lines.append(f"{ind}part def {v2name(self.unique_name(el))};")
@@ -572,7 +608,7 @@ class Transformer:
 
     def _emit_class(self, el: Element, lines: list[str], ind: str) -> None:
         st, root = self.primary(el)
-        prefix = self.metadata_prefix(el)
+        prefix = self.metadata_prefix(el, skip=("Id", "Text") if root == "Requirement" else ())
         name = v2name(self.unique_name(el))
         gens = [
             g
@@ -608,6 +644,7 @@ class Transformer:
             body = ind + "    "
             lines.extend(v2doc(el.tag("Text") or "", body))
             lines.extend(v2doc(el.doc, body) if not el.tag("Text") else [])
+            lines.extend(self.metadata_body(el, body))
             self._emit_features(el, lines, body)
             lines.append(f"{ind}}}")
             return
@@ -622,17 +659,19 @@ class Transformer:
                 "" if base or gens else "unit/quantity kind not mapped; use ISQ library",
             )
             spec2 = spec or (f" :> {base}" if base else "")
-            lines.append(f"{ind}{prefix}attribute def {name}{spec2};")
+            self._decl(el, lines, ind, f"{prefix}attribute def {name}{spec2}")
             return
         if root == "ConstraintBlock":
             self.rec(el, label, "constraint def", LOSSY, "constraint expression language differs (v1 opaque text vs KerML expressions)")
             lines.append(f"{ind}{prefix}constraint def {name}{spec} {{")
+            lines.extend(self.metadata_body(el, ind + "    "))
             self._emit_features(el, lines, ind + "    ")
             lines.append(f"{ind}}}")
             return
         if root in ("InterfaceBlock", "FlowSpecification"):
             self.rec(el, label, "port def", CLEAN)
             lines.append(f"{ind}{prefix}port def {name}{spec} {{")
+            lines.extend(self.metadata_body(el, ind + "    "))
             self._emit_features(el, lines, ind + "    ", in_port_def=True)
             lines.append(f"{ind}}}")
             return
@@ -644,7 +683,7 @@ class Transformer:
                 DECISION,
                 "v2 views are query-based renderings; v1 view contents/diagram must be re-expressed",
             )
-            lines.append(f"{ind}{root.lower()} def {name};")
+            self._decl(el, lines, ind, f"{root.lower()} def {name}")
             return
         if root == "Stakeholder":
             self.rec(
@@ -654,11 +693,11 @@ class Transformer:
                 LOSSY,
                 "transformation doc maps Stakeholder to ItemDefinition; concerns must be re-attached",
             )
-            lines.append(f"{ind}{prefix}part def {name}{spec};")
+            self._decl(el, lines, ind, f"{prefix}part def {name}{spec}")
             return
         if root == "TestCase":
             self.rec(el, label, "verification case def", CLEAN)
-            lines.append(f"{ind}{prefix}verification def {name};")
+            self._decl(el, lines, ind, f"{prefix}verification def {name}")
             return
         if root == "Behavior":
             self.rec(
@@ -668,7 +707,7 @@ class Transformer:
                 DECISION,
                 "behaviour stereotype applied to a class (not an activity): emitted as action def; confirm intent",
             )
-            lines.append(f"{ind}{prefix}action def {name}{spec};")
+            self._decl(el, lines, ind, f"{prefix}action def {name}{spec}")
             return
 
         # Block, custom block subtypes, and plain classes
@@ -690,6 +729,7 @@ class Transformer:
         lines.append(f"{ind}{prefix}part def {name}{spec} {{")
         body = ind + "    "
         lines.extend(v2doc(el.doc, body))
+        lines.extend(self.metadata_body(el, body))
         self._emit_features(el, lines, body)
         lines.append(f"{ind}}}")
 
@@ -769,13 +809,13 @@ class Transformer:
             t = self.ref(typ.id)
             if aggr == "composite":
                 self.rec(p, "PartProperty" if "PartProperty" in st else "Property (composite)", "part usage", CLEAN)
-                lines.append(f"{ind}{prefix}part {name} : {t}{mult};")
+                self._decl(p, lines, ind, f"{prefix}part {name} : {t}{mult}")
             elif aggr == "shared":
                 self.rec(p, "SharedProperty", "ref part", LOSSY, "shared aggregation semantics approximated by reference")
-                lines.append(f"{ind}{prefix}ref part {name} : {t}{mult};")
+                self._decl(p, lines, ind, f"{prefix}ref part {name} : {t}{mult}")
             else:
                 self.rec(p, "ReferenceProperty" if "ReferenceProperty" in st else "Property (reference)", "ref part", CLEAN)
-                lines.append(f"{ind}{prefix}ref part {name} : {t}{mult};")
+                self._decl(p, lines, ind, f"{prefix}ref part {name} : {t}{mult}")
             return
         t = self._type_ref(typ, tname)
         default = self._default(p)
@@ -786,7 +826,7 @@ class Transformer:
                 note = "untyped in the source model"
                 status = CLEAN
             self.rec(p, "ValueProperty" if "ValueProperty" in st else "Property (value)", "attribute usage", status, note)
-            lines.append(f"{ind}{prefix}attribute {name}{(' : ' + t) if t else ''}{mult}{default};")
+            self._decl(p, lines, ind, f"{prefix}attribute {name}{(' : ' + t) if t else ''}{mult}{default}")
             return
         self.rec(p, "Property", "ref", DECISION, f"typed by {typ.kind if typ else '?'}; choose part/attribute/ref")
         lines.append(f"{ind}ref {name}{mult};")
@@ -800,17 +840,7 @@ class Transformer:
             rt = self.m.type_of(r)
             plain_class = rt is not None and rt.kind == "Class" and self.primary(rt)[1] == ""
             if rt is None or r.attrs.get("aggregation", "none") != p.attrs.get("aggregation", "none") or plain_class:
-                self.records.append(
-                    MapRecord(
-                        p.id,
-                        p.name,
-                        self.m.qualified_name(p.id),
-                        "Property (redefinition)",
-                        "-",
-                        LOSSY,
-                        f"redefinition of {r.name!r} dropped: redefined feature has a different v2 kind",
-                    )
-                )
+                self.loss(p, LOSSY, f"redefinition of {r.name!r} dropped: redefined feature has a different v2 kind")
                 continue
             names.append(v2name(self.unique_name(r)))
         return (" :>> " + ", ".join(names)) if names else ""
@@ -946,8 +976,8 @@ class Transformer:
             tref = self._type_ref(self.m.type_of(p), self.m.type_name_of(p))
             ps.append(f"{d} {v2name(p.name or 'p')}{(' : ' + tref) if tref else ''}")
         kw = "verification def" if v2.startswith("verification") else "action def"
-        body = f" {{ {' '.join(x + ';' for x in ps)} }}" if ps else ""
-        lines.append(f"{ind}{self.metadata_prefix(a)}{kw} {v2name(self.unique_name(a))}{body if body else ';'}")
+        prefix = self.metadata_prefix(a)
+        self._decl(a, lines, ind, f"{prefix}{kw} {v2name(self.unique_name(a))}", [f"{ind}    {x};" for x in ps])
 
     def _emit_statemachine(self, sm: Element, lines: list[str], ind: str) -> None:
         states, transitions, pseudo = [], [], []
@@ -996,13 +1026,11 @@ class Transformer:
             "" if base or not gens else f"specialises {gens}: map to ISQ/SI",
         )
         props = [self.m.elements[c] for c in d.children if self.m.elements[c].kind == "Property"]
-        if props:
-            lines.append(f"{ind}{self.metadata_prefix(d)}attribute def {v2name(self.unique_name(d))}{(' :> ' + base) if base else ''} {{")
-            for p in props:
-                self._emit_property(p, lines, ind + "    ", False)
-            lines.append(f"{ind}}}")
-        else:
-            lines.append(f"{ind}{self.metadata_prefix(d)}attribute def {v2name(self.unique_name(d))}{(' :> ' + base) if base else ''};")
+        head = f"{self.metadata_prefix(d)}attribute def {v2name(self.unique_name(d))}{(' :> ' + base) if base else ''}"
+        body: list[str] = []
+        for p in props:
+            self._emit_property(p, body, ind + "    ", False)
+        self._decl(d, lines, ind, head, body)
 
     def _emit_association(self, a: Element, lines: list[str], ind: str) -> None:
         ends = [self.m.elements.get(e) for e in a.refs.get("memberEnd", [])]

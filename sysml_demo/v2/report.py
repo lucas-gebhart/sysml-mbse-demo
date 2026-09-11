@@ -117,6 +117,7 @@ def build_report(
             "errors": len(validation.errors),
             "warnings": len(validation.warnings),
             "sysml_lines": sum(len(c.splitlines()) for c in result.cells),
+            "diagnostics": [str(d) for d in validation.errors + validation.warnings],
         },
         "table": table,
         "custom_profile": custom,
@@ -136,9 +137,13 @@ def render_markdown(rep: dict) -> str:
     out.append(f"Source: {rep['source']['exporter'] or 'XMI'} export, {rep['source']['elements']} model elements.  ")
     if rep["validation"]:
         v = rep["validation"]
+        verdict = "PASSED" if v["ok"] else "FAILED"
+        if v["ok"] and v["warnings"]:
+            verdict = "PASSED WITH WARNINGS"
         out.append(
             f"Generated SysML v2: {v['sysml_lines']} lines, pilot-implementation validation "
-            f"**{'PASSED' if v['ok'] else 'FAILED'}** ({v['errors']} errors, {v['warnings']} warnings)."
+            f"**{verdict}** ({v['errors']} errors, {v['warnings']} warnings; PASSED means the text parses and "
+            "resolves with no errors, warnings are listed under Validation diagnostics)."
         )
     else:
         out.append("Generated SysML v2: pilot-implementation validation **NOT RUN** (re-run without `--no-validate`).")
@@ -212,6 +217,12 @@ def render_markdown(rep: dict) -> str:
         out += ["", "## Not migrated", ""]
         for k, n in unsupported.most_common():
             out.append(f"- {k}: {n}")
+    if rep["validation"] and rep["validation"]["diagnostics"]:
+        diags = rep["validation"]["diagnostics"]
+        out += ["", f"## Validation diagnostics ({len(diags)})", ""]
+        out += [f"- {d}" for d in diags[:60]]
+        if len(diags) > 60:
+            out.append(f"- … {len(diags) - 60} more in the JSON report")
     return "\n".join(out) + "\n"
 
 

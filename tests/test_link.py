@@ -25,7 +25,11 @@ def test_cross_impact(csrm, dels):
     start = csrm.by_name("Power Subsystem", "Class")[0]
     res = link.cross_impact(csrm, dels, start, links)
     assert {n.element.name for n in res["local"]} >= {"CubeSat"}
+    # Power Subsystem has no direct DELS match; it bridges through its owning package L3_Subsystems
+    assert [l.a.name for l in res["links"]] == ["L3_Subsystems"]
+    assert res["links"][0].a.id in res["via_owner"]
     txt = "\n".join(link.render_impact(csrm, dels, res))
-    assert "Crosses into" in txt
+    assert "Crosses into DELS via 1 link(s)" in txt and "(owning package)" in txt
     mm = link.mermaid(csrm, dels, res)
     assert mm.startswith("graph LR")
+    assert "Subsystems" in mm.split("subgraph DELS", 1)[1].split("end", 1)[0]

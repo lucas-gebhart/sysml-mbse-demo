@@ -148,15 +148,18 @@ def parts(m: Model, block: Element) -> list[tuple[Element, Element | None]]:
     return out
 
 
-def structure_tree(m: Model, block: Element, depth: int = 3, _seen: set[str] | None = None) -> dict:
-    seen = _seen or set()
-    seen.add(block.id)
+def structure_tree(m: Model, block: Element, depth: int = 3, _ancestors: frozenset[str] = frozenset()) -> dict:
+    """Composite decomposition; a type is only cut off when it recurs on its own ancestry path."""
+    ancestors = _ancestors | {block.id}
     node: dict = {"name": block.name, "stereotypes": [s for s in block.stereotype_names() if s not in NOISE_STEREOTYPES], "parts": []}
     if depth == 0:
         return node
     for prop, typ in parts(m, block):
         if prop.kind == "Property" and prop.attrs.get("aggregation") == "composite" and typ and typ.kind == "Class":
-            child = structure_tree(m, typ, depth - 1, seen) if typ.id not in seen else {"name": typ.name, "stereotypes": [], "parts": []}
+            if typ.id in ancestors:
+                child = {"name": typ.name, "stereotypes": [], "parts": [], "cycle": True}
+            else:
+                child = structure_tree(m, typ, depth - 1, ancestors)
             child["role"] = prop.name
             node["parts"].append(child)
     return node
@@ -169,13 +172,15 @@ def interfaces_between(m: Model, a: Element, b: Element) -> dict:
     reference model at the structural level and defines no ports/connectors)."""
 
     def closure(root: Element) -> set[str]:
+        """root plus every type reachable through composite part properties (not refs/values/ports)."""
         ids = {root.id}
-        for prop, typ in parts(m, root):
-            if typ and prop.attrs.get("aggregation") == "composite":
-                ids.add(typ.id)
-                for _p2, t2 in parts(m, typ):
-                    if t2:
-                        ids.add(t2.id)
+        stack = [root]
+        while stack:
+            cur = stack.pop()
+            for prop, typ in parts(m, cur):
+                if prop.kind == "Property" and prop.attrs.get("aggregation") == "composite" and typ and typ.id not in ids:
+                    ids.add(typ.id)
+                    stack.append(typ)
         return ids
 
     sa, sb = closure(a), closure(b)
