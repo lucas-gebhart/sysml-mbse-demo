@@ -16,13 +16,14 @@ sysml_demo/
   model.py         normalised element index + navigation helpers
   queries.py       overview, requirements table, trace, structure, interfaces, profile usage, health check
   link.py          cross-model concept matching (with rationale + disagreements), impact traversal, Mermaid
+  thread.py        federated requirement -> function -> allocated -> product -> test RVTM, proposed Verify links + XMI/CSV patch
   v2/profile.py    resolve custom stereotypes through their generalisation chain to a SysML base concept
   v2/transform.py  SysML v1 -> v2 textual notation; every element gets a clean/lossy/decision/unsupported record
   v2/validate.py   run the generated text through the OMG pilot-implementation kernel, parse diagnostics
   v2/report.py     migration gap report (Markdown + JSON)
   cli.py           `python -m sysml_demo <command>` – the entry points used live
 models/            public source models (see models/README.md for provenance)
-examples/          committed sample outputs (CSRM + DELS reports, generated .sysml, impact graph)
+examples/          committed sample outputs (CSRM + DELS reports, generated .sysml, impact graph, ignite/ Berserker RVTM)
 scripts/           setup_sysml_kernel.sh – installs the pilot kernel into a micromamba env
 tests/             pytest suite (synthetic fixture + the real models)
 ```
@@ -50,6 +51,9 @@ python -m sysml_demo migrate       models/CSRM.mdzip --profile models/CSRM-Profi
 python -m sysml_demo show-v2       models/CSRM.mdzip --profile models/CSRM-Profile.mdzip --subset "Power Subsystem"
 python -m sysml_demo link          models/CSRM.mdzip models/DELS.xml
 python -m sysml_demo impact        models/CSRM.mdzip models/DELS.xml "Power Subsystem" --mermaid out/impact.mmd
+python -m sysml_demo thread        ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+                                   --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
+                                   --with ~/ignite/"Berserker Product Baseline Library.mdzip" --out out --stem berserker
 ```
 
 Every command also accepts `--federate` (follow the project's Cameo `projectUsages` and load the
@@ -57,6 +61,38 @@ mounted `.mdzip` files found next to it, recursively) and `--with OTHER.mdzip` (
 extra project). Federated loads resolve cross-project references, so `health` distinguishes real
 dangling references from references into unloaded or Cameo-bundled modules, and reports mounted
 projects that are missing on disk. Python: `load(path, federate=True)` / `load_federation([...])`.
+
+## Closing the digital thread (`thread`)
+
+`thread` builds a requirements verification traceability matrix across a federated set of
+baselines: for every SysML requirement (and subtype) it follows requirement → Satisfy / Refine /
+Trace / Allocate → activity or block in the functional baseline → Allocate / swimlane / owner →
+functional block → Realization / generalization / typed part → allocated-baseline block → the same
+again → product-baseline block, and records which UTP `TestCase` / `TestProcedure` touches any
+element in that chain (call closure, Dependency, Allocate, swimlane, typed pin / `ResourceInformation`
+test data) plus any existing `Verify`. Every hop is an existing relationship; the only inferred
+mapping is a `same-name (heuristic)` block match used when nothing realises a block, and it is
+labelled as such. Empty hops are marked `GAP:`; rows are `full` / `partial` / `none` and summarised
+per requirement package.
+
+For requirements without a `Verify`, `thread` ranks candidate tests by structural evidence (the
+test calls / depends on / is allocated to something in the chain), lexical overlap (requirement
+`Text` and name vs. test name, documentation, called test activities and test data; HTML stripped,
+stopwords dropped, requirement Ids such as `C-1.29` boosted) and existing `Trace` links between the
+pair. Every proposal carries `high` / `medium` / `low` and a rationale string that starts with
+`HEURISTIC PROPOSAL (not in model)`. Outputs (`--out DIR`, `--stem NAME`):
+
+- `<stem>_rvtm.{md,csv,json}` – the matrix, one row per requirement, one column per hop
+- `<stem>_proposed_verify.{md,json}` – ranked proposals (`--min-confidence low|medium|high`)
+- `<stem>_proposed_verify.xmi` – SysML v1 XMI fragment: one `uml:Abstraction` (client = test,
+  supplier = requirement) + `sysml:Verify` per proposal of confidence ≥ medium, using the real
+  `xmi:id`s of the loaded elements, for review and import
+- `<stem>_proposed_verify.csv` – the same pairs as `source id,target id,relationship` for Cameo's CSV import
+
+`--requirement ID` prints one requirement's chain as an ASCII tree with its gaps, touching tests
+and proposals instead of writing files. Committed IGNITE output is under `examples/ignite/`
+(`berserker_*`); the source `.mdzip` files are never modified. The IGNITE-gated tests run when
+`IGNITE_MODELS_DIR` points at the unzipped model set and skip otherwise.
 
 ## What the migration does and does not claim
 

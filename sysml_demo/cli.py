@@ -9,7 +9,7 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import link, queries
+from . import link, queries, thread
 from .ingest import load, strip_html
 from .model import Element, Model
 from .v2.profile import index_profile
@@ -268,6 +268,23 @@ def cmd_impact(a: argparse.Namespace) -> None:
         print(f"\n[mermaid graph written to {a.mermaid}]")
 
 
+def cmd_thread(a: argparse.Namespace) -> None:
+    m = _load(a.model)
+    out = None if a.requirement else Path(a.out)
+    t = time.time()
+    res = thread.run(m, out, stem=a.stem, min_confidence=a.min_confidence)
+    print(f"[thread: {len(res.chains)} requirements x {len(res.tests)} tests analysed in {time.time() - t:.1f}s]", file=sys.stderr)
+    if a.requirement:
+        req = thread.find_requirement(m, a.requirement)
+        if req is None:
+            sys.exit(f"no requirement matching {a.requirement!r}")
+        chain = next(c for c in res.chains if c.requirement.id == req.id)
+        print("\n".join(thread.render_chain_tree(m, chain, res.proposals)))
+        return
+    print("\n".join(thread.render_summary(res.summary)))
+    print("  written: " + ", ".join(p.name for p in res.written) + f"  (in {out})")
+
+
 # --------------------------------------------------------------------------- parser
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="sysml_demo", description=__doc__)
@@ -318,6 +335,12 @@ def main(argv: list[str] | None = None) -> None:
     s.add_argument("--no-validate", action="store_true")
     s.add_argument("--show-warnings", action="store_true")
     s.add_argument("--brief", action="store_true")
+    s = add("thread", cmd_thread, "requirement -> function -> allocated -> product -> test RVTM, plus proposed Verify links")
+    s.add_argument("model")
+    s.add_argument("--out", default="out", help="directory for <stem>_rvtm.{md,csv,json} and <stem>_proposed_verify.{md,json,xmi,csv}")
+    s.add_argument("--stem", default="thread", help="file-name stem for the outputs (e.g. berserker)")
+    s.add_argument("--min-confidence", choices=["low", "medium", "high"], default="low", help="floor for reported proposals")
+    s.add_argument("--requirement", help="print one requirement's chain as a tree instead of writing files (Id, name or xmi:id)")
     s = add("show-v2", cmd_show_v2, "print the generated SysML v2 for a subset")
     s.add_argument("model")
     s.add_argument("--profile")

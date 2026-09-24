@@ -127,6 +127,29 @@ inside a package is a change to what that package represents in the other model.
 blast radius use `impact ... "Facility"` (Resource → 30+ dependents).
 Voice track: this is the drift check that runs on a schedule in the pilot.
 
+Q12 "Across the Berserker functional, allocated, product and test baselines — which requirements are
+actually verified, and what's missing?" (IGNITE set unzipped flat into `~/ignite/`; the root file name
+really is spelled `Beserker`)
+```
+python -m sysml_demo thread ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+    --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
+    --with ~/ignite/"Berserker Product Baseline Library.mdzip" --out out --stem berserker
+python -m sysml_demo thread ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+    --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
+    --with ~/ignite/"Berserker Product Baseline Library.mdzip" --requirement C-1.29
+```
+Evidence (committed copy in `examples/ignite/berserker_*`): 11 projects load in ~2 s, `MI Style
+Guide.mdzip` is reported missing (it is not in the set); 265 requirements, 245 without Satisfy; the
+233 FSA requirements have **no** `Verify` at all (the only 6 Verify links belong to CapyBARA's own
+requirements); 10 full chains, 129 partial, 126 with no outgoing link. The `--requirement C-1.29`
+tree is the live moment: `Final Systems Check` → Satisfy ← activity `Final Systems Check` → Allocate →
+`Executive Control Subsystem` → Realization ← `Allocated Nav Controller` (via port) → Realization ←
+`Curtiss-Wright Parvus DuraCOR Pi`; the activity is called by `Launch UAV`, which `Launch UAS Op
+Test Procedure` depends on — so the tool proposes that procedure as the Verify client with
+confidence `high`, and says `HEURISTIC PROPOSAL (not in model)` in the rationale. Point at
+`berserker_proposed_verify.xmi` / `.csv`: the ≥ medium proposals as `uml:Abstraction` + `sysml:Verify`
+against the real `xmi:id`s, ready for an engineer to review and import — the `.mdzip` files are untouched.
+
 ## Open floor (3 min)
 
 - "Ask anything you'd want to know about your own 19.x model." — `overview`, `structure`,
