@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 import time
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from . import link, queries
@@ -17,10 +18,24 @@ from .v2.transform import transform
 from .v2.validate import annotate, kernel_available, validate
 
 
+@dataclass
+class _LoadOpts:
+    federate: bool = False
+    extra: list[str] = field(default_factory=list)
+
+
+_LOAD_OPTS = _LoadOpts()
+
+
 def _load(path: str, name: str | None = None) -> Model:
     t = time.time()
-    m = load(path, name)
-    print(f"[loaded {m.name}: {len(m.elements)} elements from {Path(path).name} in {time.time() - t:.1f}s]", file=sys.stderr)
+    m = load(path, name, federate=_LOAD_OPTS.federate, extra=_LOAD_OPTS.extra)
+    src = Path(path).name if len(m.projects) == 1 else f"{len(m.projects)} projects"
+    print(f"[loaded {m.name}: {len(m.elements)} elements from {src} in {time.time() - t:.1f}s]", file=sys.stderr)
+    if len(m.projects) > 1:
+        print("  " + ", ".join(f"{p} ({n})" for p, n in m.projects.items()), file=sys.stderr)
+    for miss in m.missing_projects:
+        print(f"  [used project not found next to the model: {miss}]", file=sys.stderr)
     return m
 
 
@@ -51,6 +66,12 @@ def cmd_overview(a: argparse.Namespace) -> None:
         f"{o['name']}  ({o['exporter'] or 'XMI'}; {o['elements']} elements, {o['blocks']} blocks, "
         f"{o['requirements']} requirements, {sum(o['diagrams'].values())} diagrams)"
     )
+    if len(o["projects"]) > 1:
+        print("\nProjects loaded:")
+        for name, n in o["projects"].items():
+            print(f"  {name:55} {n:>6} elements")
+        for miss in o["missing_projects"]:
+            print(f"  {miss:55} MISSING")
     print("\nTop-level packages:")
     for name, n in o["top_level_packages"]:
         print(f"  {name:55} {n:>6} elements")
@@ -251,9 +272,16 @@ def cmd_impact(a: argparse.Namespace) -> None:
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="sysml_demo", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument(
+        "--federate",
+        action="store_true",
+        help="also load the .mdzip projects this model mounts (found next to it), so cross-project refs resolve",
+    )
+    common.add_argument("--with", dest="with_", action="append", metavar="MDZIP", help="load this extra project into the same model")
 
     def add(name: str, fn, help_: str) -> argparse.ArgumentParser:
-        sp = sub.add_parser(name, help=help_)
+        sp = sub.add_parser(name, help=help_, parents=[common])
         sp.set_defaults(fn=fn)
         return sp
 
@@ -311,6 +339,7 @@ def main(argv: list[str] | None = None) -> None:
             s.add_argument("--depth", type=int, default=3)
             s.add_argument("--mermaid", help="write a Mermaid graph to this file")
     a = p.parse_args(argv)
+    _LOAD_OPTS.federate, _LOAD_OPTS.extra = a.federate, a.with_ or []
     a.fn(a)
 
 

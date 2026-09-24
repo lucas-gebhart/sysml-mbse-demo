@@ -35,6 +35,8 @@ def overview(m: Model) -> dict:
         "profiles": stereo,
         "requirements": len(m.requirements()),
         "blocks": len(m.blocks()),
+        "projects": dict(m.projects),
+        "missing_projects": list(m.missing_projects),
     }
 
 
@@ -292,8 +294,14 @@ def health_check(m: Model, profile: Model | None = None) -> list[Finding]:
     for e in m.elements.values():
         for k, targets in e.refs.items():
             for tid in targets:
-                if tid not in m.elements:
-                    f.append(Finding("dangling-ref", "warn", e, f"{k} -> {tid} not in this file (shared module or broken)"))
+                if tid in m.elements:
+                    continue
+                if m.is_library_ref(tid):
+                    f.append(Finding("library-ref", "info", e, f"{k} -> {m.external_name(tid)} in bundled {m.external_source[tid]}"))
+                else:
+                    src = m.external_source.get(tid)
+                    where = f"in unloaded project {src}" if src else "not in the loaded project(s) (unloaded used project or broken)"
+                    f.append(Finding("dangling-ref", "warn", e, f"{k} -> {m.external_name(tid)} {where}"))
 
     if profile is not None:
         defined = {s.name for s in profile.of_type("Stereotype")}

@@ -31,6 +31,7 @@ class Element:
     stereotypes: list[Stereotype] = field(default_factory=list)
     doc: str = ""
     diagram_type: str = ""
+    project: str = ""  # stem of the .mdzip the element was read from (federated loads)
 
     @property
     def kind(self) -> str:
@@ -95,6 +96,10 @@ class Model:
         self.exporter: str = ""
         self.profiles: set[str] = set()
         self.external: dict[str, str] = {}  # id referenced via href -> human-readable referent path
+        self.external_source: dict[str, str] = {}  # external id -> resource it lives in (file name or spec URL)
+        self.projects: dict[str, int] = {}  # project stem -> element count (federated loads)
+        self.missing_projects: list[str] = []  # used projects that could not be found next to the root
+        self.bundled_files: set[str] = set()  # file names / PROJECT ids of used projects shipped with Cameo (never loaded)
         self._by_type: dict[str, list[str]] = defaultdict(list)
         self._by_stereo: dict[str, list[str]] = defaultdict(list)
         self._incoming: dict[str, list[tuple[str, str]]] = defaultdict(list)
@@ -107,6 +112,9 @@ class Model:
     def finalize(self) -> None:
         self._by_stereo.clear()
         self._incoming.clear()
+        for id_ in [i for i in self.external if i in self.elements]:
+            del self.external[id_]
+            self.external_source.pop(id_, None)
         for el in self.elements.values():
             for s in el.stereotypes:
                 self._by_stereo[s.name].append(el.id)
@@ -124,6 +132,11 @@ class Model:
 
     def external_name(self, id_: str) -> str:
         return self.external.get(id_, id_).rsplit("::", 1)[-1]
+
+    def is_library_ref(self, id_: str) -> bool:
+        """Reference into a resource that is never loaded here: OMG spec XMI or a Cameo-bundled profile/library."""
+        src = self.external_source.get(id_, "")
+        return src.startswith(("http://", "https://")) or src in self.bundled_files
 
     def with_stereotype(self, *names: str) -> list[Element]:
         seen: set[str] = set()

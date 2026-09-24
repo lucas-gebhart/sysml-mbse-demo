@@ -11,7 +11,10 @@ from __future__ import annotations
 import re
 import xml.etree.ElementTree as ET
 import zipfile
+from collections.abc import Iterable
+from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import unquote
 
 from .model import Element, Model, Stereotype
 
@@ -22,7 +25,11 @@ XMI_NS = {
     "http://www.omg.org/spec/XMI/20110701",
 }
 MODEL_ENTRY_RE = re.compile(r"com\.nomagic\.magicdraw\.uml_model\.(shared_)?model$")
+PROJECT_ENTRY = "com.nomagic.ci.metamodel.project"
 ID_RE = re.compile(r"^[A-Za-z_][\w\-$.]*$")
+# Used-project URIs that point into a Cameo/MagicDraw installation (bundled profiles and libraries)
+INSTALL_DIR_RE = re.compile(r"/(profiles|modelLibraries)/[^/]+\.mdzip$", re.IGNORECASE)
+MARKING_PREFIX_RE = re.compile(r"^\((U|CUI|FOUO)\)\s*", re.IGNORECASE)
 
 
 def _split(tag: str) -> tuple[str, str]:
@@ -51,18 +58,118 @@ def _read_xml(path: Path) -> list[tuple[str, bytes]]:
     return [(path.name, path.read_bytes())]
 
 
-def load(path: str | Path, name: str | None = None) -> Model:
+@dataclass(frozen=True)
+class UsedProject:
+    """One ``projectUsages`` entry of a Cameo project: another .mdzip this project mounts."""
+
+    uri: str
+    project_id: str
+
+    @property
+    def filename(self) -> str:
+        return unquote(self.uri.rsplit("/", 1)[-1])
+
+    @property
+    def bundled(self) -> bool:
+        """True for profiles/libraries shipped with the tool (SysML, UAF, UML Standard Profile ...)."""
+        return INSTALL_DIR_RE.search(self.uri) is not None
+
+
+def used_projects(path: str | Path) -> list[UsedProject]:
+    """Projects a .mdzip mounts, in declaration order. Empty for XMI exports."""
+    path = Path(path)
+    if path.suffix.lower() != ".mdzip":
+        return []
+    with zipfile.ZipFile(path) as z:
+        if PROJECT_ENTRY not in z.namelist():
+            return []
+        root = ET.fromstring(z.read(PROJECT_ENTRY))
+    out = []
+    for usage in root.iter():
+        if _split(usage.tag)[1] != "projectUsages":
+            continue
+        uri = usage.get("usedProjectURI", "")
+        pid = ""
+        for prop in usage:
+            if _split(prop.tag)[1] == "properties" and prop.get("key") == "LOCAL_PROJECT_ID":
+                pid = prop.get("value", "")
+        if uri:
+            out.append(UsedProject(uri, pid))
+    return out
+
+
+def _normalise_stem(name: str) -> str:
+    return MARKING_PREFIX_RE.sub("", Path(name).stem).strip().lower()
+
+
+def find_used_project(used: UsedProject, search_dirs: Iterable[Path]) -> Path | None:
+    """Locate a used project on disk by file name, tolerating a '(U) ' marking prefix and case."""
+    want = _normalise_stem(used.filename)
+    for d in search_dirs:
+        if not d.is_dir():
+            continue
+        for cand in d.iterdir():
+            if cand.suffix.lower() == ".mdzip" and _normalise_stem(cand.name) == want:
+                return cand
+    return None
+
+
+def load(
+    path: str | Path,
+    name: str | None = None,
+    *,
+    federate: bool = False,
+    extra: Iterable[str | Path] = (),
+    search_dirs: Iterable[str | Path] = (),
+) -> Model:
+    """Load one project, optionally together with the projects it mounts.
+
+    ``federate=True`` follows the project's ``projectUsages`` recursively and loads every used
+    project found in the root's directory (or ``search_dirs``) into the same :class:`Model`, so
+    cross-project references resolve. Bundled Cameo profiles/libraries are skipped; anything else
+    not found is recorded in ``model.missing_projects``. ``extra`` adds explicit files regardless.
+    """
     path = Path(path)
     model = Model(name or path.stem, str(path))
-    for _entry, data in _read_xml(path):
-        root = ET.fromstring(data)
-        _ingest_root(model, root)
+    queue: list[Path] = [path, *(Path(p) for p in extra)]
+    dirs = [path.parent, *(Path(d) for d in search_dirs)]
+    seen: set[Path] = set()
+    while queue:
+        p = queue.pop(0).resolve()
+        if p in seen:
+            continue
+        seen.add(p)
+        before = len(model.elements)
+        for _entry, data in _read_xml(p):
+            _ingest_root(model, ET.fromstring(data), project=p.stem)
+        model.projects[p.stem] = len(model.elements) - before
+        for used in used_projects(p):
+            if used.bundled:
+                model.bundled_files.update({used.filename, used.project_id} - {""})
+                continue
+            if not federate:
+                continue
+            found = find_used_project(used, dirs)
+            if found is None:
+                if used.filename not in model.missing_projects:
+                    model.missing_projects.append(used.filename)
+            elif found.resolve() not in seen:
+                queue.append(found)
     model.finalize()
     return model
 
 
-def _ingest_root(model: Model, root: ET.Element) -> None:
+def load_federation(paths: Iterable[str | Path], name: str | None = None) -> Model:
+    """Load an explicit set of projects into one model (no dependency discovery)."""
+    ps = [Path(p) for p in paths]
+    if not ps:
+        raise ValueError("load_federation needs at least one path")
+    return load(ps[0], name or "+".join(p.stem for p in ps), extra=ps[1:])
+
+
+def _ingest_root(model: Model, root: ET.Element, project: str = "") -> None:
     stereo_apps: list[ET.Element] = []
+    first_new = len(model.elements)
     for child in root:
         ns, local = _split(child.tag)
         if ns in XMI_NS:
@@ -79,6 +186,9 @@ def _ingest_root(model: Model, root: ET.Element) -> None:
     _resolve_refs(model)
     _apply_stereotypes(model, stereo_apps)
     _attach_docs(model)
+    if project:
+        for el in list(model.elements.values())[first_new:]:
+            el.project = project
 
 
 def _xmi_attr(node: ET.Element, name: str) -> str | None:
@@ -124,9 +234,11 @@ def _walk(model: Model, node: ET.Element, owner: str | None) -> None:
         href = child.get("href")
         if href is not None and _xmi_attr(child, "id") is None:
             # reference into another resource (SysML profile, UML metamodel, a used module)
-            target = href.rsplit("#", 1)[-1]
+            resource, _, target = href.rpartition("#")
             el.refs.setdefault(clocal, []).append(target)
             model.external[target] = _referent_path(child) or href
+            if resource:
+                model.external_source[target] = unquote(resource.split("?", 1)[0])
             continue
         if _xmi_attr(child, "id") is not None:
             _walk(model, child, owner=xid)

@@ -52,6 +52,12 @@ python -m sysml_demo link          models/CSRM.mdzip models/DELS.xml
 python -m sysml_demo impact        models/CSRM.mdzip models/DELS.xml "Power Subsystem" --mermaid out/impact.mmd
 ```
 
+Every command also accepts `--federate` (follow the project's Cameo `projectUsages` and load the
+mounted `.mdzip` files found next to it, recursively) and `--with OTHER.mdzip` (load an explicit
+extra project). Federated loads resolve cross-project references, so `health` distinguishes real
+dangling references from references into unloaded or Cameo-bundled modules, and reports mounted
+projects that are missing on disk. Python: `load(path, federate=True)` / `load_federation([...])`.
+
 ## What the migration does and does not claim
 
 The transformer follows the OMG SysML v1-to-v2 transformation mapping for the structural,

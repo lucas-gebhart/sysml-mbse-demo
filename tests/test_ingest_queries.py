@@ -1,4 +1,7 @@
+from conftest import MODELS
+
 from sysml_demo import queries
+from sysml_demo.ingest import load, load_federation, used_projects
 
 
 def test_tiny_ingest_basics(tiny):
@@ -90,3 +93,26 @@ def test_dels_interfaces(dels):
     assert res["connectors"]
     assert res["flows"]
     assert {p.name for p in res["ports_a"]} == {"inTask", "outTask"}
+
+
+def test_used_projects_distinguish_bundled_from_sibling_modules():
+    used = {u.filename: u for u in used_projects(MODELS / "CSRM.mdzip")}
+    assert used["SysML Profile.mdzip"].bundled
+    assert used["UML_Standard_Profile.mdzip"].project_id.startswith("PROJECT-")
+    assert not used["CSRM-Profile.mdzip"].bundled
+
+
+def test_federated_load_resolves_cross_project_refs(csrm):
+    fed = load(MODELS / "CSRM.mdzip", federate=True)
+    assert set(fed.projects) == {"CSRM", "CSRM-Profile"}
+    assert fed.projects["CSRM"] == len(csrm.elements)
+    assert "CSRM Reference Information.mdzip" in fed.missing_projects
+    assert {fed.elements[i].project for i in fed.elements} == {"CSRM", "CSRM-Profile"}
+
+    def dangling(m):
+        return [f for f in queries.health_check(m) if f.check == "dangling-ref"]
+
+    assert len(dangling(fed)) < len(dangling(csrm))
+    lib = [f for f in queries.health_check(fed) if f.check == "library-ref"]
+    assert lib and all("bundled" in f.detail for f in lib)
+    assert load_federation([MODELS / "CSRM.mdzip", MODELS / "CSRM-Profile.mdzip"]).projects == fed.projects
