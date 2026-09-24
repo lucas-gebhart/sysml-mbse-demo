@@ -1,0 +1,305 @@
+graph LR
+  n0["RS-2 Adversary flies AV to adversary selected location"]:::rs
+  n1["L-1 Loss of life or injury to friendly or neutral people"]:::loss
+  n2["L-2 Significant damage to friendly or neutral objects"]:::loss
+  n3["L-3 Unable to destroy assigned targets"]:::loss
+  n4["L-4 Unable to decoy hostile air defenses when required"]:::loss
+  n5["H-1 MQ-99 targets friendly or neutral objects or personnel"]:::hz
+  n6["H-2 MQ-99 employs weapons too close to friendly or neutral …"]:::hz
+  n7["H-3 MQ-99 does not successfully strike assigned targets"]:::hz
+  n8["H-4 MQ-99 does not fly required profile to stimulate desire…"]:::hz
+  n9["H-5 MQ-99 operates outside of established operational envel…"]:::hz
+  n10["H-6 MQ-99 presents electrical, chemical, or kinetic hazards…"]:::hz
+  n11["SC-1 The MQ-99 will only target hostile objects or personnel"]:::sc
+  n12["SC-2 The MQ-99 will prevent unacceptable collateral damage …"]:::sc
+  n13["SC-3 MQ-99 must successfully strike assigned targets"]:::sc
+  n14["SC-4 MQ-99 must execute the required profile as directed by…"]:::sc
+  n15["SC-5 The MQ-99 will only operate inside the established ope…"]:::sc
+  n16["SC-6 The MQ-99 will not present electrical, chemical, or ki…"]:::sc
+  n17["C-2 Operator"]:::ctl
+  n18["C-3 Flight Lead"]:::ctl
+  n19["C-4 Ground Control Station"]:::ctl
+  n20["C-5 Maintenance System"]:::ctl
+  n21["C-7 Mission Computer"]:::ctl
+  n22["C-8 Autopilot"]:::ctl
+  n23["C-9 Flight Control Computer"]:::ctl
+  n24["C-10 Navigation Controller"]:::ctl
+  n25["C-11 Communications Controller"]:::ctl
+  n26["C-15 Stores Controller"]:::ctl
+  n27["C-30 Cyber Sentinel"]:::ctl
+  n28["LS-1 Adversary gains access to the ground station through a tradition…"]:::ls
+  n28 -- Roll_Up_To --> n0
+  n29["LS-2 Adversary gains access to the ground station through insider phy…"]:::ls
+  n29 -- Roll_Up_To --> n0
+  n30["LS-5 Adversary gains access to the ground station through a tradition…"]:::ls
+  n30 -- Roll_Up_To --> n0
+  n31["LS-6 Adversary gains access to the ground station through a tradition…"]:::ls
+  n31 -- Roll_Up_To --> n0
+  n32["LS-7 Adversary gains access to the ground station through a tradition…"]:::ls
+  n32 -- Roll_Up_To --> n0
+  n33["LS-8 Adversary gains access to the ground station AV link through bre…"]:::ls
+  n33 -- Roll_Up_To --> n0
+  n34["LS-11 Adversary gets the AV communications system to shift to an unen…"]:::ls
+  n34 -- Roll_Up_To --> n0
+  n35["LS-14 Adversary gains access to the MX system through a supply chain …"]:::ls
+  n35 -- Roll_Up_To --> n0
+  n36["LS-15 Adversary gains access to the mission computer through a supply…"]:::ls
+  n36 -- Roll_Up_To --> n0
+  n37["LS-16 Adversary maliciously modifies the mission computer's OFP durin…"]:::ls
+  n37 -- Roll_Up_To --> n0
+  n38["LS-25 Adversary gains access to the navigation controller through a s…"]:::ls
+  n38 -- Roll_Up_To --> n0
+  n39["LS-34 Adversary spoofs other NAV sensor to fly AV to a location of th…"]:::ls
+  n39 -- Roll_Up_To --> n0
+  n40["Device on 1553 bus successfully sends adversary spoofed message to fl…<br/>P=0.18–0.43"]:::part
+  n41["D3FEND Client-server Payload Profiling"]:::d3f
+  n40 -. proposed .-> n41
+  n42["D3FEND Network Isolation"]:::d3f
+  n40 -. proposed .-> n42
+  n43["SIPR connected Traditional-IT cyber attack on ground station to fly A…<br/>P=0.01–0.15"]:::part
+  n28 -.-> n43
+  n44["D3FEND Application Hardening"]:::d3f
+  n43 -. proposed .-> n44
+  n43 -. proposed .-> n41
+  n45["Adversary steals key from SIPR connected ground station to fly AV to …<br/>P=0.01–0.1"]:::part
+  n46["D3FEND Access Mediation"]:::d3f
+  n45 -. proposed .-> n46
+  n47["D3FEND Agent Authentication"]:::d3f
+  n45 -. proposed .-> n47
+  n48["Other NAV sensor spoofing to fly AV to adversary selected location<br/>P=0.005–0.05"]:::part
+  n39 -.-> n48
+  n48 -. proposed .-> n41
+  n48 -. proposed .-> n42
+  n49["Adversary control of device on 1553 bus via supply chain to fly AV to…<br/>P=0.0001–0.05"]:::part
+  n50["D3FEND Asset Inventory"]:::d3f
+  n49 -. proposed .-> n50
+  n51["D3FEND Asset Vulnerability Enumeration"]:::d3f
+  n49 -. proposed .-> n51
+  n52["Adversary breaks encryption to determine the command link key to fly …<br/>P=0.001–0.04"]:::ok
+  n33 -.-> n52
+  n53["MR - 26.1.1.10 Navigation System Cryptographic Mo…"]:::req
+  n52 -. allocation+text .-> n53
+  n54["MR - 26.1.1.14 Communications System Cryptographi…"]:::req
+  n52 -. allocation+text .-> n54
+  n55["MR - 26.1.1.8 Mission Computer Cryptographic Modu…"]:::req
+  n52 -. allocation+text .-> n55
+  n56["D3FEND User Behavior Analysis"]:::d3f
+  n52 -. proposed .-> n56
+  n52 -. proposed .-> n46
+  n57["MIL GPS spoofing to fly AV to adversary selected location<br/>P=0.001–0.02"]:::part
+  n57 -. proposed .-> n41
+  n57 -. proposed .-> n42
+  n58["Operator insider gains access to ground station to fly AV to adversar…<br/>P=0.0002–0.002"]:::part
+  n29 -.-> n58
+  n59["D3FEND Access Modeling"]:::d3f
+  n58 -. proposed .-> n59
+  n60["D3FEND Access Policy Administration"]:::d3f
+  n58 -. proposed .-> n60
+  n61["Adversary supply chain attack on logistics system provides logical ac…<br/>P=0.0001–0.001"]:::part
+  n61 -. proposed .-> n59
+  n61 -. proposed .-> n60
+  n62["Adversary gets link to shift into unencrypted mode to fly AV to adver…<br/>P=0.0–0.001"]:::part
+  n34 -.-> n62
+  n62 -. allocation+text .-> n54
+  n63["MR - 26.1.6 Communications Encryption"]:::req
+  n62 -. allocation+text .-> n63
+  n64["MR - 26.2.1.3.1 Navigation System Backup Mode Swi…"]:::req
+  n62 -. allocation+text .-> n64
+  n65["Adversary gets insider to give them the command link key to fly AV to…<br/>P=5e-05–0.0005"]:::part
+  n65 -. proposed .-> n47
+  n66["D3FEND Credential Eviction"]:::d3f
+  n65 -. proposed .-> n66
+  n67["SIPR connected DoS cyber attack to degrade UAS operations<br/>P=0.02–0.2"]:::part
+  n31 -.-> n67
+  n67 -. proposed .-> n44
+  n67 -. proposed .-> n41
+  n68["Adversary maliciously modifies flight-critical software during distri…<br/>P=0.02–0.15"]:::ok
+  n36 -.-> n68
+  n69["MR - 26.1.1.1 Mission Computer Secure Boot"]:::req
+  n68 -. allocation+text .-> n69
+  n70["MR - 26.1.1.2 Flight Control system Secure Boot"]:::req
+  n68 -. allocation+text .-> n70
+  n68 -. allocation+text .-> n55
+  n68 -. proposed .-> n50
+  n68 -. proposed .-> n51
+  n71["Adversary substitutes flight-critical hardware during distribution to…<br/>P=0.01–0.15"]:::ok
+  n38 -.-> n71
+  n71 -. allocation+text .-> n53
+  n72["MR - 26.1.1.3 Navigation System Secure Boot"]:::req
+  n71 -. allocation+text .-> n72
+  n73["MR - 26.1.1 Flight Critical Hardware Assurance"]:::req
+  n71 -. allocation+text .-> n73
+  n71 -. proposed .-> n50
+  n74["D3FEND Hardware Component Inventory"]:::d3f
+  n71 -. proposed .-> n74
+  n75["SIPR connected Traditional-IT cyber attack on ground station to gain …<br/>P=0.01–0.15"]:::part
+  n32 -.-> n75
+  n75 -. proposed .-> n44
+  n75 -. proposed .-> n41
+  n76["SIPR connected Traditional-IT cyber attack to employ ordnance on a ta…<br/>P=0.01–0.15"]:::part
+  n30 -.-> n76
+  n76 -. proposed .-> n44
+  n76 -. proposed .-> n41
+  n77["Adversary maliciously modifies flight-critical software during develo…<br/>P=0.01–0.12"]:::ok
+  n37 -.-> n77
+  n77 -. allocation+text .-> n73
+  n78["MR - 26.2.1.1.1 Mission Computer Backup Mode Swit…"]:::req
+  n77 -. allocation+text .-> n78
+  n79["MR - 26.2.1 Flight Critical Subsystem Backup Mode"]:::req
+  n77 -. allocation+text .-> n79
+  n77 -. proposed .-> n41
+  n77 -. proposed .-> n42
+  n80["Adversary supply chain attack on MX system provides logical access to…<br/>P=0.0001–0.001"]:::ok
+  n35 -.-> n80
+  n80 -. allocation+text .-> n69
+  n81["MR - 26.1.1.15 Mission Computer Maintenance Ports"]:::req
+  n80 -. allocation+text .-> n81
+  n80 -. allocation+text .-> n55
+  n80 -. proposed .-> n50
+  n80 -. proposed .-> n51
+  n82["R2 - Adversary Flies AV to Selected Location Probability of…"]:::pas
+  n0 --> n82
+  n83["Adversary successfully spoofs nav solution to fly AV to adv…"]:::pas
+  n83 -- Or --> n57
+  n83 -- Or --> n48
+  n82 -- Or --> n83
+  n84["Device on 1553 bus sends adversary spoofed message to fly A…"]:::pas
+  n84 -- And --> n49
+  n84 -- And --> n40
+  n82 -- Or --> n84
+  n85["Adversary sends malicious commands to AV to fly AV to adver…"]:::pas
+  n86["Adversary gains control of ground station to fly AV to adve…"]:::pas
+  n86 -- Or --> n61
+  n86 -- Or --> n43
+  n86 -- Or --> n58
+  n85 -- Or --> n86
+  n87["Adversary gets into the middle of ground station & UAS comm…"]:::pas
+  n87 -- Or --> n62
+  n88["Adversary gets encryption key to fly AV to adversary select…"]:::pas
+  n88 -- Or --> n65
+  n88 -- Or --> n45
+  n88 -- Or --> n52
+  n87 -- Or --> n88
+  n85 -- Or --> n87
+  n82 -- Or --> n85
+  n5 -- Causes --> n1
+  n5 -- Causes --> n2
+  n5 -- Causes --> n3
+  n5 -- Causes --> n4
+  n6 -- Causes --> n1
+  n6 -- Causes --> n2
+  n6 -- Causes --> n3
+  n6 -- Causes --> n4
+  n7 -- Causes --> n1
+  n7 -- Causes --> n2
+  n7 -- Causes --> n3
+  n7 -- Causes --> n4
+  n8 -- Causes --> n1
+  n8 -- Causes --> n2
+  n8 -- Causes --> n3
+  n8 -- Causes --> n4
+  n11 -- Mitigates --> n5
+  n11 -- Mitigates --> n6
+  n11 -- Mitigates --> n7
+  n11 -- Mitigates --> n8
+  n12 -- Mitigates --> n5
+  n12 -- Mitigates --> n6
+  n12 -- Mitigates --> n7
+  n12 -- Mitigates --> n8
+  n13 -- Mitigates --> n5
+  n13 -- Mitigates --> n6
+  n13 -- Mitigates --> n7
+  n13 -- Mitigates --> n8
+  n14 -- Mitigates --> n5
+  n14 -- Mitigates --> n6
+  n14 -- Mitigates --> n7
+  n14 -- Mitigates --> n8
+  n28 -- Leads_to/Causes --> n5
+  n28 -- Leads_to/Causes --> n6
+  n28 -- Leads_to/Causes --> n7
+  n28 -- Leads_to/Causes --> n8
+  n39 -- Leads_to/Causes --> n5
+  n39 -- Leads_to/Causes --> n6
+  n39 -- Leads_to/Causes --> n7
+  n39 -- Leads_to/Causes --> n8
+  n33 -- Leads_to/Causes --> n5
+  n33 -- Leads_to/Causes --> n6
+  n33 -- Leads_to/Causes --> n7
+  n33 -- Leads_to/Causes --> n8
+  n29 -- Leads_to/Causes --> n5
+  n29 -- Leads_to/Causes --> n6
+  n29 -- Leads_to/Causes --> n7
+  n29 -- Leads_to/Causes --> n8
+  n10 -- Causes --> n1
+  n10 -- Causes --> n2
+  n10 -- Causes --> n3
+  n10 -- Causes --> n4
+  n9 -- Causes --> n1
+  n9 -- Causes --> n2
+  n9 -- Causes --> n3
+  n9 -- Causes --> n4
+  n11 -- Mitigates --> n10
+  n11 -- Mitigates --> n9
+  n12 -- Mitigates --> n10
+  n12 -- Mitigates --> n9
+  n13 -- Mitigates --> n10
+  n13 -- Mitigates --> n9
+  n14 -- Mitigates --> n10
+  n14 -- Mitigates --> n9
+  n16 -- Mitigates --> n5
+  n16 -- Mitigates --> n6
+  n16 -- Mitigates --> n7
+  n16 -- Mitigates --> n8
+  n16 -- Mitigates --> n10
+  n16 -- Mitigates --> n9
+  n15 -- Mitigates --> n5
+  n15 -- Mitigates --> n6
+  n15 -- Mitigates --> n7
+  n15 -- Mitigates --> n8
+  n15 -- Mitigates --> n10
+  n15 -- Mitigates --> n9
+  n34 -- Leads_to/Causes --> n5
+  n34 -- Leads_to/Causes --> n6
+  n34 -- Leads_to/Causes --> n7
+  n34 -- Leads_to/Causes --> n8
+  n31 -- Leads_to/Causes --> n5
+  n31 -- Leads_to/Causes --> n6
+  n31 -- Leads_to/Causes --> n7
+  n31 -- Leads_to/Causes --> n8
+  n36 -- Leads_to/Causes --> n6
+  n36 -- Leads_to/Causes --> n10
+  n36 -- Leads_to/Causes --> n5
+  n36 -- Leads_to/Causes --> n7
+  n36 -- Leads_to/Causes --> n8
+  n36 -- Leads_to/Causes --> n9
+  n38 -- Leads_to/Causes --> n5
+  n38 -- Leads_to/Causes --> n6
+  n38 -- Leads_to/Causes --> n7
+  n38 -- Leads_to/Causes --> n8
+  n30 -- Leads_to/Causes --> n5
+  n30 -- Leads_to/Causes --> n6
+  n30 -- Leads_to/Causes --> n7
+  n37 -- Leads_to/Causes --> n6
+  n37 -- Leads_to/Causes --> n10
+  n37 -- Leads_to/Causes --> n5
+  n37 -- Leads_to/Causes --> n7
+  n37 -- Leads_to/Causes --> n8
+  n37 -- Leads_to/Causes --> n9
+  n35 -- Leads_to/Causes --> n5
+  n35 -- Leads_to/Causes --> n6
+  n35 -- Leads_to/Causes --> n7
+  n35 -- Leads_to/Causes --> n8
+  n35 -- Leads_to/Causes --> n9
+  n35 -- Leads_to/Causes --> n10
+  classDef rs fill:#333,color:#fff
+  classDef loss fill:#f88
+  classDef hz fill:#fc8
+  classDef sc fill:#cfc
+  classDef ctl fill:#eee
+  classDef ls fill:#ffd
+  classDef pas fill:#ddf
+  classDef ok fill:#9f9
+  classDef part fill:#ff9
+  classDef gap fill:#f66,color:#fff
+  classDef req fill:#cef
+  classDef d3f fill:#ecf,stroke-dasharray: 3 3

@@ -9,7 +9,7 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import link, queries
+from . import cyber, link, queries
 from .ingest import load, strip_html
 from .model import Element, Model
 from .v2.profile import index_profile
@@ -29,6 +29,7 @@ _LOAD_OPTS = _LoadOpts()
 
 def _load(path: str, name: str | None = None) -> Model:
     t = time.time()
+    path = str(Path(path).expanduser())
     m = load(path, name, federate=_LOAD_OPTS.federate, extra=_LOAD_OPTS.extra)
     src = Path(path).name if len(m.projects) == 1 else f"{len(m.projects)} projects"
     print(f"[loaded {m.name}: {len(m.elements)} elements from {src} in {time.time() - t:.1f}s]", file=sys.stderr)
@@ -240,6 +241,27 @@ def cmd_show_v2(a: argparse.Namespace) -> None:
     print(res.model_text)
 
 
+def cmd_cyber(a: argparse.Namespace) -> None:
+    m = _load(a.model)
+    if a.list:
+        scen = cyber.risk_scenarios(m)
+        print(f"{len(scen)} risk scenarios in {m.name}:")
+        for s in scen:
+            n = len(cyber._linked(m, s, "Roll_Up_To", "<-", cyber.ST_LOSS_SCENARIO))
+            print(f"  {cyber._id(s):<6} {cyber._name(s)}   ({n} loss scenarios)")
+        return
+    scenario = cyber.find_scenario(m, a.scenario)
+    t = time.time()
+    sc = cyber.analyse(m, scenario, a.min_confidence)
+    print(f"[analysed {sc.sid} {sc.name}: {len(sc.leaves)} leaves in {time.time() - t:.1f}s]", file=sys.stderr)
+    print("\n".join(cyber.render_ascii(sc)))
+    cmd = f'python -m sysml_demo cyber "{Path(a.model).name}"' + (" --federate" if _LOAD_OPTS.federate else "")
+    cmd += f' --scenario "{a.scenario}"' if a.scenario else ""
+    cmd += f" --min-confidence {a.min_confidence}" if a.min_confidence != "medium" else ""
+    files = cyber.write_outputs(sc, m, Path(a.out), cmd, Path(a.mermaid) if a.mermaid else None)
+    print("\nWritten: " + ", ".join(str(f) for f in files))
+
+
 def cmd_link(a: argparse.Namespace) -> None:
     ma, mb = _load(a.model_a, a.name_a), _load(a.model_b, a.name_b)
     links = link.match(ma, mb, a.min_confidence)
@@ -322,6 +344,20 @@ def main(argv: list[str] | None = None) -> None:
     s.add_argument("model")
     s.add_argument("--profile")
     s.add_argument("--subset")
+    s = add(
+        "cyber", cmd_cyber, "STPA-Sec risk scenario -> attack tree -> requirements -> ATT&CK/D3FEND -> candidate NIST 800-53 gap analysis"
+    )
+    s.add_argument("model")
+    s.add_argument("--list", action="store_true", help="list the risk scenarios and exit")
+    s.add_argument("--scenario", help="risk scenario id, name or substring (default: the adversary-selected-location scenario)")
+    s.add_argument("--out", default="out")
+    s.add_argument("--mermaid", help="write the Mermaid graph to this file instead of <out>/cyber_<scenario>.mmd")
+    s.add_argument(
+        "--min-confidence",
+        choices=("high", "medium", "low"),
+        default="medium",
+        help="proposals below this are listed but not counted as coverage",
+    )
     for name, fn, help_ in (
         ("link", cmd_link, "match concepts across two models and list disagreements"),
         ("impact", cmd_impact, "what is affected across both models if an element changes"),

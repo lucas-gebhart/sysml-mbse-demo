@@ -1,0 +1,4878 @@
+{
+ "scenario": {
+  "id": "RS-2",
+  "name": "Adversary flies AV to adversary selected location",
+  "model": "Berserker Cyber Res. Model",
+  "projects": 9,
+  "missing_projects": [
+   "MI Style Guide.mdzip"
+  ]
+ },
+ "command": "python -m sysml_demo cyber \"Berserker Cyber Res. Model.mdzip\" --federate",
+ "min_confidence": "medium",
+ "coverage": {
+  "leaves": 18,
+  "in_tree": 11,
+  "requirement": 6,
+  "requirement_model_link": 0,
+  "countermeasure": 17,
+  "both": 5,
+  "requirement_only": 1,
+  "countermeasure_only": 12,
+  "neither": 0
+ },
+ "d3fend_stereotypes_applied_outside_d3fend": {},
+ "chain": {
+  "losses": [
+   "L-1 Loss of life or injury to friendly or neutral people",
+   "L-2 Significant damage to friendly or neutral objects",
+   "L-3 Unable to destroy assigned targets",
+   "L-4 Unable to decoy hostile air defenses when required"
+  ],
+  "hazards": [
+   "H-1 MQ-99 targets friendly or neutral objects or personnel",
+   "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+   "H-3 MQ-99 does not successfully strike assigned targets",
+   "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response",
+   "H-5 MQ-99 operates outside of established operational envelope",
+   "H-6 MQ-99 presents electrical, chemical, or kinetic hazards to friendly personnel or objects in the vehicle\u2019s immediate vicinity"
+  ],
+  "security_constraints": [
+   "SC-1 The MQ-99 will only target hostile objects or personnel",
+   "SC-2 The MQ-99 will prevent unacceptable collateral damage to friendly or neutral objects or personnel",
+   "SC-3 MQ-99 must successfully strike assigned targets",
+   "SC-4 MQ-99 must execute the required profile as directed by warfighters in accordance with CONOPS and mission timelines",
+   "SC-5 The MQ-99 will only operate inside the established operational envelope",
+   "SC-6 The MQ-99 will not present electrical, chemical, or kinetic hazards to friendly personnel or objects in the vehicle\u2019s immediate vicinity"
+  ],
+  "controllers": [
+   "C-2 Operator",
+   "C-3 Flight Lead",
+   "C-4 Ground Control Station",
+   "C-5 Maintenance System",
+   "C-7 Mission Computer",
+   "C-8 Autopilot",
+   "C-9 Flight Control Computer",
+   "C-10 Navigation Controller",
+   "C-11 Communications Controller",
+   "C-15 Stores Controller",
+   "C-30 Cyber Sentinel"
+  ],
+  "loss_scenarios": [
+   "LS-1 Adversary gains access to the ground station through a traditional-IT data connection and alters mission data sent to the AV resulting in the AV flying to an adversary selected location",
+   "LS-2 Adversary gains access to the ground station through insider physical access and alters mission data sent to the AV resulting in the AV flying to an adversary selected location",
+   "LS-5 Adversary gains access to the ground station through a traditional-IT data connection and sends a malicious weapons release command",
+   "LS-6 Adversary gains access to the ground station through a traditional-IT data connection and sends malicious waypoint data to degrade UAS operations",
+   "LS-7 Adversary gains access to the ground station through a traditional-IT data connection and gains mission planning and AV location data",
+   "LS-8 Adversary gains access to the ground station AV link through breaking encryption and performs a man-in-the-middle attack to alter commands and data sent to the AV to fly AV to a location of the adversary's choosing",
+   "LS-11 Adversary gets the AV communications system to shift to an unencrypted mode enabling them to send commands to fly the AV to a location of their choice",
+   "LS-14 Adversary gains access to the MX system through a supply chain attack and maliciously alters hardware or firmware to spoof or tamper OFPs loaded in the AV to modify the mission computer",
+   "LS-15 Adversary gains access to the mission computer through a supply chain attack during distribution and maliciously alters hardware or firmware",
+   "LS-16 Adversary maliciously modifies the mission computer's OFP during development to spoof or tamper mission computer commands",
+   "LS-25 Adversary gains access to the navigation controller through a supply chain distribution attack and maliciously alters hardware or firmware to spoof or tamper navigation controller commands",
+   "LS-34 Adversary spoofs other NAV sensor to fly AV to a location of the adversary's choosing"
+  ],
+  "hazardous_control_actions": 166
+ },
+ "leaves": [
+  {
+   "rank": 1,
+   "leaf": "Device on 1553 bus successfully sends adversary spoofed message to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Device on 1553 bus sends adversary spoofed message to fly AV to adversary selected location"
+   ],
+   "p_low": 0.18,
+   "p_high": 0.43,
+   "p_mid": 0.305,
+   "total_risk_sensitivity": 0.008393,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-61 Device on 1553 bus successfully sends adversary spoofed message to fly AV to adversary selected location"
+   ],
+   "hcas": [
+    "HCA-122",
+    "HCA-21",
+    "HCA-40",
+    "HCA-55",
+    "HCA-126"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-2 Operator",
+    "C-8 Autopilot"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-61 traces to function 'Conduct Waypoint Communications' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-61 traces to function 'Set New Flight Path' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-61 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-61 traces to function 'Set New Flight Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 159,
+   "attack_techniques": [
+    {
+     "technique": "Masquerading:T1036",
+     "id": "T1036",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1036 (heuristic)"
+    },
+    {
+     "technique": "Adversary-in-the-Middle:T1557",
+     "id": "T1557",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1557 (heuristic)"
+    },
+    {
+     "technique": "Email Spoofing:T1672",
+     "id": "T1672",
+     "confidence": "low",
+     "score": 0.53,
+     "rationale": "name tokens ['spoof'] overlap"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Analysis' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Community Deviation",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Community Deviation' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Filtering' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Signature Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Signature Analysis' May Detect T1557",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "AU-6 [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "SI-3 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4(11) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 2,
+   "leaf": "SIPR connected DoS cyber attack to degrade UAS operations",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-6, outside the tree)"
+   ],
+   "p_low": 0.02,
+   "p_high": 0.2,
+   "p_mid": 0.11,
+   "total_risk_sensitivity": 0.0,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-6 Adversary gains access to the ground station through a traditional-IT data connection and sends malicious waypoint data to degrade UAS operations"
+   ],
+   "hcas": [
+    "HCA-40",
+    "HCA-9",
+    "HCA-21",
+    "HCA-55"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-4 Ground Control Station"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-6 traces to function 'Conduct Waypoint Communications' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-6 traces to function 'Process Waypoint Update Package' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-6 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-6 traces to function 'Set New Flight Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-6 traces to function 'Transmit Waypoint Route Update' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.14/1.1.1.14 Communications System Cryptographic Module",
+      "MR - 26.1.1.21/1.1.1.21 Communications System Mainteanance Ports",
+      "MR - 26.1.1.7/1.1.1.7 Communications System Secure Boot",
+      "MR - 26.1.6/1.1.6 Communications Encryption",
+      "MR - 26.2.1.7.1/1.2.1.7.1 Communications System Backup Mode Switching",
+      "MR - 26.2.1.7/1.2.1.7 Communications System Backup Mode",
+      "MR - 26.2.3/1.2.3 Communications Redundancy"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging",
+      "MR - 26.1.5.2/1.1.5.2 Ground Station Access Control",
+      "MR - 26.3.2.2/1.3.2.2 Ground Station IPS"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 76,
+   "attack_techniques": [
+    {
+     "technique": "External Remote Services:T1133",
+     "id": "T1133",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'traditional-it' \u2192 T1133 (heuristic)"
+    },
+    {
+     "technique": "Exploit Public-Facing Application:T1190",
+     "id": "T1190",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'traditional-it' \u2192 T1190 (heuristic)"
+    },
+    {
+     "technique": "Network Denial of Service:T1498",
+     "id": "T1498",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'dos' \u2192 T1498 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Application Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Application Hardening' May Harden T1190",
+     "counted": true
+    },
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Database Query String Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Database Query String Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Session Volume Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Session Volume Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Traffic Filtering' May Isolate T1190",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1190",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Communications Controller",
+     "artifacts": 93,
+     "examples": [
+      "Application Layer Link",
+      "Asymmetric Key",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic"
+     ]
+    },
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SA-15 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(11) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SI-16 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4 [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(24) [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 3,
+   "leaf": "SIPR connected Traditional-IT cyber attack on ground station to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gains control of ground station to fly AV to adversary selected location"
+   ],
+   "p_low": 0.01,
+   "p_high": 0.15,
+   "p_mid": 0.08,
+   "total_risk_sensitivity": 0.147437,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-1 Adversary gains access to the ground station through a traditional-IT data connection and alters mission data sent to the AV resulting in the AV flying to an adversary selected location"
+   ],
+   "hcas": [
+    "HCA-28",
+    "HCA-40",
+    "HCA-126",
+    "HCA-9",
+    "HCA-21",
+    "HCA-55"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-4 Ground Control Station",
+    "C-7 Mission Computer",
+    "C-8 Autopilot"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-1 traces to function 'Load OFP Data' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-1 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-1 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-1 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging",
+      "MR - 26.1.5.2/1.1.5.2 Ground Station Access Control",
+      "MR - 26.3.2.2/1.3.2.2 Ground Station IPS"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 159,
+   "attack_techniques": [
+    {
+     "technique": "External Remote Services:T1133",
+     "id": "T1133",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'cyber attack on ground station' \u2192 T1133 (heuristic)"
+    },
+    {
+     "technique": "Exploit Public-Facing Application:T1190",
+     "id": "T1190",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'cyber attack on ground station' \u2192 T1190 (heuristic)"
+    },
+    {
+     "technique": "Data Manipulation:T1565",
+     "id": "T1565",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'alters' \u2192 T1565 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Application Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Application Hardening' May Harden T1190",
+     "counted": true
+    },
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Database Query String Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Database Query String Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Session Volume Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Session Volume Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Traffic Filtering' May Isolate T1190",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1190",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SA-15 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(11) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SI-16 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4 [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(24) [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 4,
+   "leaf": "SIPR connected Traditional-IT cyber attack on ground station to gain mission planning and AV location data",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-7, outside the tree)"
+   ],
+   "p_low": 0.01,
+   "p_high": 0.15,
+   "p_mid": 0.08,
+   "total_risk_sensitivity": 0.147437,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-7 Adversary gains access to the ground station through a traditional-IT data connection and gains mission planning and AV location data"
+   ],
+   "hcas": [
+    "HCA-355"
+   ],
+   "hazards": [],
+   "losses": [],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-10 Navigation Controller",
+    "C-8 Autopilot",
+    "C-11 Communications Controller"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-7 traces to function 'Launch UAV' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-7 traces to function 'Load Flight Plan and Mission Parameters' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-7 traces to function 'Transmit Position Data' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging",
+      "MR - 26.1.5.2/1.1.5.2 Ground Station Access Control",
+      "MR - 26.3.2.2/1.3.2.2 Ground Station IPS"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 162,
+   "attack_techniques": [
+    {
+     "technique": "External Remote Services:T1133",
+     "id": "T1133",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'cyber attack on ground station' \u2192 T1133 (heuristic)"
+    },
+    {
+     "technique": "Exploit Public-Facing Application:T1190",
+     "id": "T1190",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'cyber attack on ground station' \u2192 T1190 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Application Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Application Hardening' May Harden T1190",
+     "counted": true
+    },
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Database Query String Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Database Query String Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Session Volume Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Session Volume Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Traffic Filtering' May Isolate T1190",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1190",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SA-15 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(11) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SI-16 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4 [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(24) [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 5,
+   "leaf": "SIPR connected Traditional-IT cyber attack to employ ordnance on a target of their choice",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-5, outside the tree)"
+   ],
+   "p_low": 0.01,
+   "p_high": 0.15,
+   "p_mid": 0.08,
+   "total_risk_sensitivity": 0.147437,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-5 Adversary gains access to the ground station through a traditional-IT data connection and sends a malicious weapons release command"
+   ],
+   "hcas": [
+    "HCA-36",
+    "HCA-17",
+    "HCA-50"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-3 Flight Lead"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-5 traces to function 'Launch Weapon' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-5 traces to function 'Relay Munition Launch' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.14/1.1.1.14 Communications System Cryptographic Module",
+      "MR - 26.1.1.21/1.1.1.21 Communications System Mainteanance Ports",
+      "MR - 26.1.1.7/1.1.1.7 Communications System Secure Boot",
+      "MR - 26.1.6/1.1.6 Communications Encryption",
+      "MR - 26.2.1.7.1/1.2.1.7.1 Communications System Backup Mode Switching",
+      "MR - 26.2.1.7/1.2.1.7 Communications System Backup Mode",
+      "MR - 26.2.3/1.2.3 Communications Redundancy"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['command', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.3.1.5/1.3.1.5 Cyber Sentinel Resetting Components on Command",
+      "MR - 26.3.1.7/1.3.1.7 Cyber Sentinel Switching Components to Backup Mode on Command"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 39,
+   "attack_techniques": [
+    {
+     "technique": "External Remote Services:T1133",
+     "id": "T1133",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'traditional-it' \u2192 T1133 (heuristic)"
+    },
+    {
+     "technique": "Exploit Public-Facing Application:T1190",
+     "id": "T1190",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'traditional-it' \u2192 T1190 (heuristic)"
+    },
+    {
+     "technique": "Link Target:T1608.005",
+     "id": "T1608.005",
+     "confidence": "low",
+     "score": 0.63,
+     "rationale": "name tokens ['target'] overlap; documentation also mentions ['maliciou', 'acces']"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Application Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Application Hardening' May Harden T1190",
+     "counted": true
+    },
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Database Query String Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Database Query String Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Session Volume Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Session Volume Analysis' May Detect T1190",
+     "counted": true
+    },
+    {
+     "technique": "Inbound Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Inbound Traffic Filtering' May Isolate T1190",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1190"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1190",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SA-15 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(11) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Inbound Traffic Filtering' via technique entry 'Inbound Traffic Filtering' (countermeasure was medium)",
+    "SI-16 [medium] for D3FEND 'Application Hardening' via technique entry 'Application Hardening' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4 [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(24) [low] for D3FEND 'Database Query String Analysis' via family entry 'Process Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Inbound Session Volume Analysis' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 6,
+   "leaf": "Adversary steals key from SIPR connected ground station to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gets into the middle of ground station & UAS communications link to fly AV to adversary selected location",
+    "Or Adversary gets encryption key to fly AV to adversary selected location"
+   ],
+   "p_low": 0.01,
+   "p_high": 0.1,
+   "p_mid": 0.055,
+   "total_risk_sensitivity": 0.031985,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-62 Adversary steals key from SIPR connected ground station to fly AV to adversary selected location"
+   ],
+   "hcas": [
+    "HCA-122",
+    "HCA-21",
+    "HCA-40",
+    "HCA-55",
+    "HCA-126"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-2 Operator",
+    "C-8 Autopilot"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-62 traces to function 'Activate GCS Interface' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.14/1.1.1.14 Communications System Cryptographic Module",
+      "MR - 26.1.1.21/1.1.1.21 Communications System Mainteanance Ports",
+      "MR - 26.1.1.7/1.1.1.7 Communications System Secure Boot",
+      "MR - 26.1.6/1.1.6 Communications Encryption",
+      "MR - 26.2.1.7.1/1.2.1.7.1 Communications System Backup Mode Switching",
+      "MR - 26.2.1.7/1.2.1.7 Communications System Backup Mode",
+      "MR - 26.2.3/1.2.3 Communications Redundancy"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-62 traces to function 'Establish Communications' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-62 traces to function 'Update Blue Force Map Points' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA",
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.3/1.1.5.2.3 Ground Station Network Segmentation",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging",
+      "MR - 26.1.5.2/1.1.5.2 Ground Station Access Control"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 200,
+   "attack_techniques": [
+    {
+     "technique": "Private Keys:T1552.004",
+     "id": "T1552.004",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'steals key' \u2192 T1552.004 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Access Mediation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Access Mediation' May Isolate T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Agent Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Agent Authentication' May Harden T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Authentication Cache Invalidation",
+     "tactic": "Evict",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Authentication Cache Invalidation' May Evict T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Certificate Rotation",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Certificate Rotation' May Harden T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Credential Compromise Scope Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Credential Compromise Scope Analysis' May Detect T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Credential Eviction",
+     "tactic": "Evict",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Credential Eviction' May Evict T1552.004 (via parent technique T1552)",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "AC-2(1) [medium] for D3FEND 'Credential Eviction' via technique entry 'Credential Eviction' (countermeasure was medium)",
+    "AC-3 [medium] for D3FEND 'Access Mediation' via technique entry 'Access Mediation' (countermeasure was medium)",
+    "AC-6 [medium] for D3FEND 'Access Mediation' via technique entry 'Access Mediation' (countermeasure was medium)",
+    "IA-11 [medium] for D3FEND 'Authentication Cache Invalidation' via technique entry 'Authentication Cache Invalidation' (countermeasure was medium)",
+    "IA-11 [medium] for D3FEND 'Credential Eviction' via technique entry 'Credential Eviction' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-3 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-5 [medium] for D3FEND 'Authentication Cache Invalidation' via technique entry 'Authentication Cache Invalidation' (countermeasure was medium)",
+    "IA-5 [medium] for D3FEND 'Credential Eviction' via technique entry 'Credential Eviction' (countermeasure was medium)",
+    "IA-8 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "AC-2(12) [low] for D3FEND 'Credential Compromise Scope Analysis' via family entry 'User Behavior Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Credential Compromise Scope Analysis' via family entry 'User Behavior Analysis' (countermeasure was medium)",
+    "IA-5 [low] for D3FEND 'Certificate Rotation' via family entry 'Credential Hardening' (countermeasure was medium)",
+    "IA-5(1) [low] for D3FEND 'Certificate Rotation' via family entry 'Credential Hardening' (countermeasure was medium)",
+    "SI-4(13) [low] for D3FEND 'Credential Compromise Scope Analysis' via family entry 'User Behavior Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 7,
+   "leaf": "Other NAV sensor spoofing to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary successfully spoofs nav solution to fly AV to adversary selected location"
+   ],
+   "p_low": 0.005,
+   "p_high": 0.05,
+   "p_mid": 0.0275,
+   "total_risk_sensitivity": 0.015775,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-34 Adversary spoofs other NAV sensor to fly AV to a location of the adversary's choosing"
+   ],
+   "hcas": [
+    "HCA-122"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-34 traces to function 'Establish Navigation' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-34 traces to function 'Process No Fly Zone Update' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-34 traces to function 'Transmit Nav System Configuration' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 159,
+   "attack_techniques": [
+    {
+     "technique": "Masquerading:T1036",
+     "id": "T1036",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1036 (heuristic)"
+    },
+    {
+     "technique": "Adversary-in-the-Middle:T1557",
+     "id": "T1557",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1557 (heuristic)"
+    },
+    {
+     "technique": "Email Spoofing:T1672",
+     "id": "T1672",
+     "confidence": "low",
+     "score": 0.53,
+     "rationale": "name tokens ['spoof'] overlap"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Analysis' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Community Deviation",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Community Deviation' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Filtering' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Signature Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Signature Analysis' May Detect T1557",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "AU-6 [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "SI-3 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4(11) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 8,
+   "leaf": "Adversary control of device on 1553 bus via supply chain to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Device on 1553 bus sends adversary spoofed message to fly AV to adversary selected location"
+   ],
+   "p_low": 0.0001,
+   "p_high": 0.05,
+   "p_mid": 0.02505,
+   "total_risk_sensitivity": 0.018931,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-60 Adversary control of device on 1553 bus via supply chain to fly AV to adversary selected location"
+   ],
+   "hcas": [
+    "HCA-122",
+    "HCA-21",
+    "HCA-40",
+    "HCA-55",
+    "HCA-126"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-2 Operator",
+    "C-8 Autopilot"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-60 traces to function 'Conduct Waypoint Communications' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-60 traces to function 'Set New Flight Path' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-60 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-60 traces to function 'Set New Flight Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['bus', 'control'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.1/1.1.5.1 Cyber Sentinel as 1553 Bus Controller"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['chain', 'supply'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 90/120 CSA-10 Actively Manage System's Configurations to Achieve and Maintain an Operationally relevant Cyber Risk Posture"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 159,
+   "attack_techniques": [
+    {
+     "technique": "Supply Chain Compromise:T1195",
+     "id": "T1195",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'supply chain' \u2192 T1195 (heuristic)"
+    },
+    {
+     "technique": "Compromise Software Supply Chain:T1195.002",
+     "id": "T1195.002",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'supply chain' \u2192 T1195.002 (heuristic)"
+    },
+    {
+     "technique": "Compromise Hardware Supply Chain:T1195.003",
+     "id": "T1195.003",
+     "confidence": "low",
+     "score": 0.58,
+     "rationale": "name tokens ['chain', 'supply'] overlap; documentation also mentions ['control']"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Asset Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002",
+      "T1195.003"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Inventory' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Asset Vulnerability Enumeration",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Vulnerability Enumeration' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Container Image Analysis",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Container Image Analysis' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Platform Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Platform Hardening' May Harden T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Restore Object",
+     "tactic": "Restore",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Restore Object' May Restore T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Restore Software",
+     "tactic": "Restore",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Restore Software' May Restore T1195.002",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "CM-2 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "CM-6 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-7 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-8 [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CP-10 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "CP-9 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "RA-5 [medium] for D3FEND 'Asset Vulnerability Enumeration' via technique entry 'Asset Vulnerability Enumeration' (countermeasure was medium)",
+    "RA-5(2) [medium] for D3FEND 'Asset Vulnerability Enumeration' via technique entry 'Asset Vulnerability Enumeration' (countermeasure was medium)",
+    "SI-7 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-2 [low] for D3FEND 'Restore Software' via family entry 'Restore Object' (countermeasure was medium)",
+    "CM-8 [low] for D3FEND 'Container Image Analysis' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [low] for D3FEND 'Container Image Analysis' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CP-10 [low] for D3FEND 'Restore Software' via family entry 'Restore Object' (countermeasure was medium)",
+    "CP-9 [low] for D3FEND 'Restore Software' via family entry 'Restore Object' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 9,
+   "leaf": "MIL GPS spoofing to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary successfully spoofs nav solution to fly AV to adversary selected location"
+   ],
+   "p_low": 0.001,
+   "p_high": 0.02,
+   "p_mid": 0.0105,
+   "total_risk_sensitivity": 0.005893,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-33 Adversary spoofs GPS data to fly AV to a location of the adversary's choosing"
+   ],
+   "hcas": [
+    "HCA-122"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-33 traces to function 'Fly UAS Based on Waypoint Data' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-33 traces to function 'Receive GPS Signal' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['data', 'gps'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.9/1.1.9 Military GPS Only"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 86,
+   "attack_techniques": [
+    {
+     "technique": "Masquerading:T1036",
+     "id": "T1036",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1036 (heuristic)"
+    },
+    {
+     "technique": "Adversary-in-the-Middle:T1557",
+     "id": "T1557",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1557 (heuristic)"
+    },
+    {
+     "technique": "Email Spoofing:T1672",
+     "id": "T1672",
+     "confidence": "low",
+     "score": 0.53,
+     "rationale": "name tokens ['spoof'] overlap"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Analysis' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Community Deviation",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Community Deviation' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Filtering' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Signature Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Signature Analysis' May Detect T1557",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "AU-6 [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "SI-3 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4(11) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 10,
+   "leaf": "Operator insider gains access to ground station to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gains control of ground station to fly AV to adversary selected location"
+   ],
+   "p_low": 0.0002,
+   "p_high": 0.002,
+   "p_mid": 0.0011,
+   "total_risk_sensitivity": 0.003412,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-2 Adversary gains access to the ground station through insider physical access and alters mission data sent to the AV resulting in the AV flying to an adversary selected location"
+   ],
+   "hcas": [
+    "HCA-28",
+    "HCA-40",
+    "HCA-126",
+    "HCA-9",
+    "HCA-21",
+    "HCA-55"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-4 Ground Control Station",
+    "C-7 Mission Computer",
+    "C-8 Autopilot"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-2 traces to function 'Establish Navigation' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-2 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-2 traces to function 'Receive Current Nav Status/Config' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-2 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['ground', 'operator', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.3.1.5/1.3.1.5 Cyber Sentinel Resetting Components on Command",
+      "MR - 26.3.1.7/1.3.1.7 Cyber Sentinel Switching Components to Backup Mode on Command"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 598,
+   "attack_techniques": [
+    {
+     "technique": "Valid Accounts:T1078",
+     "id": "T1078",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'insider' \u2192 T1078 (heuristic)"
+    },
+    {
+     "technique": "Data Manipulation:T1565",
+     "id": "T1565",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'alters' \u2192 T1565 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Access Modeling",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Access Modeling' May Model T1078",
+     "counted": true
+    },
+    {
+     "technique": "Access Policy Administration",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Access Policy Administration' May Isolate T1078",
+     "counted": true
+    },
+    {
+     "technique": "Account Locking",
+     "tactic": "Evict",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Account Locking' May Evict T1078",
+     "counted": true
+    },
+    {
+     "technique": "Agent Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Agent Authentication' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Biometric Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Biometric Authentication' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Certificate-based Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Certificate-based Authentication' May Harden T1078",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-2 [medium] for D3FEND 'Access Policy Administration' via technique entry 'Access Policy Administration' (countermeasure was medium)",
+    "AC-2 [medium] for D3FEND 'Account Locking' via technique entry 'Account Locking' (countermeasure was medium)",
+    "AC-6 [medium] for D3FEND 'Access Policy Administration' via technique entry 'Access Policy Administration' (countermeasure was medium)",
+    "AC-7 [medium] for D3FEND 'Account Locking' via technique entry 'Account Locking' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Biometric Authentication' via technique entry 'Biometric Authentication' (countermeasure was medium)",
+    "IA-3 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-5(12) [medium] for D3FEND 'Biometric Authentication' via technique entry 'Biometric Authentication' (countermeasure was medium)",
+    "IA-5(2) [medium] for D3FEND 'Certificate-based Authentication' via technique entry 'Certificate-based Authentication' (countermeasure was medium)",
+    "IA-8 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "SC-17 [medium] for D3FEND 'Certificate-based Authentication' via technique entry 'Certificate-based Authentication' (countermeasure was medium)",
+    "CP-2 [low] for D3FEND 'Access Modeling' via family entry 'Operational Activity Mapping' (countermeasure was medium)",
+    "RA-3 [low] for D3FEND 'Access Modeling' via family entry 'Operational Activity Mapping' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 11,
+   "leaf": "Adversary supply chain attack on logistics system provides logical access to fly UAS to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gains control of ground station to fly AV to adversary selected location"
+   ],
+   "p_low": 0.0001,
+   "p_high": 0.001,
+   "p_mid": 0.00055,
+   "total_risk_sensitivity": 0.000657,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-37 Adversary supply chain attack on ground station provides logical access which adversary uses to manipulate mission data causing the UAS to fly to a adversary selected location"
+   ],
+   "hcas": [
+    "HCA-28",
+    "HCA-40",
+    "HCA-58",
+    "HCA-183",
+    "HCA-180",
+    "HCA-176",
+    "HCA-178",
+    "HCA-177",
+    "HCA-181",
+    "HCA-179",
+    "HCA-182",
+    "HCA-175",
+    "HCA-80",
+    "HCA-125",
+    "HCA-160",
+    "HCA-77",
+    "HCA-123",
+    "HCA-84",
+    "HCA-161",
+    "HCA-121",
+    "HCA-167",
+    "HCA-98",
+    "HCA-90",
+    "HCA-113",
+    "HCA-144",
+    "HCA-159",
+    "HCA-128",
+    "HCA-119",
+    "HCA-110",
+    "HCA-105",
+    "HCA-155",
+    "HCA-67",
+    "HCA-124",
+    "HCA-140",
+    "HCA-152",
+    "HCA-111",
+    "HCA-74",
+    "HCA-131",
+    "HCA-157",
+    "HCA-153",
+    "HCA-170",
+    "HCA-126",
+    "HCA-70",
+    "HCA-106",
+    "HCA-62",
+    "HCA-107",
+    "HCA-85",
+    "HCA-114",
+    "HCA-130",
+    "HCA-88",
+    "HCA-94",
+    "HCA-147",
+    "HCA-127",
+    "HCA-148",
+    "HCA-112",
+    "HCA-96",
+    "HCA-163",
+    "HCA-142",
+    "HCA-166",
+    "HCA-78",
+    "HCA-81",
+    "HCA-73",
+    "HCA-134",
+    "HCA-171",
+    "HCA-164",
+    "HCA-71",
+    "HCA-65",
+    "HCA-156",
+    "HCA-172",
+    "HCA-133",
+    "HCA-100",
+    "HCA-115",
+    "HCA-102",
+    "HCA-87",
+    "HCA-145",
+    "HCA-132",
+    "HCA-101",
+    "HCA-174",
+    "HCA-69",
+    "HCA-117",
+    "HCA-79",
+    "HCA-86",
+    "HCA-165",
+    "HCA-72",
+    "HCA-82",
+    "HCA-122",
+    "HCA-139",
+    "HCA-120",
+    "HCA-129",
+    "HCA-168",
+    "HCA-83",
+    "HCA-95",
+    "HCA-99",
+    "HCA-138",
+    "HCA-162",
+    "HCA-68",
+    "HCA-76",
+    "HCA-89",
+    "HCA-118",
+    "HCA-92",
+    "HCA-116",
+    "HCA-143",
+    "HCA-137",
+    "HCA-151",
+    "HCA-149",
+    "HCA-158",
+    "HCA-104",
+    "HCA-66",
+    "HCA-173",
+    "HCA-75",
+    "HCA-103",
+    "HCA-169",
+    "HCA-141",
+    "HCA-91",
+    "HCA-136",
+    "HCA-135",
+    "HCA-61",
+    "HCA-146",
+    "HCA-108",
+    "HCA-64",
+    "HCA-150",
+    "HCA-154",
+    "HCA-63",
+    "HCA-109",
+    "HCA-60",
+    "HCA-97",
+    "HCA-59",
+    "HCA-93",
+    "HCA-192",
+    "HCA-195",
+    "HCA-196",
+    "HCA-193",
+    "HCA-194",
+    "HCA-191",
+    "HCA-348",
+    "HCA-356",
+    "HCA-359",
+    "HCA-347",
+    "HCA-361",
+    "HCA-353",
+    "HCA-354",
+    "HCA-344",
+    "HCA-360",
+    "HCA-341",
+    "HCA-342",
+    "HCA-346",
+    "HCA-343",
+    "HCA-349",
+    "HCA-351",
+    "HCA-352",
+    "HCA-350",
+    "HCA-355",
+    "HCA-345",
+    "HCA-358",
+    "HCA-357",
+    "HCA-362"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response",
+    "H-6 MQ-99 presents electrical, chemical, or kinetic hazards to friendly personnel or objects in the vehicle\u2019s immediate vicinity",
+    "H-5 MQ-99 operates outside of established operational envelope"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-4 Ground Control Station",
+    "C-7 Mission Computer",
+    "C-15 Stores Controller",
+    "C-8 Autopilot",
+    "C-10 Navigation Controller",
+    "C-30 Cyber Sentinel",
+    "C-3 Flight Lead",
+    "C-9 Flight Control Computer",
+    "C-11 Communications Controller",
+    "C-14 Fuel Controller",
+    "C-13 Electrical Controller"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-37 traces to function 'Launch UAV' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-37 traces to function 'Load Flight Plan and Mission Parameters' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-37 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-37 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'maintenance'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.3.1/1.1.5.3.1 Maintenance System MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'logical', 'maintenance'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 81/111 CSA-01 Control Access"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 159,
+   "attack_techniques": [
+    {
+     "technique": "Supply Chain Compromise:T1195",
+     "id": "T1195",
+     "confidence": "medium",
+     "score": 0.8,
+     "rationale": "name tokens ['chain', 'supply'] overlap; documentation also mentions ['data', 'manipulate']"
+    },
+    {
+     "technique": "Valid Accounts:T1078",
+     "id": "T1078",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'logical access' \u2192 T1078 (heuristic)"
+    },
+    {
+     "technique": "External Remote Services:T1133",
+     "id": "T1133",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'logical access' \u2192 T1133 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Access Modeling",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Access Modeling' May Model T1078",
+     "counted": true
+    },
+    {
+     "technique": "Access Policy Administration",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Access Policy Administration' May Isolate T1078",
+     "counted": true
+    },
+    {
+     "technique": "Account Locking",
+     "tactic": "Evict",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Account Locking' May Evict T1078",
+     "counted": true
+    },
+    {
+     "technique": "Agent Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Agent Authentication' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Biometric Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Biometric Authentication' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Certificate-based Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Certificate-based Authentication' May Harden T1078",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-2 [medium] for D3FEND 'Access Policy Administration' via technique entry 'Access Policy Administration' (countermeasure was medium)",
+    "AC-2 [medium] for D3FEND 'Account Locking' via technique entry 'Account Locking' (countermeasure was medium)",
+    "AC-6 [medium] for D3FEND 'Access Policy Administration' via technique entry 'Access Policy Administration' (countermeasure was medium)",
+    "AC-7 [medium] for D3FEND 'Account Locking' via technique entry 'Account Locking' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Biometric Authentication' via technique entry 'Biometric Authentication' (countermeasure was medium)",
+    "IA-3 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-5(12) [medium] for D3FEND 'Biometric Authentication' via technique entry 'Biometric Authentication' (countermeasure was medium)",
+    "IA-5(2) [medium] for D3FEND 'Certificate-based Authentication' via technique entry 'Certificate-based Authentication' (countermeasure was medium)",
+    "IA-8 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "SC-17 [medium] for D3FEND 'Certificate-based Authentication' via technique entry 'Certificate-based Authentication' (countermeasure was medium)",
+    "CP-2 [low] for D3FEND 'Access Modeling' via family entry 'Operational Activity Mapping' (countermeasure was medium)",
+    "RA-3 [low] for D3FEND 'Access Modeling' via family entry 'Operational Activity Mapping' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 12,
+   "leaf": "Adversary gets link to shift into unencrypted mode to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gets into the middle of ground station & UAS communications link to fly AV to adversary selected location"
+   ],
+   "p_low": 0.0,
+   "p_high": 0.001,
+   "p_mid": 0.0005,
+   "total_risk_sensitivity": 0.000835,
+   "status": "requirement-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-11 Adversary gets the AV communications system to shift to an unencrypted mode enabling them to send commands to fly the AV to a location of their choice"
+   ],
+   "hcas": [
+    "HCA-9",
+    "HCA-21",
+    "HCA-28",
+    "HCA-40",
+    "HCA-55"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-4 Ground Control Station"
+   ],
+   "requirements": [
+    {
+     "requirement": "MR - 26.1.1.14/1.1.1.14 Communications System Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-11 traces to function 'Activate Encryption' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['communication', 'encryption'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.6/1.1.6 Communications Encryption",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-11 traces to function 'Activate Encryption' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['communication', 'encryption'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-11 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['command', 'mode'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1.7.1/1.2.1.7.1 Communications System Backup Mode Switching",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-11 traces to function 'Activate Encryption' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['command', 'communication', 'mode'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1.7/1.2.1.7 Communications System Backup Mode",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-11 traces to function 'Activate Encryption' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['communication', 'mode'] with the leaf (heuristic, not a model link)"
+    }
+   ],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-11 traces to function 'Activate Encryption' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.21/1.1.1.21 Communications System Mainteanance Ports",
+      "MR - 26.1.1.7/1.1.1.7 Communications System Secure Boot",
+      "MR - 26.2.3/1.2.3 Communications Redundancy"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-11 traces to function 'Fly UAS Based on Waypoint Data' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-11 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['command', 'mode'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.4.1/1.2.1.4.1 Propulsion System Backup Mode Switching",
+      "MR - 26.2.1.5.1/1.2.1.5.1 Fuel System Backup Mode Switching"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['communication', 'encryption'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 83/113 CSA-03 Secure Transmissions and Communications"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 43,
+   "attack_techniques": [
+    {
+     "technique": "Impair Defenses:T1562",
+     "id": "T1562",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'unencrypted mode' \u2192 T1562 (heuristic)"
+    },
+    {
+     "technique": "Weaken Encryption:T1600",
+     "id": "T1600",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'unencrypted mode' \u2192 T1600 (heuristic)"
+    },
+    {
+     "technique": "Data Encrypted:T1022",
+     "id": "T1022",
+     "confidence": "low",
+     "score": 0.59,
+     "rationale": "name tokens ['encryption'] overlap; documentation also mentions ['command']"
+    }
+   ],
+   "d3fend_countermeasures": [],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Communications Controller",
+     "artifacts": 93,
+     "examples": [
+      "Application Layer Link",
+      "Asymmetric Key",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic"
+     ]
+    },
+    {
+     "block": "Allocated Nav Controller",
+     "artifacts": 31,
+     "examples": [
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Central Processing Unit",
+      "Client Computer"
+     ]
+    }
+   ],
+   "nist_candidates": []
+  },
+  {
+   "rank": 13,
+   "leaf": "Adversary gets insider to give them the command link key to fly AV to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gets into the middle of ground station & UAS communications link to fly AV to adversary selected location",
+    "Or Adversary gets encryption key to fly AV to adversary selected location"
+   ],
+   "p_low": 5e-05,
+   "p_high": 0.0005,
+   "p_mid": 0.000275,
+   "total_risk_sensitivity": 0.000459,
+   "status": "countermeasure-only",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-59 Adversary gets insider to give them the command link key to fly AV to adversary selected location"
+   ],
+   "hcas": [
+    "HCA-122",
+    "HCA-21",
+    "HCA-40",
+    "HCA-55",
+    "HCA-126"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-2 Operator",
+    "C-8 Autopilot"
+   ],
+   "requirements": [],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-59 traces to function 'Launch UAV' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-59 traces to function 'Load Flight Plan and Mission Parameters' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-59 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-59 traces to function 'Set New Flight Path' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+      "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 159,
+   "attack_techniques": [
+    {
+     "technique": "Valid Accounts:T1078",
+     "id": "T1078",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'insider' \u2192 T1078 (heuristic)"
+    },
+    {
+     "technique": "Private Keys:T1552.004",
+     "id": "T1552.004",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'command link key' \u2192 T1552.004 (heuristic)"
+    },
+    {
+     "technique": "Adversary-in-the-Middle:T1557",
+     "id": "T1557",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'command link key' \u2192 T1557 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Agent Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078",
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Agent Authentication' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Credential Eviction",
+     "tactic": "Evict",
+     "via": "direct",
+     "from": [
+      "T1078",
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Credential Eviction' May Evict T1078",
+     "counted": true
+    },
+    {
+     "technique": "Credential Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078",
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Credential Hardening' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Multi-factor Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1078",
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Multi-factor Authentication' May Harden T1078",
+     "counted": true
+    },
+    {
+     "technique": "Restore Access",
+     "tactic": "Restore",
+     "via": "direct",
+     "from": [
+      "T1078",
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Restore Access' May Restore T1078",
+     "counted": true
+    },
+    {
+     "technique": "User Behavior Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1552.004",
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'User Behavior Analysis' May Detect T1552.004 (via parent technique T1552)",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-2 [medium] for D3FEND 'Restore Access' via technique entry 'Restore Access' (countermeasure was medium)",
+    "AC-2(1) [medium] for D3FEND 'Credential Eviction' via technique entry 'Credential Eviction' (countermeasure was medium)",
+    "AC-2(12) [medium] for D3FEND 'User Behavior Analysis' via technique entry 'User Behavior Analysis' (countermeasure was medium)",
+    "AU-6 [medium] for D3FEND 'User Behavior Analysis' via technique entry 'User Behavior Analysis' (countermeasure was medium)",
+    "CP-10 [medium] for D3FEND 'Restore Access' via technique entry 'Restore Access' (countermeasure was medium)",
+    "IA-11 [medium] for D3FEND 'Credential Eviction' via technique entry 'Credential Eviction' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-2(1) [medium] for D3FEND 'Multi-factor Authentication' via technique entry 'Multi-factor Authentication' (countermeasure was medium)",
+    "IA-2(2) [medium] for D3FEND 'Multi-factor Authentication' via technique entry 'Multi-factor Authentication' (countermeasure was medium)",
+    "IA-2(6) [medium] for D3FEND 'Multi-factor Authentication' via technique entry 'Multi-factor Authentication' (countermeasure was medium)",
+    "IA-3 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-5 [medium] for D3FEND 'Credential Eviction' via technique entry 'Credential Eviction' (countermeasure was medium)",
+    "IA-5 [medium] for D3FEND 'Credential Hardening' via technique entry 'Credential Hardening' (countermeasure was medium)",
+    "IA-5 [medium] for D3FEND 'Restore Access' via technique entry 'Restore Access' (countermeasure was medium)",
+    "IA-5(1) [medium] for D3FEND 'Credential Hardening' via technique entry 'Credential Hardening' (countermeasure was medium)",
+    "IA-8 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "SI-4(13) [medium] for D3FEND 'User Behavior Analysis' via technique entry 'User Behavior Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 14,
+   "leaf": "Adversary maliciously modifies flight-critical software during distribution to modify AV mission computer",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-15, outside the tree)"
+   ],
+   "p_low": 0.02,
+   "p_high": 0.15,
+   "p_mid": 0.085,
+   "total_risk_sensitivity": 0.00845,
+   "status": "both",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-15 Adversary gains access to the mission computer through a supply chain attack during distribution and maliciously alters hardware or firmware"
+   ],
+   "hcas": [
+    "HCA-183",
+    "HCA-121",
+    "HCA-122",
+    "HCA-123",
+    "HCA-124",
+    "HCA-125",
+    "HCA-126",
+    "HCA-127",
+    "HCA-128",
+    "HCA-129",
+    "HCA-130",
+    "HCA-131",
+    "HCA-132",
+    "HCA-133",
+    "HCA-134",
+    "HCA-135",
+    "HCA-136",
+    "HCA-137",
+    "HCA-138",
+    "HCA-139",
+    "HCA-140",
+    "HCA-141",
+    "HCA-142",
+    "HCA-143",
+    "HCA-144",
+    "HCA-145",
+    "HCA-146",
+    "HCA-147",
+    "HCA-148",
+    "HCA-149",
+    "HCA-150",
+    "HCA-151",
+    "HCA-152",
+    "HCA-153",
+    "HCA-154",
+    "HCA-155",
+    "HCA-156",
+    "HCA-157",
+    "HCA-158",
+    "HCA-159",
+    "HCA-160",
+    "HCA-161",
+    "HCA-162",
+    "HCA-163",
+    "HCA-164",
+    "HCA-165",
+    "HCA-166",
+    "HCA-167",
+    "HCA-168",
+    "HCA-169",
+    "HCA-170",
+    "HCA-171",
+    "HCA-172",
+    "HCA-173",
+    "HCA-174",
+    "HCA-175",
+    "HCA-176",
+    "HCA-177",
+    "HCA-178",
+    "HCA-179",
+    "HCA-180",
+    "HCA-181",
+    "HCA-182",
+    "HCA-191",
+    "HCA-196",
+    "HCA-195",
+    "HCA-194",
+    "HCA-193",
+    "HCA-192",
+    "HCA-310",
+    "HCA-311",
+    "HCA-58",
+    "HCA-59",
+    "HCA-120",
+    "HCA-60",
+    "HCA-61",
+    "HCA-62",
+    "HCA-63",
+    "HCA-64",
+    "HCA-65",
+    "HCA-66",
+    "HCA-67",
+    "HCA-68",
+    "HCA-69",
+    "HCA-70",
+    "HCA-71",
+    "HCA-72",
+    "HCA-73",
+    "HCA-74",
+    "HCA-75",
+    "HCA-76",
+    "HCA-77",
+    "HCA-78",
+    "HCA-79",
+    "HCA-80",
+    "HCA-81",
+    "HCA-82",
+    "HCA-83",
+    "HCA-84",
+    "HCA-85",
+    "HCA-86",
+    "HCA-87",
+    "HCA-88",
+    "HCA-89",
+    "HCA-90",
+    "HCA-91",
+    "HCA-92",
+    "HCA-93",
+    "HCA-94",
+    "HCA-95",
+    "HCA-96",
+    "HCA-97",
+    "HCA-98",
+    "HCA-99",
+    "HCA-100",
+    "HCA-101",
+    "HCA-102",
+    "HCA-103",
+    "HCA-104",
+    "HCA-105",
+    "HCA-106",
+    "HCA-107",
+    "HCA-108",
+    "HCA-109",
+    "HCA-110",
+    "HCA-111",
+    "HCA-112",
+    "HCA-113",
+    "HCA-114",
+    "HCA-115",
+    "HCA-116",
+    "HCA-117",
+    "HCA-119",
+    "HCA-118",
+    "HCA-356",
+    "HCA-357",
+    "HCA-358",
+    "HCA-359",
+    "HCA-360",
+    "HCA-361",
+    "HCA-362"
+   ],
+   "hazards": [
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-6 MQ-99 presents electrical, chemical, or kinetic hazards to friendly personnel or objects in the vehicle\u2019s immediate vicinity",
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response",
+    "H-5 MQ-99 operates outside of established operational envelope"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-15 Stores Controller",
+    "C-8 Autopilot",
+    "C-30 Cyber Sentinel",
+    "C-9 Flight Control Computer",
+    "C-2 Operator",
+    "C-3 Flight Lead",
+    "C-10 Navigation Controller",
+    "C-11 Communications Controller",
+    "C-4 Ground Control Station"
+   ],
+   "requirements": [
+    {
+     "requirement": "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Power up Mission Computer Components' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['computer', 'firmware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Provide Engine Thrust Requirements' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['firmware', 'flight'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Power up Mission Computer Components' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['computer', 'hardware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Provide Engine Thrust Requirements' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['flight', 'hardware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Power Up Essential Systems' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['critical', 'flight', 'hardware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Power Up Essential Systems' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['critical', 'flight'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.4.1.1/1.4.1.1 Software Loading",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Power Up Essential Systems' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['firmware', 'flight', 'software'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-15 traces to function 'Power Up Essential Systems' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['flight', 'software'] with the leaf (heuristic, not a model link)"
+    }
+   ],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-15 traces to function 'Power Up Essential Systems' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-15 traces to function 'Power up Mission Computer Components' allocated to block 'Electrical System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.13/1.1.1.13 Electrical System Cryptographic Module",
+      "MR - 26.1.1.20/1.1.1.20 Electrical System Maintenance Ports",
+      "MR - 26.1.1.6/1.1.1.6 Electrical System Secure Boot",
+      "MR - 26.2.1.6.1/1.2.1.6.1 Electrical System Backup Mode Switching",
+      "MR - 26.2.1.6/1.2.1.6 Electrical System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-15 traces to function 'Power up Mission Computer Components' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-15 traces to function 'Provide Engine Thrust Requirements' allocated to block 'Flight Controlller'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+      "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+      "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['firmware', 'hardware', 'software'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 113/143 CSA-10 10.1",
+      "MR - 98/128 CSA-04 4.3"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['firmware', 'software'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.3/1.1.3 Software Bill of Materials",
+      "MR - 26.4.2.1/1.4.2.1 Maintenance System Complete Load",
+      "MR - 26.4.2.2/1.4.2.2 Maintenance System Partial Load"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 500,
+   "attack_techniques": [
+    {
+     "technique": "Compromise Hardware Supply Chain:T1195.003",
+     "id": "T1195.003",
+     "confidence": "medium",
+     "score": 0.87,
+     "rationale": "name tokens ['chain', 'hardware', 'supply'] overlap; documentation also mentions ['firmware', 'modify']"
+    },
+    {
+     "technique": "Compromise Software Supply Chain:T1195.002",
+     "id": "T1195.002",
+     "confidence": "medium",
+     "score": 0.86,
+     "rationale": "name tokens ['chain', 'software', 'supply'] overlap; documentation also mentions ['distribution', 'modifi']"
+    },
+    {
+     "technique": "Supply Chain Compromise:T1195",
+     "id": "T1195",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'supply chain' \u2192 T1195 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Asset Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.003",
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Inventory' May Model T1195.003",
+     "counted": true
+    },
+    {
+     "technique": "Asset Vulnerability Enumeration",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Vulnerability Enumeration' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Container Image Analysis",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Container Image Analysis' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Hardware Component Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.003"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Hardware Component Inventory' May Model T1195.003",
+     "counted": true
+    },
+    {
+     "technique": "Platform Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Platform Hardening' May Harden T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Restore Object",
+     "tactic": "Restore",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Restore Object' May Restore T1195.002",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Flight Control Computer",
+     "artifacts": 34,
+     "examples": [
+      "Actuator",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Call Stack"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "CM-2 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "CM-6 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-7 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-8 [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CP-10 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "CP-9 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "RA-5 [medium] for D3FEND 'Asset Vulnerability Enumeration' via technique entry 'Asset Vulnerability Enumeration' (countermeasure was medium)",
+    "RA-5(2) [medium] for D3FEND 'Asset Vulnerability Enumeration' via technique entry 'Asset Vulnerability Enumeration' (countermeasure was medium)",
+    "SI-7 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-8 [low] for D3FEND 'Container Image Analysis' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8 [low] for D3FEND 'Hardware Component Inventory' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [low] for D3FEND 'Container Image Analysis' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [low] for D3FEND 'Hardware Component Inventory' via family entry 'Asset Inventory' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 15,
+   "leaf": "Adversary substitutes flight-critical hardware during distribution to alter AV navigation system",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-25, outside the tree)"
+   ],
+   "p_low": 0.01,
+   "p_high": 0.15,
+   "p_mid": 0.08,
+   "total_risk_sensitivity": 0.003858,
+   "status": "both",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-25 Adversary gains access to the navigation controller through a supply chain distribution attack and maliciously alters hardware or firmware to spoof or tamper navigation controller commands"
+   ],
+   "hcas": [
+    "HCA-228",
+    "HCA-241",
+    "HCA-240",
+    "HCA-239",
+    "HCA-238",
+    "HCA-237",
+    "HCA-236",
+    "HCA-235",
+    "HCA-234",
+    "HCA-233",
+    "HCA-232",
+    "HCA-231",
+    "HCA-230",
+    "HCA-229",
+    "HCA-131",
+    "HCA-132",
+    "HCA-133",
+    "HCA-134",
+    "HCA-135",
+    "HCA-136",
+    "HCA-137"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-10 Navigation Controller",
+    "C-30 Cyber Sentinel",
+    "C-7 Mission Computer"
+   ],
+   "requirements": [
+    {
+     "requirement": "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-25 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['hardware', 'navigation'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-25 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['firmware', 'navigation'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-25 traces to function 'Fly UAS Based on Waypoint Data' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['critical', 'flight', 'hardware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-25 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['command', 'navigation'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-25 traces to function 'Fly UAS Based on Waypoint Data' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['critical', 'flight'] with the leaf (heuristic, not a model link)"
+    }
+   ],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-25 traces to function 'Fly UAS Based on Waypoint Data' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-25 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'critical', 'tamper'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging",
+      "MR - 26.1.5.3.4/1.1.5.3.4 Maintenance System Access Logging",
+      "MR - 81/111 CSA-01 Control Access"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['command', 'critical', 'flight'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.3.1.7/1.3.1.7 Cyber Sentinel Switching Components to Backup Mode on Command"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['firmware', 'hardware', 'tamper'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 98/128 CSA-04 4.3"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 86,
+   "attack_techniques": [
+    {
+     "technique": "Compromise Hardware Supply Chain:T1195.003",
+     "id": "T1195.003",
+     "confidence": "medium",
+     "score": 0.82,
+     "rationale": "name tokens ['chain', 'hardware', 'supply'] overlap; documentation also mentions ['firmware']"
+    },
+    {
+     "technique": "Masquerading:T1036",
+     "id": "T1036",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1036 (heuristic)"
+    },
+    {
+     "technique": "Supply Chain Compromise:T1195",
+     "id": "T1195",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'supply chain' \u2192 T1195 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Asset Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.003"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Inventory' May Model T1195.003",
+     "counted": true
+    },
+    {
+     "technique": "Hardware Component Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.003"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Hardware Component Inventory' May Model T1195.003",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Nav Controller",
+     "artifacts": 31,
+     "examples": [
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic",
+      "Central Processing Unit",
+      "Client Computer"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "CM-8 [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8 [low] for D3FEND 'Hardware Component Inventory' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [low] for D3FEND 'Hardware Component Inventory' via family entry 'Asset Inventory' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 16,
+   "leaf": "Adversary maliciously modifies flight-critical software during development to alter AV mission computer",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-16, outside the tree)"
+   ],
+   "p_low": 0.01,
+   "p_high": 0.12,
+   "p_mid": 0.065,
+   "total_risk_sensitivity": 0.005746,
+   "status": "both",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-16 Adversary maliciously modifies the mission computer's OFP during development to spoof or tamper mission computer commands"
+   ],
+   "hcas": [
+    "HCA-183",
+    "HCA-121",
+    "HCA-122",
+    "HCA-123",
+    "HCA-124",
+    "HCA-125",
+    "HCA-126",
+    "HCA-127",
+    "HCA-128",
+    "HCA-129",
+    "HCA-130",
+    "HCA-131",
+    "HCA-132",
+    "HCA-133",
+    "HCA-134",
+    "HCA-135",
+    "HCA-136",
+    "HCA-137",
+    "HCA-138",
+    "HCA-139",
+    "HCA-140",
+    "HCA-141",
+    "HCA-142",
+    "HCA-143",
+    "HCA-144",
+    "HCA-145",
+    "HCA-146",
+    "HCA-147",
+    "HCA-148",
+    "HCA-149",
+    "HCA-150",
+    "HCA-151",
+    "HCA-152",
+    "HCA-153",
+    "HCA-154",
+    "HCA-155",
+    "HCA-156",
+    "HCA-157",
+    "HCA-158",
+    "HCA-159",
+    "HCA-160",
+    "HCA-161",
+    "HCA-162",
+    "HCA-163",
+    "HCA-164",
+    "HCA-165",
+    "HCA-166",
+    "HCA-167",
+    "HCA-168",
+    "HCA-169",
+    "HCA-170",
+    "HCA-171",
+    "HCA-172",
+    "HCA-173",
+    "HCA-174",
+    "HCA-175",
+    "HCA-176",
+    "HCA-177",
+    "HCA-178",
+    "HCA-179",
+    "HCA-180",
+    "HCA-181",
+    "HCA-182",
+    "HCA-191",
+    "HCA-196",
+    "HCA-195",
+    "HCA-194",
+    "HCA-193",
+    "HCA-192",
+    "HCA-310",
+    "HCA-311",
+    "HCA-58",
+    "HCA-59",
+    "HCA-61",
+    "HCA-60",
+    "HCA-62",
+    "HCA-63",
+    "HCA-64",
+    "HCA-65",
+    "HCA-66",
+    "HCA-67",
+    "HCA-68",
+    "HCA-69",
+    "HCA-70",
+    "HCA-71",
+    "HCA-72",
+    "HCA-73",
+    "HCA-74",
+    "HCA-85",
+    "HCA-84",
+    "HCA-83",
+    "HCA-82",
+    "HCA-81",
+    "HCA-80",
+    "HCA-79",
+    "HCA-78",
+    "HCA-77",
+    "HCA-76",
+    "HCA-75",
+    "HCA-96",
+    "HCA-95",
+    "HCA-94",
+    "HCA-93",
+    "HCA-92",
+    "HCA-91",
+    "HCA-90",
+    "HCA-89",
+    "HCA-88",
+    "HCA-87",
+    "HCA-86",
+    "HCA-97",
+    "HCA-98",
+    "HCA-99",
+    "HCA-100",
+    "HCA-101",
+    "HCA-102",
+    "HCA-103",
+    "HCA-104",
+    "HCA-105",
+    "HCA-106",
+    "HCA-107",
+    "HCA-108",
+    "HCA-109",
+    "HCA-110",
+    "HCA-111",
+    "HCA-112",
+    "HCA-113",
+    "HCA-114",
+    "HCA-115",
+    "HCA-116",
+    "HCA-117",
+    "HCA-118",
+    "HCA-119",
+    "HCA-120",
+    "HCA-356",
+    "HCA-357",
+    "HCA-358",
+    "HCA-359",
+    "HCA-360",
+    "HCA-361",
+    "HCA-362"
+   ],
+   "hazards": [
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-6 MQ-99 presents electrical, chemical, or kinetic hazards to friendly personnel or objects in the vehicle\u2019s immediate vicinity",
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response",
+    "H-5 MQ-99 operates outside of established operational envelope"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-7 Mission Computer",
+    "C-15 Stores Controller",
+    "C-8 Autopilot",
+    "C-30 Cyber Sentinel",
+    "C-9 Flight Control Computer",
+    "C-2 Operator",
+    "C-3 Flight Lead",
+    "C-10 Navigation Controller",
+    "C-11 Communications Controller",
+    "C-4 Ground Control Station"
+   ],
+   "requirements": [
+    {
+     "requirement": "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-16 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['critical', 'flight'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-16 traces to function 'Initialize OFP Transfer Process' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['command', 'computer'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-16 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['critical', 'flight'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.4.1.1/1.4.1.1 Software Loading",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-16 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['flight', 'software'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-16 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['flight', 'software', 'spoof'] with the leaf (heuristic, not a model link)"
+    }
+   ],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-16 traces to function 'Initialize OFP Transfer Process' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-16 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-16 traces to function 'Power up Mission Computer Components' allocated to block 'Electrical System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.13/1.1.1.13 Electrical System Cryptographic Module",
+      "MR - 26.1.1.20/1.1.1.20 Electrical System Maintenance Ports",
+      "MR - 26.1.1.6/1.1.1.6 Electrical System Secure Boot",
+      "MR - 26.2.1.6.1/1.2.1.6.1 Electrical System Backup Mode Switching",
+      "MR - 26.2.1.6/1.2.1.6 Electrical System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['command', 'critical', 'flight'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.3.1.7/1.3.1.7 Cyber Sentinel Switching Components to Backup Mode on Command"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['command', 'critical'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.3.1.5/1.3.1.5 Cyber Sentinel Resetting Components on Command"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['critical', 'tamper'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging",
+      "MR - 26.1.5.3.4/1.1.5.3.4 Maintenance System Access Logging"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['flight', 'software'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.8/1.1.8 Digital Signatures on OFPs"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 119,
+   "attack_techniques": [
+    {
+     "technique": "Masquerading:T1036",
+     "id": "T1036",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1036 (heuristic)"
+    },
+    {
+     "technique": "Adversary-in-the-Middle:T1557",
+     "id": "T1557",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1557 (heuristic)"
+    },
+    {
+     "technique": "Software:T1592.002",
+     "id": "T1592.002",
+     "confidence": "low",
+     "score": 1.0,
+     "rationale": "name tokens ['software'] overlap (single-word technique name: capped at low)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Isolation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Isolation' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Analysis' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Community Deviation",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Community Deviation' May Detect T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Filtering",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Filtering' May Isolate T1557",
+     "counted": true
+    },
+    {
+     "technique": "Network Traffic Signature Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Network Traffic Signature Analysis' May Detect T1557",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "AC-4 [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "AU-6 [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SC-32 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7 [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(21) [medium] for D3FEND 'Network Isolation' via technique entry 'Network Isolation' (countermeasure was medium)",
+    "SC-7(5) [medium] for D3FEND 'Network Traffic Filtering' via technique entry 'Network Traffic Filtering' (countermeasure was medium)",
+    "SI-3 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4 [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "SI-4(11) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Analysis' via technique entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [medium] for D3FEND 'Network Traffic Signature Analysis' via technique entry 'Network Traffic Signature Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Network Traffic Community Deviation' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 17,
+   "leaf": "Adversary breaks encryption to determine the command link key to fly UAS to adversary selected location",
+   "in_scenario_tree": true,
+   "gate_path": [
+    "Or Adversary sends malicious commands to AV to fly AV to adversary selected location",
+    "Or Adversary gets into the middle of ground station & UAS communications link to fly AV to adversary selected location",
+    "Or Adversary gets encryption key to fly AV to adversary selected location"
+   ],
+   "p_low": 0.001,
+   "p_high": 0.04,
+   "p_mid": 0.0205,
+   "total_risk_sensitivity": 0.020969,
+   "status": "both",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-8 Adversary gains access to the ground station AV link through breaking encryption and performs a man-in-the-middle attack to alter commands and data sent to the AV to fly AV to a location of the adversary's choosing"
+   ],
+   "hcas": [
+    "HCA-40",
+    "HCA-28",
+    "HCA-9",
+    "HCA-21",
+    "HCA-55",
+    "HCA-126"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-2 Operator",
+    "C-4 Ground Control Station",
+    "C-7 Mission Computer",
+    "C-8 Autopilot"
+   ],
+   "requirements": [
+    {
+     "requirement": "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-8 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['encryption', 'key'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.14/1.1.1.14 Communications System Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-8 traces to function 'Activate GCS Interface' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['encryption', 'key'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-8 traces to function 'Process Waypoint Path' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['encryption', 'key'] with the leaf (heuristic, not a model link)"
+    }
+   ],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-8 traces to function 'Activate GCS Interface' allocated to block 'Communications System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.21/1.1.1.21 Communications System Mainteanance Ports",
+      "MR - 26.1.1.7/1.1.1.7 Communications System Secure Boot",
+      "MR - 26.1.6/1.1.6 Communications Encryption",
+      "MR - 26.2.1.7.1/1.2.1.7.1 Communications System Backup Mode Switching",
+      "MR - 26.2.1.7/1.2.1.7 Communications System Backup Mode",
+      "MR - 26.2.3/1.2.3 Communications Redundancy"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-8 traces to function 'Fly UAS Based on Waypoint Data' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1.1/1.4.1.1 Software Loading",
+      "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-8 traces to function 'Process Waypoint Path' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+      "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-8 traces to function 'Provide Required Waypoint Navigation Path' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'data', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.1/1.1.5.2.1 Ground Station MFA"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.1.5.2.2/1.1.5.2.2 Ground Station Role Based Access Control",
+      "MR - 26.1.5.2.4/1.1.5.2.4 Ground Station Access Logging"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['command', 'ground', 'station'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.3.1.5/1.3.1.5 Cyber Sentinel Resetting Components on Command",
+      "MR - 26.3.1.7/1.3.1.7 Cyber Sentinel Switching Components to Backup Mode on Command"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 412,
+   "attack_techniques": [
+    {
+     "technique": "Data Encrypted:T1022",
+     "id": "T1022",
+     "confidence": "medium",
+     "score": 1.05,
+     "rationale": "name tokens ['data', 'encryption'] overlap; documentation also mentions ['command']"
+    },
+    {
+     "technique": "Private Keys:T1552.004",
+     "id": "T1552.004",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'command link key' \u2192 T1552.004 (heuristic)"
+    },
+    {
+     "technique": "Adversary-in-the-Middle:T1557",
+     "id": "T1557",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'man-in-the-middle' \u2192 T1557 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "User Behavior Analysis",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1552.004",
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'User Behavior Analysis' May Detect T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Access Mediation",
+     "tactic": "Isolate",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Access Mediation' May Isolate T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Agent Authentication",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Agent Authentication' May Harden T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Authentication Cache Invalidation",
+     "tactic": "Evict",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Authentication Cache Invalidation' May Evict T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Certificate Rotation",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1552.004"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Certificate Rotation' May Harden T1552.004 (via parent technique T1552)",
+     "counted": true
+    },
+    {
+     "technique": "Client-server Payload Profiling",
+     "tactic": "Detect",
+     "via": "direct",
+     "from": [
+      "T1557"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Client-server Payload Profiling' May Detect T1557",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [
+    {
+     "block": "Allocated Communications Controller",
+     "artifacts": 93,
+     "examples": [
+      "Application Layer Link",
+      "Asymmetric Key",
+      "Bus Message",
+      "Bus Network",
+      "Bus Network Frame",
+      "Bus Network Traffic"
+     ]
+    }
+   ],
+   "nist_candidates": [
+    "AC-2(12) [medium] for D3FEND 'User Behavior Analysis' via technique entry 'User Behavior Analysis' (countermeasure was medium)",
+    "AC-3 [medium] for D3FEND 'Access Mediation' via technique entry 'Access Mediation' (countermeasure was medium)",
+    "AC-6 [medium] for D3FEND 'Access Mediation' via technique entry 'Access Mediation' (countermeasure was medium)",
+    "AU-6 [medium] for D3FEND 'User Behavior Analysis' via technique entry 'User Behavior Analysis' (countermeasure was medium)",
+    "IA-11 [medium] for D3FEND 'Authentication Cache Invalidation' via technique entry 'Authentication Cache Invalidation' (countermeasure was medium)",
+    "IA-2 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-3 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "IA-5 [medium] for D3FEND 'Authentication Cache Invalidation' via technique entry 'Authentication Cache Invalidation' (countermeasure was medium)",
+    "IA-8 [medium] for D3FEND 'Agent Authentication' via technique entry 'Agent Authentication' (countermeasure was medium)",
+    "SI-4(13) [medium] for D3FEND 'User Behavior Analysis' via technique entry 'User Behavior Analysis' (countermeasure was medium)",
+    "AU-6 [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "IA-5 [low] for D3FEND 'Certificate Rotation' via family entry 'Credential Hardening' (countermeasure was medium)",
+    "IA-5(1) [low] for D3FEND 'Certificate Rotation' via family entry 'Credential Hardening' (countermeasure was medium)",
+    "SI-4(11) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)",
+    "SI-4(4) [low] for D3FEND 'Client-server Payload Profiling' via family entry 'Network Traffic Analysis' (countermeasure was medium)"
+   ]
+  },
+  {
+   "rank": 18,
+   "leaf": "Adversary supply chain attack on MX system provides logical access to maliciously alter AV mission computer",
+   "in_scenario_tree": false,
+   "gate_path": [
+    "(linked from LS-14, outside the tree)"
+   ],
+   "p_low": 0.0001,
+   "p_high": 0.001,
+   "p_mid": 0.00055,
+   "total_risk_sensitivity": 0.000799,
+   "status": "both",
+   "gap_score": 0.0,
+   "loss_scenarios": [
+    "LS-14 Adversary gains access to the MX system through a supply chain attack and maliciously alters hardware or firmware to spoof or tamper OFPs loaded in the AV to modify the mission computer"
+   ],
+   "hcas": [
+    "HCA-303",
+    "HCA-304"
+   ],
+   "hazards": [
+    "H-1 MQ-99 targets friendly or neutral objects or personnel",
+    "H-2 MQ-99 employs weapons too close to friendly or neutral objects or personnel",
+    "H-3 MQ-99 does not successfully strike assigned targets",
+    "H-4 MQ-99 does not fly required profile to stimulate desired hostile defense response",
+    "H-5 MQ-99 operates outside of established operational envelope",
+    "H-6 MQ-99 presents electrical, chemical, or kinetic hazards to friendly personnel or objects in the vehicle\u2019s immediate vicinity"
+   ],
+   "losses": [
+    "L-1 Loss of life or injury to friendly or neutral people",
+    "L-2 Significant damage to friendly or neutral objects",
+    "L-3 Unable to destroy assigned targets",
+    "L-4 Unable to decoy hostile air defenses when required"
+   ],
+   "controllers": [
+    "C-5 Maintenance System"
+   ],
+   "requirements": [
+    {
+     "requirement": "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-14 traces to function 'Initialize OFP Transfer Process' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['computer', 'firmware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-14 traces to function 'Initialize OFP Transfer Process' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['computer', 'maintenance'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-14 traces to function 'Initialize OFP Transfer Process' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['computer', 'hardware'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-14 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['hardware', 'maintenance'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.4.1.1/1.4.1.1 Software Loading",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-14 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['firmware', 'load', 'maintenance', 'software'] with the leaf (heuristic, not a model link)"
+    },
+    {
+     "requirement": "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+     "kind": "allocation+text",
+     "confidence": "medium",
+     "rationale": "LS-14 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only); proposed: the requirement text shares ['load', 'maintenance', 'software', 'spoof'] with the leaf (heuristic, not a model link)"
+    }
+   ],
+   "requirements_below_threshold": [
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-14 traces to function 'Initialize OFP Transfer Process' allocated to block 'Executive Control Subsystem'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+      "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+      "MR - 26.2.2/1.2.2 Communications Loss Response",
+      "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-14 traces to function 'Load OFPs' allocated to block 'MQ-99 Berserker Air Vehicle'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+      "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+      "MR - 26.3.4/1.3.4 System Zeroize",
+      "MR - 26.4.1/1.4.1 Single Maintenance Port",
+      "MR - 29/59 HT-3 Report Unauthorized Data Detection"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-14 traces to function 'Power up Mission Computer Components' allocated to block 'Electrical System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.13/1.1.1.13 Electrical System Cryptographic Module",
+      "MR - 26.1.1.20/1.1.1.20 Electrical System Maintenance Ports",
+      "MR - 26.1.1.6/1.1.1.6 Electrical System Secure Boot",
+      "MR - 26.2.1.6.1/1.2.1.6.1 Electrical System Backup Mode Switching",
+      "MR - 26.2.1.6/1.2.1.6 Electrical System Backup Mode"
+     ]
+    },
+    {
+     "kind": "allocation",
+     "confidence": "low",
+     "rationale": "LS-14 traces to function 'Provide Processed Sensor Data to Mission Computer' allocated to block 'Navigation System'; requirement Allocate \u2192 that block (same subsystem only)",
+     "requirements": [
+      "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+      "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+      "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+      "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+      "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['acces', 'logical', 'maintenance', 'tamper'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 81/111 CSA-01 Control Access"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['firmware', 'hardware', 'software', 'tamper'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 98/128 CSA-04 4.3"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['firmware', 'hardware', 'software'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 113/143 CSA-10 10.1"
+     ]
+    },
+    {
+     "kind": "lexical",
+     "confidence": "low",
+     "rationale": "proposed: shared terms ['firmware', 'load', 'maintenance', 'software'] (text overlap, not a model relationship)",
+     "requirements": [
+      "MR - 26.4.2.1/1.4.2.1 Maintenance System Complete Load",
+      "MR - 26.4.2.2/1.4.2.2 Maintenance System Partial Load"
+     ]
+    }
+   ],
+   "other_requirements_on_path": 234,
+   "attack_techniques": [
+    {
+     "technique": "Compromise Hardware Supply Chain:T1195.003",
+     "id": "T1195.003",
+     "confidence": "medium",
+     "score": 0.87,
+     "rationale": "name tokens ['chain', 'hardware', 'supply'] overlap; documentation also mentions ['firmware', 'modify']"
+    },
+    {
+     "technique": "Compromise Software Supply Chain:T1195.002",
+     "id": "T1195.002",
+     "confidence": "medium",
+     "score": 0.76,
+     "rationale": "name tokens ['chain', 'software', 'supply'] overlap"
+    },
+    {
+     "technique": "Masquerading:T1036",
+     "id": "T1036",
+     "confidence": "medium",
+     "score": 0.6,
+     "rationale": "curated hint in cyber.py: phrase 'spoof' \u2192 T1036 (heuristic)"
+    }
+   ],
+   "d3fend_countermeasures": [
+    {
+     "technique": "Asset Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.003",
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Inventory' May Model T1195.003",
+     "counted": true
+    },
+    {
+     "technique": "Asset Vulnerability Enumeration",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Asset Vulnerability Enumeration' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Container Image Analysis",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Container Image Analysis' May Model T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Hardware Component Inventory",
+     "tactic": "Model",
+     "via": "direct",
+     "from": [
+      "T1195.003"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Hardware Component Inventory' May Model T1195.003",
+     "counted": true
+    },
+    {
+     "technique": "Platform Hardening",
+     "tactic": "Harden",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Platform Hardening' May Harden T1195.002",
+     "counted": true
+    },
+    {
+     "technique": "Restore Object",
+     "tactic": "Restore",
+     "via": "direct",
+     "from": [
+      "T1195.002"
+     ],
+     "confidence": "medium",
+     "rationale": "D3FEND: 'Restore Object' May Restore T1195.002",
+     "counted": true
+    }
+   ],
+   "anchored_d3fend_artifacts": [],
+   "nist_candidates": [
+    "CM-2 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "CM-6 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-7 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-8 [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [medium] for D3FEND 'Asset Inventory' via technique entry 'Asset Inventory' (countermeasure was medium)",
+    "CP-10 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "CP-9 [medium] for D3FEND 'Restore Object' via technique entry 'Restore Object' (countermeasure was medium)",
+    "RA-5 [medium] for D3FEND 'Asset Vulnerability Enumeration' via technique entry 'Asset Vulnerability Enumeration' (countermeasure was medium)",
+    "RA-5(2) [medium] for D3FEND 'Asset Vulnerability Enumeration' via technique entry 'Asset Vulnerability Enumeration' (countermeasure was medium)",
+    "SI-7 [medium] for D3FEND 'Platform Hardening' via technique entry 'Platform Hardening' (countermeasure was medium)",
+    "CM-8 [low] for D3FEND 'Container Image Analysis' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8 [low] for D3FEND 'Hardware Component Inventory' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [low] for D3FEND 'Container Image Analysis' via family entry 'Asset Inventory' (countermeasure was medium)",
+    "CM-8(1) [low] for D3FEND 'Hardware Component Inventory' via family entry 'Asset Inventory' (countermeasure was medium)"
+   ]
+  }
+ ],
+ "nist_table_entries": {
+  "Access Mediation": "[technique] Access enforcement and least privilege.",
+  "Access Policy Administration": "[technique] Account management and least privilege.",
+  "Account Locking": "[technique] Lock accounts after unsuccessful attempts / on compromise.",
+  "Agent Authentication": "[technique] Identification and authentication of users, devices and non-organizational users.",
+  "Application Hardening": "[technique] Memory protection and secure development process.",
+  "Asset Inventory": "[family] System component inventory with updates.",
+  "Asset Vulnerability Enumeration": "[technique] Vulnerability monitoring and scanning.",
+  "Authentication Cache Invalidation": "[technique] Force re-authentication.",
+  "Biometric Authentication": "[technique] Biometric authentication performance requirements.",
+  "Certificate-based Authentication": "[technique] PKI-based authenticators and PKI certificate policy.",
+  "Credential Eviction": "[technique] Automated account management, authenticator management, re-authentication.",
+  "Credential Hardening": "[technique] Authenticator management and password-based authentication requirements.",
+  "Inbound Traffic Filtering": "[technique] Restrict incoming communications traffic.",
+  "Multi-factor Authentication": "[technique] MFA for privileged / non-privileged accounts and separate-device authenticators.",
+  "Network Isolation": "[technique] Boundary protection, isolation of components, system partitioning.",
+  "Network Traffic Analysis": "[family] Inbound/outbound traffic monitoring, anomaly analysis, audit review.",
+  "Network Traffic Filtering": "[technique] Deny-by-default / allow-by-exception and information flow enforcement.",
+  "Network Traffic Signature Analysis": "[technique] Signature-based intrusion / malicious code detection.",
+  "Operational Activity Mapping": "[family] Risk assessment and contingency planning (mission/business dependencies).",
+  "Platform Hardening": "[technique] Configuration settings, least functionality, software/firmware integrity.",
+  "Process Analysis": "[family] System monitoring and indicators of compromise.",
+  "Restore Access": "[technique] Account / authenticator re-issue and recovery.",
+  "Restore Object": "[technique] Backups, recovery, baseline configuration.",
+  "User Behavior Analysis": "[technique] Audit review, account monitoring for atypical usage, traffic pattern analysis."
+ },
+ "assurance": [
+  {
+   "requirement": "MR - 26.1.1.1/1.1.1.1 Mission Computer Secure Boot",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.10/1.1.1.10 Navigation System Cryptographic Module",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.15/1.1.1.15 Mission Computer Maintenance Ports",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.16/1.1.1.16 Flight Control System Maintenance Ports",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.17/1.1.1.17 Navigation System Maintenance Ports",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.2/1.1.1.2 Flight Control system Secure Boot",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.3/1.1.1.3 Navigation System Secure Boot",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.8/1.1.1.8 Mission Computer Cryptographic Module",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.9/1.1.1.9 Flight Control System Cryptographic Module",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1/1.1.1 Flight Critical Hardware Assurance",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.1.1/1.2.1.1.1 Mission Computer Backup Mode Switching",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.1/1.2.1.1 Mission Computer Backup Mode",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.2.1/1.2.1.2.1 Flight Control System Backup Mode Switching",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.2/1.2.1.2 Flight Control System Backup Mode",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.3.1/1.2.1.3.1 Navigation System Backup Mode Switching",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.3/1.2.1.3 Navigation System Backup Mode",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1/1.2.1 Flight Critical Subsystem Backup Mode",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.2/1.2.2 Communications Loss Response",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.4.1/1.2.4.1 ELINT Sensors on when Needed",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.4/1.2.4 Mission Critical Subsystem Resilience",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.3.4/1.3.4 System Zeroize",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.4.1.1/1.4.1.1 Software Loading",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.4.1.2/1.4.1.2 Software Loading Switch",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.4.1/1.4.1 Single Maintenance Port",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 29/59 HT-3 Report Unauthorized Data Detection",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.14/1.1.1.14 Communications System Cryptographic Module",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.21/1.1.1.21 Communications System Mainteanance Ports",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.7/1.1.1.7 Communications System Secure Boot",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.6/1.1.6 Communications Encryption",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.7.1/1.2.1.7.1 Communications System Backup Mode Switching",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.7/1.2.1.7 Communications System Backup Mode",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.3/1.2.3 Communications Redundancy",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.13/1.1.1.13 Electrical System Cryptographic Module",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.20/1.1.1.20 Electrical System Maintenance Ports",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.1.1.6/1.1.1.6 Electrical System Secure Boot",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.6.1/1.2.1.6.1 Electrical System Backup Mode Switching",
+   "supported": false,
+   "support": []
+  },
+  {
+   "requirement": "MR - 26.2.1.6/1.2.1.6 Electrical System Backup Mode",
+   "supported": false,
+   "support": []
+  }
+ ],
+ "assurance_referenced_requirements_model_wide": [
+  "G-10 System has sufficient and appropri\u2026 Satisfy 145 ",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 111 CSA-01 Control Access",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 112 CSA-02 Reduce System's Cyber Detectability",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 113 CSA-03 Secure Transmissions and Communications",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 114 CSA-04 Protect System's Information from Exploitation",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 115 CSA-05 Partition and Ensure Critical Functions at Missi\u2026",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 116 CSA-06 Minimize and Harden Attack Surfaces",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 117 CSA-07 Baseline & Monitor Systems and Detect Anomalies",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 118 CSA-08 Manage System Performance and Enable Cyberspace \u2026",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 119 CSA-09 Recover System Capabilities",
+  "G-8 Appropriate CSAs have been built in\u2026 Satisfy 120 CSA-10 Actively Manage System's Configurations to Achie\u2026"
+ ]
+}
