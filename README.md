@@ -16,6 +16,7 @@ sysml_demo/
   model.py         normalised element index + navigation helpers
   queries.py       overview, requirements table, trace, structure, interfaces, profile usage, health check
   link.py          cross-model concept matching (with rationale + disagreements), impact traversal, Mermaid
+  conform.py       rules extracted from reference models (style guide, UTP, mission meta model, markings) -> conformance + cross-org links
   v2/profile.py    resolve custom stereotypes through their generalisation chain to a SysML base concept
   v2/transform.py  SysML v1 -> v2 textual notation; every element gets a clean/lossy/decision/unsupported record
   v2/validate.py   run the generated text through the OMG pilot-implementation kernel, parse diagnostics
@@ -57,6 +58,33 @@ mounted `.mdzip` files found next to it, recursively) and `--with OTHER.mdzip` (
 extra project). Federated loads resolve cross-project references, so `health` distinguishes real
 dangling references from references into unloaded or Cameo-bundled modules, and reports mounted
 projects that are missing on disk. Python: `load(path, federate=True)` / `load_federation([...])`.
+
+## Standards conformance (`conform`)
+
+`conform` checks a delivery against rules read out of reference models rather than hard-coded ones:
+Style Guide prose (package/comment documentation: diagram naming, required views, dependency
+matrices, swimlanes, Country properties …), the `Mission_Profile` stereotypes and their OCL
+constraints, the UML Testing Profile's «validationRule» constraints (68 in UTP 2.1), and the
+classification enumerations / marking stereotypes. Rules that map onto a structural check run
+(pass / fail / n.a. with offending qualified names); the rest are listed verbatim as "not automatable".
+The federated `health` result is folded in as delivery completeness (real `dangling-ref`s, mounted
+projects missing on disk). Optional `--capybara` / `--ujtl` reference models are matched against the
+delivery's mission-level content with `link.match` (candidates filtered by kind so UJTL's 30k elements
+stay fast) and one measure is walked with `link.cross_impact` into the delivery's test procedures and
+requirements.
+
+```bash
+python -m sysml_demo conform ROOT.mdzip --reference StyleGuide.mdzip --rules-only        # print the extracted rule set
+python -m sysml_demo conform ROOT.mdzip --federate --with Allocated.mdzip --with Product.mdzip \
+    --reference StyleGuide.mdzip --reference MissionMetaModel.mdzip --reference UTP.mdzip --reference Classification.mdzip \
+    --ujtl UJTL.mdzip --capybara CapyBARA.mdzip --out out/conform --prefix delivery
+```
+
+Writes `reference_rules.md`, `<prefix>_conformance.{md,json}`, `<prefix>_reference_links.{md,json}` and
+`<prefix>_impact.mmd` (or `--mermaid PATH`) into `--out`; `--prefix` defaults to a slug of the root
+model name. Every proposed link carries the matcher's rationale, confidence and disagreements; none is
+presented as a model fact. Sample output from the IGNITE Berserker delivery is committed under
+`examples/ignite/`.
 
 ## What the migration does and does not claim
 
