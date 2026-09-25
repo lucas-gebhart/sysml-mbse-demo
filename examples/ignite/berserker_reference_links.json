@@ -1,0 +1,2466 @@
+{
+  "delivery": "Beserker System Level Test Model",
+  "note": "Heuristic proposals produced by link.match (name-token / synonym matching); not model facts. Confidence is the shared-term ratio: high >= 0.55, medium >= 0.45, low >= 0.35.",
+  "references": {
+    "(U) CapyBARA": {
+      "candidates_a": 1308,
+      "candidates_b": 280,
+      "links": 45,
+      "high": 9,
+      "with_disagreements": 45,
+      "shown": 45,
+      "proposals": [
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Conduct Sensor Assessments",
+          "a_kind": "Activity",
+          "b": "Use Case Models::Operational::Operational Processes::Conduct Alternative Systems Review::Conduct Risk Assessment",
+          "b_kind": "Activity<<OperationalActivity>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: assessment, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<OperationalActivity>>",
+            "term: 'Conduct Sensor Assessments' vs 'Conduct Risk Assessment'",
+            "ownership: lives under 'Ingest Nav Sensor Parameters' vs 'Conduct Alternative Systems Review'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Detect Encryption Setup Event",
+          "a_kind": "Activity",
+          "b": "Use Case Models::Test & Evaluation::Test Set::Test Execution Schedule::Event Setup",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: event, setup"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestProcedure>>",
+            "term: 'Detect Encryption Setup Event' vs 'Event Setup'",
+            "ownership: lives under 'Steps/Activities' vs 'Test Set'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Detect Encryption Setup Event",
+          "a_kind": "Activity",
+          "b": "Test & Evaluation::Test Set::Test Execution Schedule::Event Setup",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: event, setup"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestProcedure>>",
+            "term: 'Detect Encryption Setup Event' vs 'Event Setup'",
+            "ownership: lives under 'Steps/Activities' vs 'Test Set'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Communication Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Communication Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Communication Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Communication Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Communication Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Test & Evaluation::Test Set::Test Event::Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Communication Test Procedure' vs 'Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Landing Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Landing Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Landing Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Landing Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Landing Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Test & Evaluation::Test Set::Test Event::Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Landing Test Procedure' vs 'Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'"
+          ],
+          "label": "high"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Establish Navigation Operational Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Establish Navigation Operational Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Establish Navigation Operational Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Establish Navigation Operational Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Establish Navigation Operational Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Test & Evaluation::Test Set::Test Event::Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Establish Navigation Operational Test Procedure' vs 'Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Launch UAS Op Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Launch UAS Op Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Launch UAS Op Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Launch UAS Op Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Launch UAS Op Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Test & Evaluation::Test Set::Test Event::Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Launch UAS Op Test Procedure' vs 'Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Target Desctruction Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Target Desctruction Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Target Desctruction Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Target Desctruction Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Target Desctruction Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Test & Evaluation::Test Set::Test Event::Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Target Desctruction Test Procedure' vs 'Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Test Activities::Test Activity",
+          "a_kind": "Activity",
+          "b": "Use Case Models::T&E::MET Evaluation::Task 3a-1 Test Case",
+          "b_kind": "Activity<<TestCase>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: test",
+            "synonyms: activity~task"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestCase>>",
+            "term: 'Test Activity' vs 'Task 3a-1 Test Case'",
+            "ownership: lives under 'Test Activities' vs 'MET Evaluation'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Test Activities::Test Activity",
+          "a_kind": "Activity",
+          "b": "Use Case Models::T&E::MET Evaluation::Test Case::Test Procedure for ME Task",
+          "b_kind": "Activity<<Function,TestProcedure>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: test",
+            "synonyms: activity~task"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<Function,TestProcedure>>",
+            "term: 'Test Activity' vs 'Test Procedure for ME Task'",
+            "ownership: lives under 'Test Activities' vs 'MET Evaluation'"
+          ],
+          "label": "medium"
+        },
+        {
+          "a": "Base Classifiers::Base Resource Info Types::Assessment / Result",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Use Case Models::Measures and Conditions::5-Measures and Conditions 5::5-T&E::Test Results",
+          "b_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: result"
+          ],
+          "disagreements": [
+            "term: 'Assessment / Result' vs 'Test Results'",
+            "ownership: lives under 'Base Resource Info Types' vs '5-T&E'"
+          ],
+          "label": "low",
+          "b_detail": "RI36; 0 measures"
+        },
+        {
+          "a": "Test Data::Berserker Emissions",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Use Case Models::Measures and Conditions::5-Measures and Conditions 5::5-T&E::Simmed Emissions",
+          "b_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: emission"
+          ],
+          "disagreements": [
+            "term: 'Berserker Emissions' vs 'Simmed Emissions'",
+            "ownership: lives under 'Test Data' vs '5-T&E'"
+          ],
+          "label": "low",
+          "b_detail": "RI37; 0 measures"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Semi Autonomous Flight Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Semi Autonomous Flight Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Semi Autonomous Flight Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Semi Autonomous Flight Test Procedure' vs 'A Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Aeromechanical Flight Test'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Semi Autonomous Flight Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Test & Evaluation::Test Set::Test Event::Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: procedure, test"
+          ],
+          "disagreements": [
+            "term: 'Operational Semi Autonomous Flight Test Procedure' vs 'Test Procedure'",
+            "ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Perform Initial Integrity Check",
+          "a_kind": "Activity",
+          "b": "Use Case Models::Operational::Engineering Operational Processes::Perform initial test design",
+          "b_kind": "Activity<<OperationalActivity>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: initial, perform"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<OperationalActivity>>",
+            "term: 'Perform Initial Integrity Check' vs 'Perform initial test design'",
+            "ownership: lives under 'Steps/Activities' vs 'Engineering Operational Processes'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Base Classifiers::Base Resource Info Types::Status / State Report",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Resources::CapyBARA Development Information::Status of Architecture",
+          "b_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: status"
+          ],
+          "disagreements": [
+            "term: 'Status / State Report' vs 'Status of Architecture'",
+            "ownership: lives under 'Base Resource Info Types' vs 'CapyBARA Development Information'"
+          ],
+          "label": "low",
+          "b_detail": "RI30; 0 measures"
+        },
+        {
+          "a": "Test Activities",
+          "a_kind": "Package",
+          "b": "Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestContext>>",
+            "term: 'Test Activities' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Activities",
+          "a_kind": "Package",
+          "b": "Use Case Models::Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestContext>>",
+            "term: 'Test Activities' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Activities",
+          "a_kind": "Package",
+          "b": "Use Case Models::Test & Evaluation::Test Set",
+          "b_kind": "Package<<TestSet>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestSet>>",
+            "term: 'Test Activities' vs 'Test Set'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Activities::Test Activity",
+          "a_kind": "Activity",
+          "b": "Use Case Models::Test Sets::Aeromechanical Flight Test::Test Event 1 - Full Envelope::A Test Procedure",
+          "b_kind": "Activity<<TestProcedure>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestProcedure>>",
+            "term: 'Test Activity' vs 'A Test Procedure'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Data::Test Commands",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Use Case Models::Operational::Operational Information::Test Case",
+          "b_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "term: 'Test Commands' vs 'Test Case'"
+          ],
+          "label": "low",
+          "b_detail": "RI13; 0 measures"
+        },
+        {
+          "a": "Test Data::Test Commands",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Use Case Models::Operational::Operational Taxonomy::Test Engineer",
+          "b_kind": "Class<<OperationalPerformer>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<IdentifiableElement,ResourceInformation>> vs <<OperationalPerformer>>",
+            "term: 'Test Commands' vs 'Test Engineer'",
+            "ownership: lives under 'Test Data' vs 'Operational Taxonomy'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Data::Test Commands",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Use Case Models::Operational::Operational Taxonomy::Test Engineer",
+          "b_kind": "Class<<OperationalPerformer>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<IdentifiableElement,ResourceInformation>> vs <<OperationalPerformer>>",
+            "term: 'Test Commands' vs 'Test Engineer'",
+            "ownership: lives under 'Test Data' vs 'Operational Taxonomy'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Data",
+          "a_kind": "Package<<Resources>>",
+          "b": "Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<Resources>> vs <<TestContext>>",
+            "term: 'Test Data' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Data",
+          "a_kind": "Package<<Resources>>",
+          "b": "Use Case Models::Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<Resources>> vs <<TestContext>>",
+            "term: 'Test Data' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Data",
+          "a_kind": "Package<<Resources>>",
+          "b": "Use Case Models::Test & Evaluation::Test Set",
+          "b_kind": "Package<<TestSet>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<Resources>> vs <<TestSet>>",
+            "term: 'Test Data' vs 'Test Set'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Basic Test Data::Test Objectives",
+          "a_kind": "Package",
+          "b": "Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestContext>>",
+            "term: 'Test Objectives' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Basic Test Data::Test Objectives",
+          "a_kind": "Package",
+          "b": "Use Case Models::Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestContext>>",
+            "term: 'Test Objectives' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Basic Test Data::Test Objectives",
+          "a_kind": "Package",
+          "b": "Use Case Models::Test & Evaluation::Test Set",
+          "b_kind": "Package<<TestSet>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestSet>>",
+            "term: 'Test Objectives' vs 'Test Set'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Signals",
+          "a_kind": "Package",
+          "b": "Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestContext>>",
+            "term: 'Test Signals' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Signals",
+          "a_kind": "Package",
+          "b": "Use Case Models::Test & Evaluation::Test Set::Test Context",
+          "b_kind": "Package<<TestContext>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestContext>>",
+            "term: 'Test Signals' vs 'Test Context'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Test Signals",
+          "a_kind": "Package",
+          "b": "Use Case Models::Test & Evaluation::Test Set",
+          "b_kind": "Package<<TestSet>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: test"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestSet>>",
+            "term: 'Test Signals' vs 'Test Set'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Base Classifiers::Base Activity Types::Cyber Test Activity",
+          "a_kind": "Activity",
+          "b": "Use Case Models::T&E::MET Evaluation::Task 3a-1 Test Case",
+          "b_kind": "Activity<<TestCase>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: test",
+            "synonyms: activity~task"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<TestCase>>",
+            "term: 'Cyber Test Activity' vs 'Task 3a-1 Test Case'",
+            "ownership: lives under 'Base Activity Types' vs 'MET Evaluation'"
+          ],
+          "label": "low"
+        },
+        {
+          "a": "Base Classifiers::Base Activity Types::Cyber Test Activity",
+          "a_kind": "Activity",
+          "b": "Use Case Models::T&E::MET Evaluation::Test Case::Test Procedure for ME Task",
+          "b_kind": "Activity<<Function,TestProcedure>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: test",
+            "synonyms: activity~task"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<Function,TestProcedure>>",
+            "term: 'Cyber Test Activity' vs 'Test Procedure for ME Task'",
+            "ownership: lives under 'Base Activity Types' vs 'MET Evaluation'"
+          ],
+          "label": "low"
+        }
+      ]
+    },
+    "Mission Meta Model": {
+      "candidates_a": 1308,
+      "candidates_b": 67,
+      "links": 0,
+      "high": 0,
+      "with_disagreements": 0,
+      "shown": 0,
+      "proposals": []
+    },
+    "UJTL": {
+      "candidates_a": 1308,
+      "candidates_b": 1145,
+      "links": 87,
+      "high": 15,
+      "with_disagreements": 87,
+      "shown": 87,
+      "proposals": [
+        {
+          "a": "Allocated Behavior::Steps/Activities::Collect Flight Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Collect Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: collect",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Collect Flight Data' vs 'Collect Information'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "SN 2.2; 16 measures e.g. M1 (Days): Between quality/utility assessments (scores outside average), M2 (Days): Between quality/utility assessments (scores within average)., M3 (Feet): Horizontal and vertical geolocation accuracy."
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Evaluate Waypoint Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Evaluate Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: evaluate",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Evaluate Waypoint Data' vs 'Evaluate Information'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "SN 2.4.1; 7 measures e.g. M1 (Hours): To report change in enemy condition (e.g., disposition, orde, M2 (Percent): Of priority intelligence requirements (PIR) have complete da, M3 (Days): Since last vulnerability assessment (VA)."
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Process Acceleration Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Acceleration Data' vs 'Process Information'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Process Attitude Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Attitude Data' vs 'Process Information'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Process Heading Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Heading Data' vs 'Process Information'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Establish Navigation::Process Nav Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Nav Data' vs 'Process Information'",
+            "ownership: lives under 'Establish Navigation' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Process Position Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Position Data' vs 'Process Information'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.58,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Sensor Data' vs 'Process Information'",
+            "ownership: lives under 'Ingest Nav Sensor Parameters' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Base Classifiers::Base Activity Types::Command / Control Input",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Command and Control (C2)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: command, control"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Command / Control Input' vs 'Conduct Command and Control (C2)'",
+            "ownership: lives under 'Base Activity Types' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "ST 5; 10 measures e.g. M1 (Days): To issue letter of instruction (LOI) for plan development (a, M2 (Days): To submit courses of action (COA) (after receipt of national, M3 (Hours): To provide combatant command's (CCMD) execute order (EXORD) "
+        },
+        {
+          "a": "Base Classifiers::Base Activity Types::Command / Control Input",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Exercise Command and Control (C2)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: command, control"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Command / Control Input' vs 'Exercise Command and Control (C2)'",
+            "ownership: lives under 'Base Activity Types' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "TA 5; 15 measures e.g. M1 (Hours): Prior to execution, plan published and delivered., M2 (Percent): Of communications nodes in place., M3 (Percent): Of units receive orders in time to plan and execute."
+        },
+        {
+          "a": "Base Classifiers::Base Activity Types::Command / Control Input",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Command and Control (C2)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: command, control"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Command / Control Input' vs 'Provide Command and Control (C2)'",
+            "ownership: lives under 'Base Activity Types' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5; 7 measures e.g. M1 (Hours): Prior to execution, plan published and delivered., M2 (Percent): Of communications nodes in place., M3 (Percent): Of units receive orders in time to plan and execute."
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Conduct Sensor Assessments",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Campaign Assessment",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: assessment, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Sensor Assessments' vs 'Conduct Campaign Assessment'",
+            "ownership: lives under 'Ingest Nav Sensor Parameters' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "OP 5.3.1.3; 8 measures e.g. M1 (Hours): To analyze effects assessment results., M2 (Hours): To analyze deficiency analysis results., M3 (Hours): To review strategic objectives/timelines. Identify any delta"
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Conduct Sensor Assessments",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Capability Assessments",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: assessment, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Sensor Assessments' vs 'Conduct Capability Assessments'",
+            "ownership: lives under 'Ingest Nav Sensor Parameters' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "SN 5.2.1; 3 measures e.g. M1 (Percent): Of heavy platforms and critical enablers covered by joint mi, M2 (): To update the joint military net assessment (JMNA) (when req, M3 (Percent): Of Joint Chiefs of Staff (JCS) and combatant commanders (CCD"
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Conduct Sensor Assessments",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Collection Assessment",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: assessment, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Sensor Assessments' vs 'Conduct Collection Assessment'",
+            "ownership: lives under 'Ingest Nav Sensor Parameters' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "ST 2.2.4; 11 measures e.g. M1 (Percent): Of combatant command (CCMD) commander's critical information, M2 (Percent): Of combatant command (CCMD) priority intelligence requiremen, M3 (): To provide combatant commander (CCDR) with threat assessment"
+        },
+        {
+          "a": "Sub System Level::Electrical System::Behavior::Run Power Diagnostics::Compile Power Diagnostics::Provide Current Voltages",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Current Intelligence",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.55,
+          "rationale": [
+            "shared terms: current, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Current Voltages' vs 'Provide Current Intelligence'",
+            "ownership: lives under 'Compile Power Diagnostics' vs 'Operational Processes'"
+          ],
+          "label": "high",
+          "b_detail": "SN 2.4.2.2; 7 measures e.g. M1 (Hours): Lag between breaking events and dissemination to National Mi, M2 (Minutes): After breaking events of national strategic importance to pr, M3 (Minutes): Since last J2 update to crisis action team (CAT) on possible"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Calculate potential Target coordinates",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Coordinate Target Development",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: coordinate, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Calculate potential Target coordinates' vs 'Coordinate Target Development'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "ST 2.12; 5 measures e.g. M1 (): Of participation in targeting-related boards, centers, cells, M2 (Percent): Of target development requirements identified and documented, M3 (Percent): Of target development requirements that cannot or should not"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Calculate potential Target coordinates",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Coordinate Target Engagement",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: coordinate, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Calculate potential Target coordinates' vs 'Coordinate Target Engagement'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 2.8; 11 measures e.g. M1 (): To produce target nominations in accordance with joint force, M2 (Hours): To assist the joint fires element with force assignment reco, M3 (Yes/No): Has target analysis been performed on the restricted target "
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Collect Flight Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Collect Operational Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: collect",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Collect Flight Data' vs 'Collect Operational Information'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 2.3.2; 27 measures e.g. M1 (Percent): Of operational environment (OE) information gaps identified., M2 (Percent): Of operational environment (OE) information gaps tasked for , M3 (Hours): To develop joint force collection plan after collection requ"
+        },
+        {
+          "a": "Sub System Level::Electrical System::Behavior::Run Power Diagnostics::Compile Power Diagnostics::Conduct Battery Performance Analysis",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Mission Analysis",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: analysi, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Battery Performance Analysis' vs 'Conduct Mission Analysis'",
+            "ownership: lives under 'Compile Power Diagnostics' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 5.3.1; 18 measures e.g. M1 (Yes/No): Has an initial force allocation review been conducted?, M2 (Yes/No): Has mission statement been developed?, M3 (Yes/No): Has the commander's refined operational approach been publis"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::In Flight::Locating Targets::Conduct Target Location Tag",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Target Development",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: conduct, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Target Location Tag' vs 'Conduct Target Development'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 2.8.2; 3 measures e.g. M1 (Yes/No): Did intelligence information provided meet target list devel, M2 (): Since target lists were reviewed for validity., M3 (): To disseminate approved target lists."
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::In Flight::Locating Targets::Conduct Target Location Tag",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Target Nomination",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: conduct, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Target Location Tag' vs 'Conduct Target Nomination'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 3.11; 6 measures e.g. M1 (): To compile target nomination lists (TNL)., M2 (Percent): Of targets that have advanced target development materials d, M3 (Percent): Of targets on target nomination list (TNL) with electronic t"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::In Flight::Locating Targets::Conduct Target Location Tag",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Target Validation",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: conduct, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Target Location Tag' vs 'Conduct Target Validation'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 3.9; 5 measures e.g. M1 (Percent): Of targets on joint target list (JTL) that have validation r, M2 (Percent): Of validated targets that have been vetted by intelligence c, M3 (Percent): Of targets on restricted target list (RTL) that have validat"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Routine EOIR Scene Scan::Process Scan Detection Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Scan Detection Data' vs 'Process Information'",
+            "ownership: lives under 'Conduct Routine EOIR Scene Scan' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Process Snapshot for Potential Targets",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Strategic Targets",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: process, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Snapshot for Potential Targets' vs 'Process Strategic Targets'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 3.2.1; 17 measures e.g. M1 (Percent): Of national strategic high priority targets discovered withi, M2 (Percent): Of selected high priority targets have measured coordinates , M3 (Percent): Of selected target components can be attacked (sufficient de"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Process TagTarget Command",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Strategic Targets",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: process, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process TagTarget Command' vs 'Process Strategic Targets'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 3.2.1; 17 measures e.g. M1 (Percent): Of national strategic high priority targets discovered withi, M2 (Percent): Of selected high priority targets have measured coordinates , M3 (Percent): Of selected target components can be attacked (sufficient de"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Establish Navigation::Provide Clock Sync Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Clock Sync Data' vs 'Provide Data Storage'",
+            "ownership: lives under 'Establish Navigation' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Sub System Level::EOIR Sensor::Behaviors::Conduct Target Location Tag::Provide Current FOV Snapshot",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Current Intelligence",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: current, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Current FOV Snapshot' vs 'Provide Current Intelligence'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 2.4.2.2; 7 measures e.g. M1 (Hours): Lag between breaking events and dissemination to National Mi, M2 (Minutes): After breaking events of national strategic importance to pr, M3 (Minutes): Since last J2 update to crisis action team (CAT) on possible"
+        },
+        {
+          "a": "Test Activities::Provide Current Weather Conditions",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Current Intelligence",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: current, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Current Weather Conditions' vs 'Provide Current Intelligence'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 2.4.2.2; 7 measures e.g. M1 (Hours): Lag between breaking events and dissemination to National Mi, M2 (Minutes): After breaking events of national strategic importance to pr, M3 (Minutes): Since last J2 update to crisis action team (CAT) on possible"
+        },
+        {
+          "a": "Test Activities::Provide Loitering Command Permission",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Command and Control (C2)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: command, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Loitering Command Permission' vs 'Provide Command and Control (C2)'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "OP 5; 7 measures e.g. M1 (Hours): Prior to execution, plan published and delivered., M2 (Percent): Of communications nodes in place., M3 (Percent): Of units receive orders in time to plan and execute."
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Provide Raw Acceleration Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Raw Acceleration Data' vs 'Provide Data Storage'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Provide Raw Attitude Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Raw Attitude Data' vs 'Provide Data Storage'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Provide Raw Heading Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Raw Heading Data' vs 'Provide Data Storage'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Sub System Level::Navigation System::Behavior::Ingest Nav Sensor Parameters::Process Sensor Data::Provide Raw Position Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.45,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Raw Position Data' vs 'Provide Data Storage'",
+            "ownership: lives under 'Process Sensor Data' vs 'Operational Processes'"
+          ],
+          "label": "medium",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Target Damage Assessment Test",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Operational::Operational Processes::Conduct Target System Damage Assessment (TSDA)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.42,
+          "rationale": [
+            "shared terms: assessment, damage, target"
+          ],
+          "disagreements": [
+            "stereotype: <<TestProcedure>> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Operational Target Damage Assessment Test' vs 'Conduct Target System Damage Assessment (TSDA)'"
+          ],
+          "label": "low",
+          "b_detail": "ST 2.14; 3 measures e.g. M1 (): To make target system damage assessment (TSDA) after engagem, M2 (): To produce and disseminate Phase 3 battle damage assessment , M3 (Percent): Of battle damage assessment (BDA) Phase 3 results providing "
+        },
+        {
+          "a": "Test Activities::Provide Permission for Flight Launch",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Aircraft Flight Test Acceptance and Delivery",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.42,
+          "rationale": [
+            "shared terms: flight, provide",
+            "synonyms: launch~delivery"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Permission for Flight Launch' vs 'Provide Aircraft Flight Test Acceptance and Delivery'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 4.6.1.6; 3 measures e.g. M1 (Percent): Of assigned personnel fully trained and qualified., M2 (Percent): Of authorized flight operations positions filled., M3 (Percent): Of required support contracts established/revised, funded, a"
+        },
+        {
+          "a": "Test Data::Permission to Employ Fires",
+          "a_kind": "Class<<ResourceInformation,IdentifiableElement>>",
+          "b": "Operational::Operational Processes::Employ Fires",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.42,
+          "rationale": [
+            "shared terms: employ, fire"
+          ],
+          "disagreements": [
+            "kind: Beserker System Level Test Model models it as Class, UJTL as Activity",
+            "stereotype: <<IdentifiableElement,ResourceInformation>> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Permission to Employ Fires' vs 'Employ Fires'",
+            "ownership: lives under 'Test Data' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 3; 25 measures e.g. M2 (Percent): Of high-payoff targets (HPT) receiving desired damage levels, M3 (Percent): Of enemy high-value targets (HVT) and decisive points develo, M4 (Percent): Of known enemy strategic command and control (C2) nodes targ"
+        },
+        {
+          "a": "Sub System Level::Electrical System::Behavior::Run Power Diagnostics::Compile Power Diagnostics::Conduct Battery Performance Analysis",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Sociocultural Analysis (SCA)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: analysi, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Battery Performance Analysis' vs 'Conduct Sociocultural Analysis (SCA)'",
+            "ownership: lives under 'Compile Power Diagnostics' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 2.4.4; 8 measures e.g. M1 (Percent): Of field research products completed on or prior to the esta, M2 (Number): Of communities of interest (COI) contacted monthly., M3 (Percent): Of products integrated into the intelligence production cycl"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::In Flight::Travelling to Mission::Waypoint Update::Conduct Waypoint Communications",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Nuclear Command, Control, and Communications (NC3)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: communications, conduct"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Conduct Waypoint Communications' vs 'Conduct Nuclear Command, Control, and Communications (NC3)'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.1.18; 3 measures e.g. M1 (Percent): (U) Of nuclear command, control, and communications (NC3) sy, M2 (Percent): (U) Of aircraft survivable communications capabilities avail, M3 (Percent): (U) Of survivable and endurable nuclear command, control, an"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::Grounded::PowerUpComms::Establish Communications",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Establish Access",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: establish"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Establish Communications' vs 'Establish Access'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.1.3; 4 measures e.g. M1 (Percent): Of all area of responsibility (AOR) countries have treaties,, M2 (Percent): Of host nations (HNs) authority (over control and punishment, M3 (Percent): Of stationing costs for selected United States (US) equipmen"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::Grounded::PowerUpComms::Establish Communications",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Establish Protection of Lines of Communications (LOCs)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: communications, establish"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Establish Communications' vs 'Establish Protection of Lines of Communications (LOCs)'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 6.2.6.3; 5 measures e.g. M1 (Hours): For rapid reaction forces to reach point of a line of commun, M2 (Hours): To restore line of communications (LOC) following interrupti, M3 (Percent): Of traffic flow on lines of communications (LOCs) (air, land"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::Grounded::PowerUpComms::Establish Communications",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Establish a Force",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: establish"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Establish Communications' vs 'Establish a Force'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 5.4.3; 23 measures e.g. M1 (Hours): To appoint joint force commander (JFC)., M2 (Hours): To define joint operations area (JOA)., M3 (Hours): To deploy forward and establish in theater a joint force hea"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::Grounded::NavInitiation::Establish Navigation",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Establish Access",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: establish"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Establish Navigation' vs 'Establish Access'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.1.3; 4 measures e.g. M1 (Percent): Of all area of responsibility (AOR) countries have treaties,, M2 (Percent): Of host nations (HNs) authority (over control and punishment, M3 (Percent): Of stationing costs for selected United States (US) equipmen"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::Grounded::NavInitiation::Establish Navigation",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Establish a Force",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: establish"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Establish Navigation' vs 'Establish a Force'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 5.4.3; 23 measures e.g. M1 (Hours): To appoint joint force commander (JFC)., M2 (Hours): To define joint operations area (JOA)., M3 (Hours): To deploy forward and establish in theater a joint force hea"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Establish Navigation Operational Test Procedure",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Operational::Operational Processes::Establish Cybersecurity Procedures",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: establish, procedure"
+          ],
+          "disagreements": [
+            "stereotype: <<TestProcedure>> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Establish Navigation Operational Test Procedure' vs 'Establish Cybersecurity Procedures'"
+          ],
+          "label": "low",
+          "b_detail": "ST 5.1.6; 3 measures e.g. M1 (Yes/No): Do commands responsible for design, operation, and/or mainte, M2 (Yes/No): Is information assurance (IA) included in command plans and/, M3 (Minutes): To appropriately respond to indications of hostile (domestic"
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Extract Information",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Collate Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Extract Information' vs 'Collate Information'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 2.3.2; 4 measures e.g. M1 (): To collate theater threat and warning data., M2 (Yes/No): Are theater mission area related items accurately identified, M3 (Yes/No): Do analytic centers recognize the various sources of intelli"
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Extract Information",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Collect Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Extract Information' vs 'Collect Information'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 2.2; 16 measures e.g. M1 (Days): Between quality/utility assessments (scores outside average), M2 (Days): Between quality/utility assessments (scores within average)., M3 (Feet): Horizontal and vertical geolocation accuracy."
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Extract Information",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Communicate Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Extract Information' vs 'Communicate Information'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 5.1.1; 19 measures e.g. M1 (Minutes): Of queuing time for critical-high precedence messages being , M2 (Minutes): To deliver FLASH message to action addressee (after receipt , M3 (Minutes): To receive FLASH message in working spaces (from release at "
+        },
+        {
+          "a": "Test Activities::Log Operational Damage Assessment Result",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Operational Assessment",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: assessment, operational"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Log Operational Damage Assessment Result' vs 'Conduct Operational Assessment'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 3.1.6; 14 measures e.g. M1 (Hours): To commence follow-on operations or execute restrike, awaiti, M2 (): To provide complete combat assessment (CA) to include battle, M3 (): To provide complete combat assessment (CA) of attacks to joi"
+        },
+        {
+          "a": "Basic Test Data::Berserker Operational Testing Configuration::Operational Target Damage Assessment Test",
+          "a_kind": "Activity<<TestProcedure>>",
+          "b": "Operational::Operational Processes::Conduct Operational Assessment",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: assessment, operational"
+          ],
+          "disagreements": [
+            "stereotype: <<TestProcedure>> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Operational Target Damage Assessment Test' vs 'Conduct Operational Assessment'"
+          ],
+          "label": "low",
+          "b_detail": "OP 3.1.6; 14 measures e.g. M1 (Hours): To commence follow-on operations or execute restrike, awaiti, M2 (): To provide complete combat assessment (CA) to include battle, M3 (): To provide complete combat assessment (CA) of attacks to joi"
+        },
+        {
+          "a": "Sub System Level::Stores Management System::Missile Model Content::Behavior::Perform BIT",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Perform Weaponeering",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: perform"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Perform BIT' vs 'Perform Weaponeering'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "TA 3.2.1.3; 3 measures e.g. M1 (Percent): Of required number of analysts assigned to the targeting div, M2 (Yes/No): Is authorized and approved weaponeering software is availabl, M3 (Yes/No): Are the analysts assigned to the targeting division/branch p"
+        },
+        {
+          "a": "Sub System Level::Stores Management System::Missile Model Content::Behavior::perform Mass Data Transfer::Perform Checksum",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Perform Weaponeering",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: perform"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Perform Checksum' vs 'Perform Weaponeering'",
+            "ownership: lives under 'perform Mass Data Transfer' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "TA 3.2.1.3; 3 measures e.g. M1 (Percent): Of required number of analysts assigned to the targeting div, M2 (Yes/No): Is authorized and approved weaponeering software is availabl, M3 (Yes/No): Are the analysts assigned to the targeting division/branch p"
+        },
+        {
+          "a": "Sub System Level::Propulsion/Flight System::Behavior::Process AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: process"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process AOA' vs 'Process Information'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "System Level::Behavior::Not On Diagrams::Process AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: process"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process AOA' vs 'Process Information'",
+            "ownership: lives under 'Not On Diagrams' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "System Level::Structure::MQ-99 Berserker Air Vehicle::System States::In Flight::Locating Targets::BFLaydown::Process Red/Blue Force Laydown",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Requests for Forces",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: force, process"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Red/Blue Force Laydown' vs 'Process Requests for Forces'",
+            "ownership: lives under 'Structure' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 1.1.1; 5 measures e.g. M1 (Hours): To review a request and reach a decision by a combatant comm, M2 (Hours): To process movement requirements for combatant command (CCMD, M3 (Percent): Of requests filled as worded."
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Process Snapshot for Potential Targets",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Air and Missile Targets",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: process, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Snapshot for Potential Targets' vs 'Process Air and Missile Targets'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 6.1.1; 12 measures e.g. M1 (Minutes): To pair an interceptor or missile with a target., M2 (Percent): Of attacks paired with defensive forces., M3 (Percent): Of days attacks, paired with interceptor aircraft or missile"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Process TagTarget Command",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Air and Missile Targets",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: process, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process TagTarget Command' vs 'Process Air and Missile Targets'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 6.1.1; 12 measures e.g. M1 (Minutes): To pair an interceptor or missile with a target., M2 (Percent): Of attacks paired with defensive forces., M3 (Percent): Of days attacks, paired with interceptor aircraft or missile"
+        },
+        {
+          "a": "Sub System Level::Propulsion/Flight System::Behavior::Provide AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Countermobility",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide AOA' vs 'Provide Countermobility'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 1.4; 4 measures e.g. M1 (Percent): Enemy avenues of approach closed as maneuver possibilities b, M2 (Percent): Monthly reduction in civil populace opinion of target nation, M3 (Percent): Reduction in estimated potential enemy course of action (COA"
+        },
+        {
+          "a": "System Level::Behavior::Not On Diagrams::Provide AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Countermobility",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide AOA' vs 'Provide Countermobility'",
+            "ownership: lives under 'Not On Diagrams' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 1.4; 4 measures e.g. M1 (Percent): Enemy avenues of approach closed as maneuver possibilities b, M2 (Percent): Monthly reduction in civil populace opinion of target nation, M3 (Percent): Reduction in estimated potential enemy course of action (COA"
+        },
+        {
+          "a": "Sub System Level::Propulsion/Flight System::Behavior::Provide AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Fires",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide AOA' vs 'Provide Fires'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 3.2.6; 4 measures e.g. M1 (Percent): Increase in friendly branches/sequels (following interdictio, M2 (Percent): Of operational maneuvers with faulty operational fire suppor, M3 (Percent): Of target attacks achieve desired effects."
+        },
+        {
+          "a": "System Level::Behavior::Not On Diagrams::Provide AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Fires",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide AOA' vs 'Provide Fires'",
+            "ownership: lives under 'Not On Diagrams' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 3.2.6; 4 measures e.g. M1 (Percent): Increase in friendly branches/sequels (following interdictio, M2 (Percent): Of operational maneuvers with faulty operational fire suppor, M3 (Percent): Of target attacks achieve desired effects."
+        },
+        {
+          "a": "Sub System Level::Propulsion/Flight System::Behavior::Provide AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Forces",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide AOA' vs 'Provide Forces'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.7; 3 measures e.g. M1 (Percent): Of forces sourced as directed by Secretary of Defense (SecDe, M2 (Percent): Of forces selected for sourcing are manned, trained, equippe, M3 (Percent): Of forces selected for sourcing can meet required latest arr"
+        },
+        {
+          "a": "System Level::Behavior::Not On Diagrams::Provide AOA",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Forces",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide AOA' vs 'Provide Forces'",
+            "ownership: lives under 'Not On Diagrams' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.7; 3 measures e.g. M1 (Percent): Of forces sourced as directed by Secretary of Defense (SecDe, M2 (Percent): Of forces selected for sourcing are manned, trained, equippe, M3 (Percent): Of forces selected for sourcing can meet required latest arr"
+        },
+        {
+          "a": "Sub System Level::Propulsion/Flight System::Behavior::Provide Air Data Sensor Status",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Air Data Sensor Status' vs 'Provide Data Storage'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "System Level::Behavior::Not On Diagrams::Provide Air Data Sensor Status",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Air Data Sensor Status' vs 'Provide Data Storage'",
+            "ownership: lives under 'Not On Diagrams' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Test Activities::Provide Authentication Keys",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Key Management/Public Key Operations",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: key, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Authentication Keys' vs 'Provide Key Management/Public Key Operations'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.1.2; 4 measures e.g. M1 (Percent): Of total trained, qualified personnel required., M2 (Percent): Of production systems for each specific product fully operat, M3 (Percent): Of command key requirements that are satisfied by the supply"
+        },
+        {
+          "a": "Sub System Level::EOIR Sensor::Behaviors::Conduct Routine EOIR Scene Scan::Provide Commanded Scan Detection Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Data Storage",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: data, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Commanded Scan Detection Data' vs 'Provide Data Storage'",
+            "ownership: lives under 'Conduct Routine EOIR Scene Scan' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2.3.4; 4 measures e.g. M1 (): What is the data storage center availability, quality of ser, M2 (Percent): Of data storage requirements that are validated., M3 (Percent): Of data storage requirements that are funded."
+        },
+        {
+          "a": "Test Activities::Provide Current Flight Path Update",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Current Intelligence",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: current, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Current Flight Path Update' vs 'Provide Current Intelligence'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 2.4.2.2; 7 measures e.g. M1 (Hours): Lag between breaking events and dissemination to National Mi, M2 (Minutes): After breaking events of national strategic importance to pr, M3 (Minutes): Since last J2 update to crisis action team (CAT) on possible"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Power Up Comms::Provide Encryption Keys",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Key Management/Public Key Operations",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: key, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Encryption Keys' vs 'Provide Key Management/Public Key Operations'",
+            "ownership: lives under 'Power Up Comms' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.1.2; 4 measures e.g. M1 (Percent): Of total trained, qualified personnel required., M2 (Percent): Of production systems for each specific product fully operat, M3 (Percent): Of command key requirements that are satisfied by the supply"
+        },
+        {
+          "a": "Sub System Level::Fuel Management System::Behavior::Manage Fuel Provisions::Provide Fuel",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Countermobility",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Fuel' vs 'Provide Countermobility'",
+            "ownership: lives under 'Manage Fuel Provisions' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 1.4; 4 measures e.g. M1 (Percent): Enemy avenues of approach closed as maneuver possibilities b, M2 (Percent): Monthly reduction in civil populace opinion of target nation, M3 (Percent): Reduction in estimated potential enemy course of action (COA"
+        },
+        {
+          "a": "Sub System Level::Fuel Management System::Behavior::Manage Fuel Provisions::Provide Fuel",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Fires",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Fuel' vs 'Provide Fires'",
+            "ownership: lives under 'Manage Fuel Provisions' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 3.2.6; 4 measures e.g. M1 (Percent): Increase in friendly branches/sequels (following interdictio, M2 (Percent): Of operational maneuvers with faulty operational fire suppor, M3 (Percent): Of target attacks achieve desired effects."
+        },
+        {
+          "a": "Sub System Level::Fuel Management System::Behavior::Manage Fuel Provisions::Provide Fuel",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Forces",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Fuel' vs 'Provide Forces'",
+            "ownership: lives under 'Manage Fuel Provisions' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.7; 3 measures e.g. M1 (Percent): Of forces sourced as directed by Secretary of Defense (SecDe, M2 (Percent): Of forces selected for sourcing are manned, trained, equippe, M3 (Percent): Of forces selected for sourcing can meet required latest arr"
+        },
+        {
+          "a": "Test Activities::Provide GCS Input for Weapon Fire Permission",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Fires",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: fire, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide GCS Input for Weapon Fire Permission' vs 'Provide Fires'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 3.2.6; 4 measures e.g. M1 (Percent): Increase in friendly branches/sequels (following interdictio, M2 (Percent): Of operational maneuvers with faulty operational fire suppor, M3 (Percent): Of target attacks achieve desired effects."
+        },
+        {
+          "a": "Test Activities::Provide Loitering Command Permission",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Command Field Offices",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: command, provide"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Loitering Command Permission' vs 'Provide Command Field Offices'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2.6.1; 4 measures e.g. M1 (Yes/No): Are there personnel readiness issues and/or shortfalls that , M2 (Percent): Of personnel positions that are validated., M3 (Percent): Of personnel positions that are funded."
+        },
+        {
+          "a": "Test Activities::Scan Electromagnetic Spectrum",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Electromagnetic Spectrum (EMS) Management",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: electromagnetic, spectrum"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Scan Electromagnetic Spectrum' vs 'Conduct Electromagnetic Spectrum (EMS) Management'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.9.3; 3 measures e.g. M1 (Hours): To submit theater frequency requests., M2 (Hours): To submit host nation (HN) supportability requests., M3 (Days): To obtain theater frequency approval."
+        },
+        {
+          "a": "Test Activities::Scan Electromagnetic Spectrum",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Enable Electromagnetic Spectrum (EMS) Access",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: electromagnetic, spectrum"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Scan Electromagnetic Spectrum' vs 'Enable Electromagnetic Spectrum (EMS) Access'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2.4; 4 measures e.g. M1 (Hours): To respond to a combatant commander (CCDR) or joint force co, M2 (): To design, produce, and constitute electromagnetic spectrum , M3 (Percent): Of enemy strategic electromagnetic spectrum (EMS) related ta"
+        },
+        {
+          "a": "Test Activities::Scan Electromagnetic Spectrum",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Electromagnetic\nSpectrum (EMS) Management",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: electromagnetic, spectrum"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Scan Electromagnetic Spectrum' vs 'Provide Electromagnetic\\nSpectrum (EMS)\\xa0Management'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2.4.5; 0 measures"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Store Target Snapshots and Coordinates Correlations",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Coordinate Target Development",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: coordinate, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Store Target Snapshots and Coordinates Correlations' vs 'Coordinate Target Development'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 2.12; 5 measures e.g. M1 (): Of participation in targeting-related boards, centers, cells, M2 (Percent): Of target development requirements identified and documented, M3 (Percent): Of target development requirements that cannot or should not"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Conduct Target Location Tag::Store Target Snapshots and Coordinates Correlations",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Coordinate Target Engagement",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: coordinate, target"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Store Target Snapshots and Coordinates Correlations' vs 'Coordinate Target Engagement'",
+            "ownership: lives under 'Conduct Target Location Tag' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 2.8; 11 measures e.g. M1 (): To produce target nominations in accordance with joint force, M2 (Hours): To assist the joint fires element with force assignment reco, M3 (Yes/No): Has target analysis been performed on the restricted target "
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::End Video Transmission::Command Comms System into Normal Mode",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Direct Command, Control, Communications and Computer Systems",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.38,
+          "rationale": [
+            "shared terms: command, system",
+            "synonyms: comms~communications"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Command Comms System into Normal Mode' vs 'Direct Command, Control, Communications and Computer Systems'",
+            "ownership: lives under 'End Video Transmission' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 5.1.2; 27 measures e.g. M1 (Percent): Of articles on netted system available in heavy demand envir, M2 (Minutes): To begin decision-making conference., M3 (Percent): Of essential command and control (C2) nodes have redundant c"
+        },
+        {
+          "a": "Allocated Behavior::Steps/Activities::Collect Flight Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Collect Information on Strategic Situation",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: collect",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Collect Flight Data' vs 'Collect Information on Strategic Situation'",
+            "ownership: lives under 'Steps/Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 2.2.1; 36 measures e.g. M1 (Feet): Of horizontal/vertical accuracy of national military and the, M2 (Hours): To provide strategic intelligence data in support of operati, M3 (Hours): Since high priority targets last detected, identified, and l"
+        },
+        {
+          "a": "Sub System Level::Stores Management System::Missile Model Content::Behavior::Command Erase Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Conduct Command Information Programs",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: command",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Command Erase Data' vs 'Conduct Command Information Programs'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.8.2; 7 measures e.g. M1 (Days): To support employment of Department of Defense (DOD) interna, M2 (Hours): To produce content for internal information products., M3 (Yes/No): Are means are available to disseminate internal information?"
+        },
+        {
+          "a": "Sub System Level::Stores Management System::Missile Model Content::Behavior::Command Erase Data",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Coordinate Command Information Support",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: command",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Command Erase Data' vs 'Coordinate Command Information Support'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "ST 5.6.2; 11 measures e.g. M1 (Days): To deploy an internal broadcast capability., M2 (Days): To deploy and distribute an internal broadcast reception cap, M3 (Yes/No): Was internal broadcast capability deployed?"
+        },
+        {
+          "a": "Sub System Level::Propulsion/Flight System::Behavior::Process Air Data Sensor Status",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Air Data Sensor Status' vs 'Process Information'",
+            "ownership: lives under 'Behavior' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "System Level::Behavior::Not On Diagrams::Process Air Data Sensor Status",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Air Data Sensor Status' vs 'Process Information'",
+            "ownership: lives under 'Not On Diagrams' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Executive Control Subsystem::Behavior::Ingest Nav Sensor Parameters::Process Incoming Navigation Data Package",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Process Information",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: process",
+            "synonyms: data~information"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Process Incoming Navigation Data Package' vs 'Process Information'",
+            "ownership: lives under 'Ingest Nav Sensor Parameters' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "OP 5.1.4; 30 measures e.g. M1 (Percent): Of reports processed and disseminated to all agencies within, M2 (Percent): Of reinforcing or supporting forces, joint force commander (, M3 (Percent): Accuracy of information in essential logistics, maintenance,"
+        },
+        {
+          "a": "Sub System Level::Electrical System::Behavior::Provide System Power::Provide Comms Power",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Satellite Communications (SATCOM)",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: provide",
+            "synonyms: comms~communications"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Comms Power' vs 'Provide Satellite Communications (SATCOM)'",
+            "ownership: lives under 'Provide System Power' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.5.3.4; 6 measures e.g. M1 (Percent): Of satellite coverage area., M2 (Days): Elapsed from submission of a request to award a contract or , M3 (Hours): Of responsiveness to emergent surge requirements in a combat"
+        },
+        {
+          "a": "Test Activities::Provide Loitering Command Permission",
+          "a_kind": "Activity",
+          "b": "Operational::Operational Processes::Provide Aerospace Control",
+          "b_kind": "Activity<<OperationalActivity,IdentifiableElement>>",
+          "confidence": 0.37,
+          "rationale": [
+            "shared terms: provide",
+            "synonyms: command~control"
+          ],
+          "disagreements": [
+            "stereotype: <<->> vs <<IdentifiableElement,OperationalActivity>>",
+            "term: 'Provide Loitering Command Permission' vs 'Provide Aerospace Control'",
+            "ownership: lives under 'Test Activities' vs 'Operational Processes'"
+          ],
+          "label": "low",
+          "b_detail": "SN 3.4.1; 11 measures e.g. M1 (Percent): Of successful enemy attacks., M2 (Percent): Of military casualties related to enemy attacks., M3 (Percent): Of successful penetrations of airspace by enemy aircraft, mi"
+        }
+      ]
+    }
+  },
+  "impact": {
+    "start": "Use Case Models::Test & Evaluation::Test Set::Test Context::Test Data::Data Quality Metrics",
+    "reference": "(U) CapyBARA",
+    "mermaid": "berserker_impact.mmd",
+    "text": [
+      "Change: Use Case Models::Test & Evaluation::Test Set::Test Context::Test Data::Data Quality Metrics  (DataType<<MeasurementSet>>)",
+      "",
+      "Affected in (U) CapyBARA (69):",
+      "  - Data Provider [Class<<ResourceArtifact>>]  <- property 'quality' typed by Data Quality Metrics",
+      "    - Test Configuration [Class<<TestConfiguration>>]  <- property 'dp' typed by Data Provider",
+      "    - UML Testing Profile v2 [Class<<Standard>>]  <- Trace ->",
+      "      - Test Event [Activity<<TestCase>>]  <- property '' typed by Test Configuration",
+      "      - System Context [Class<<Recommendation,Block>>]  <- Realization ->",
+      "      - Allocated System Context [Class<<Recommendation,Block>>]  <- Abstraction ->",
+      "      - TestComponent Configuration [Class<<TestComponentConfiguration>>]  <- Trace <-",
+      "      - Test Configuration [Class<<TestConfiguration>>]  <- Trace <-",
+      "      - TestItem Configuration [Class<<TestItemConfiguration>>]  <- Trace <-",
+      "      - Test System [Class<<Block>>]  <- Trace <-",
+      "      - Data Input Pool [Class<<DataPool>>]  <- Trace <-",
+      "      - Response Threshold Partition [Class<<DataPartition>>]  <- Trace <-",
+      "      - Conceptual Data Grouping [Class<<DataPartition>>]  <- Trace <-",
+      "      - Response Pool [Class<<DataPool>>]  <- Trace <-",
+      "      - Data Collection Pool [Class<<DataPool>>]  <- Trace <-",
+      "      - Event Data [Class<<DataPool>>]  <- Trace <-",
+      "      - Run Completion AS [Class<<ProcedureInvocationArbitrationSpecification>>]  <- Trace <-",
+      "      - Run Evaluation AS [Class<<ProcedureInvocationArbitrationSpecification>>]  <- Trace <-",
+      "      - Event Completion AS [Class<<TestCaseArbitrationSpecification>>]  <- Trace <-",
+      "      - Event Evaluation AS [Class<<TestCaseArbitrationSpecification>>]  <- Trace <-",
+      "      - Collection Log [Class<<TestLogStructure>>]  <- Trace <-",
+      "      - Input Log [Class<<TestLogStructure>>]  <- Trace <-",
+      "      - Log Contents [Class<<DataPartition>>]  <- Trace <-",
+      "      - Applied Technique [InstanceSpecification<<TestDesignTechnique>>]  <- Trace <-",
+      "      - Technique Structure Definition [Class<<TestDesignTechniqueStructure>>]  <- Trace <-",
+      "      - Directive Structure Definition [Class<<TestDesignDirectiveStructure>>]  <- Trace <-",
+      "      - Test Objective [Class<<Test_Objective>>]  <- Trace <-",
+      "      - Test Context [Package<<TestContext>>]  <- Trace <-",
+      "      - Test Set [Package<<TestSet>>]  <- Trace <-",
+      "      - Procedure Setup [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Event Setup [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Event Teardown [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Procedure Teardown [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Test Procedure [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Test Execution Schedule [Activity<<TestExecutionSchedule>>]  <- Trace <-",
+      "      - Test Event [Activity<<TestCase>>]  <- Trace <-",
+      "      - Data Provider [Class<<ResourceArtifact>>]  <- Trace <-",
+      "      - Provided Data [Class<<IdentifiableElement,ResourceInformation>>]  <- Trace <-",
+      "      - Test Resource [Class<<ResourceArtifact>>]  <- Trace <-",
+      "      - TestComponent Configuration [Class<<TestComponentConfiguration>>]  <- Trace <-",
+      "      - TestItem Configuration [Class<<TestItemConfiguration>>]  <- Trace <-",
+      "      - Test System [Class<<Block>>]  <- Trace <-",
+      "      - Data Input Pool [Class<<DataPool>>]  <- Trace <-",
+      "      - Response Threshold Partition [Class<<DataPartition>>]  <- Trace <-",
+      "      - Conceptual Data Grouping [Class<<DataPartition>>]  <- Trace <-",
+      "      - Response Pool [Class<<DataPool>>]  <- Trace <-",
+      "      - Data Collection Pool [Class<<DataPool>>]  <- Trace <-",
+      "      - Event Data [Class<<DataPool>>]  <- Trace <-",
+      "      - Run Completion AS [Class<<ProcedureInvocationArbitrationSpecification>>]  <- Trace <-",
+      "      - Run Evaluation AS [Class<<ProcedureInvocationArbitrationSpecification>>]  <- Trace <-",
+      "      - Event Completion AS [Class<<TestCaseArbitrationSpecification>>]  <- Trace <-",
+      "      - Event Evaluation AS [Class<<TestCaseArbitrationSpecification>>]  <- Trace <-",
+      "      - Collection Log [Class<<TestLogStructure>>]  <- Trace <-",
+      "      - Input Log [Class<<TestLogStructure>>]  <- Trace <-",
+      "      - Log Contents [Class<<DataPartition>>]  <- Trace <-",
+      "      - Applied Technique [InstanceSpecification<<TestDesignTechnique>>]  <- Trace <-",
+      "      - Technique Structure [Class<<TestDesignTechniqueStructure>>]  <- Trace <-",
+      "      - Directive Structure [Class<<TestDesignDirectiveStructure>>]  <- Trace <-",
+      "      - Test Objective [Class<<Test_Objective>>]  <- Trace <-",
+      "      - Test Context [Package<<TestContext>>]  <- Trace <-",
+      "      - Test Set [Package<<TestSet>>]  <- Trace <-",
+      "      - Procedure Setup [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Event Setup [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Event Teardown [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Procedure Teardown [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Test Procedure [Activity<<TestProcedure>>]  <- Trace <-",
+      "      - Test Execution Schedule [Activity<<TestExecutionSchedule>>]  <- Trace <-",
+      "      - Provided Data [Class<<IdentifiableElement,ResourceInformation>>]  <- Trace <-",
+      "      - Test Resource [Class<<ResourceArtifact>>]  <- Trace <-",
+      "",
+      "Crosses into Beserker System Level Test Model via 20 link(s):",
+      "  Event Setup  ~0.55~  Allocated Behavior::Steps/Activities::Detect Encryption Setup Event   (shared terms: event, setup)",
+      "    disagreements: stereotype: <<->> vs <<TestProcedure>> | term: 'Detect Encryption Setup Event' vs 'Event Setup' | ownership: lives under 'Steps/Activities' vs 'Test Set'",
+      "  Event Setup  ~0.55~  Allocated Behavior::Steps/Activities::Detect Encryption Setup Event   (shared terms: event, setup)",
+      "    disagreements: stereotype: <<->> vs <<TestProcedure>> | term: 'Detect Encryption Setup Event' vs 'Event Setup' | ownership: lives under 'Steps/Activities' vs 'Test Set'",
+      "  Test Procedure  ~0.55~  Basic Test Data::Berserker Operational Testing Configuration::Operational Communication Test Procedure   (shared terms: procedure, test)",
+      "    - Maintain GCS Communications [Activity]  <- Dependency ->",
+      "    - Berserker Operational Testing Configuration [Class<<TestConfiguration>>]  <- Allocate ->",
+      "      - MQ-99 Berserker Air Vehicle [Class<<Block>>]  <- Allocate ->",
+      "      - Locate Target [UseCase]  <- Dependency ->",
+      "      - Arid Deployment [Class<<Requirement>>]  <- Refine <-",
+      "      - Dropped Packets [Class<<Requirement>>]  <- Refine <-",
+      "      - Ground Control latency [Class<<Requirement>>]  <- Refine <-",
+      "      - Berserker System Level Operational Flight Test [Activity<<TestCase>>]  <- property '' typed by Berserker Operational Testing Configuration",
+      "      - Load OFPs Operational Test Procedue [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Power Up Essential Systems Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Launch UAS Op Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Semi Autonomous Flight Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Establish Navigation Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operaitonal Power Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Teardown [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Setup [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Detection Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Desctruction Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Landing Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Damage Assessment Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "    disagreements: term: 'Operational Communication Test Procedure' vs 'Test Procedure' | ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'",
+      "  Test Procedure  ~0.55~  Basic Test Data::Berserker Operational Testing Configuration::Operational Landing Test Procedure   (shared terms: procedure, test)",
+      "    - Berserker Operational Testing Configuration [Class<<TestConfiguration>>]  <- Allocate ->",
+      "    - Land UAS [Activity]  <- Dependency ->",
+      "      - Berserker System Level Operational Flight Test [Activity<<TestCase>>]  <- property '' typed by Berserker Operational Testing Configuration",
+      "      - Load OFPs Operational Test Procedue [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Power Up Essential Systems Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Launch UAS Op Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Communication Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Semi Autonomous Flight Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Establish Navigation Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operaitonal Power Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Teardown [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Setup [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Detection Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Desctruction Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Damage Assessment Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - MQ-99 Berserker Air Vehicle [Class<<Block>>]  <- Allocate ->",
+      "      - Recovery Rate [Class<<Requirement>>]  <- Refine <-",
+      "      - Arid Deployment [Class<<Requirement>>]  <- Refine <-",
+      "    disagreements: term: 'Operational Landing Test Procedure' vs 'Test Procedure' | ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'",
+      "  Test Procedure  ~0.45~  Basic Test Data::Berserker Operational Testing Configuration::Establish Navigation Operational Test Procedure   (shared terms: procedure, test)",
+      "    - Establish Navigation [Activity]  <- Dependency ->",
+      "    - Berserker Operational Testing Configuration [Class<<TestConfiguration>>]  <- Allocate ->",
+      "      - Establish Navigation   [Class<<Requirement>>]  <- Satisfy ->",
+      "      - MQ-99 Berserker Air Vehicle [Class<<Block>>]  <- Allocate ->",
+      "      - Time to Deploy [Class<<Requirement>>]  <- Refine <-",
+      "      - Time to Launch [Class<<Requirement>>]  <- Refine <-",
+      "      - Arid Deployment [Class<<Requirement>>]  <- Refine <-",
+      "      - Berserker System Level Operational Flight Test [Activity<<TestCase>>]  <- property '' typed by Berserker Operational Testing Configuration",
+      "      - Load OFPs Operational Test Procedue [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Power Up Essential Systems Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Launch UAS Op Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Communication Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Semi Autonomous Flight Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operaitonal Power Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Teardown [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Setup [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Detection Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Desctruction Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Landing Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Damage Assessment Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "    disagreements: term: 'Establish Navigation Operational Test Procedure' vs 'Test Procedure' | ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'",
+      "  Test Procedure  ~0.45~  Basic Test Data::Berserker Operational Testing Configuration::Launch UAS Op Test Procedure   (shared terms: procedure, test)",
+      "    - Launch UAV [Activity]  <- Dependency ->",
+      "    - Berserker Operational Testing Configuration [Class<<TestConfiguration>>]  <- Allocate ->",
+      "      - MQ-99 Berserker Air Vehicle [Class<<Block>>]  <- Allocate ->",
+      "      - Time to Deploy [Class<<Requirement>>]  <- Refine <-",
+      "      - Time to Launch [Class<<Requirement>>]  <- Refine <-",
+      "      - Arid Deployment [Class<<Requirement>>]  <- Refine <-",
+      "      - Berserker System Level Operational Flight Test [Activity<<TestCase>>]  <- property '' typed by Berserker Operational Testing Configuration",
+      "      - Load OFPs Operational Test Procedue [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Power Up Essential Systems Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Communication Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Semi Autonomous Flight Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Establish Navigation Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operaitonal Power Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Teardown [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Setup [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Detection Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Desctruction Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Landing Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Damage Assessment Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "    disagreements: term: 'Launch UAS Op Test Procedure' vs 'Test Procedure' | ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'",
+      "  Test Procedure  ~0.45~  Basic Test Data::Berserker Operational Testing Configuration::Operational Target Desctruction Test Procedure   (shared terms: procedure, test)",
+      "    - Berserker Operational Testing Configuration [Class<<TestConfiguration>>]  <- Allocate ->",
+      "    - Perform Mass Data Transfer [Activity]  <- Dependency ->",
+      "    - Launch Weapon [Activity]  <- Dependency ->",
+      "      - Berserker System Level Operational Flight Test [Activity<<TestCase>>]  <- property '' typed by Berserker Operational Testing Configuration",
+      "      - Load OFPs Operational Test Procedue [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Power Up Essential Systems Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Launch UAS Op Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Communication Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Semi Autonomous Flight Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Establish Navigation Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operaitonal Power Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Teardown [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Setup [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Detection Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Landing Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Damage Assessment Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - MQ-99 Berserker Air Vehicle [Class<<Block>>]  <- Allocate ->",
+      "      - Arid Deployment [Class<<Requirement>>]  <- Refine <-",
+      "      - Target Lethality [Class<<Requirement>>]  <- Refine <-",
+      "    disagreements: term: 'Operational Target Desctruction Test Procedure' vs 'Test Procedure' | ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'",
+      "  Test Procedure  ~0.38~  Basic Test Data::Berserker Operational Testing Configuration::Operational Semi Autonomous Flight Test Procedure   (shared terms: procedure, test)",
+      "    - Fly UAS Based on Waypoint Data [Activity]  <- Dependency ->",
+      "    - Conduct Waypoint Communications [Activity]  <- Dependency ->",
+      "    - Ingest Nav Sensor Parameters [Activity]  <- Dependency ->",
+      "    - Process No Fly Zones [Activity]  <- Dependency ->",
+      "    - Berserker Operational Testing Configuration [Class<<TestConfiguration>>]  <- Allocate ->",
+      "      - Fly to Waypoint [Class<<Requirement>>]  <- Satisfy ->",
+      "      - MQ-99 Berserker Air Vehicle [Class<<Block>>]  <- Allocate ->",
+      "      - Max Speed [Class<<Requirement>>]  <- Refine <-",
+      "      - Flight Time [Class<<Requirement>>]  <- Refine <-",
+      "      - Max Altitude [Class<<Requirement>>]  <- Refine <-",
+      "      - Arid Deployment [Class<<Requirement>>]  <- Refine <-",
+      "      - Lateral Acceleration [Class<<Requirement>>]  <- Refine <-",
+      "      - Berserker System Level Operational Flight Test [Activity<<TestCase>>]  <- property '' typed by Berserker Operational Testing Configuration",
+      "      - Load OFPs Operational Test Procedue [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Power Up Essential Systems Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Launch UAS Op Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Communication Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Establish Navigation Operational Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operaitonal Power Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Teardown [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Flight Test Setup [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Detection Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Desctruction Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Landing Test Procedure [Activity<<TestProcedure>>]  <- Allocate <-",
+      "      - Operational Target Damage Assessment Test [Activity<<TestProcedure>>]  <- Allocate <-",
+      "    disagreements: term: 'Operational Semi Autonomous Flight Test Procedure' vs 'Test Procedure' | ownership: lives under 'Berserker Operational Testing Configuration' vs 'Test Set'",
+      "  Test Context  ~0.38~  Test Activities   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestContext>> | term: 'Test Activities' vs 'Test Context'",
+      "  Test Context  ~0.38~  Test Activities   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestContext>> | term: 'Test Activities' vs 'Test Context'",
+      "  Test Set  ~0.38~  Test Activities   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestSet>> | term: 'Test Activities' vs 'Test Set'",
+      "  Test Context  ~0.38~  Test Data   (shared terms: test)",
+      "    disagreements: stereotype: <<Resources>> vs <<TestContext>> | term: 'Test Data' vs 'Test Context'",
+      "  Test Context  ~0.38~  Test Data   (shared terms: test)",
+      "    disagreements: stereotype: <<Resources>> vs <<TestContext>> | term: 'Test Data' vs 'Test Context'",
+      "  Test Set  ~0.38~  Test Data   (shared terms: test)",
+      "    disagreements: stereotype: <<Resources>> vs <<TestSet>> | term: 'Test Data' vs 'Test Set'",
+      "  Test Context  ~0.38~  Basic Test Data::Test Objectives   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestContext>> | term: 'Test Objectives' vs 'Test Context'",
+      "  Test Context  ~0.38~  Basic Test Data::Test Objectives   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestContext>> | term: 'Test Objectives' vs 'Test Context'",
+      "  Test Set  ~0.38~  Basic Test Data::Test Objectives   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestSet>> | term: 'Test Objectives' vs 'Test Set'",
+      "  Test Context  ~0.38~  Test Signals   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestContext>> | term: 'Test Signals' vs 'Test Context'",
+      "  Test Context  ~0.38~  Test Signals   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestContext>> | term: 'Test Signals' vs 'Test Context'",
+      "  Test Set  ~0.38~  Test Signals   (shared terms: test)",
+      "    disagreements: stereotype: <<->> vs <<TestSet>> | term: 'Test Signals' vs 'Test Set'"
+    ]
+  }
+}

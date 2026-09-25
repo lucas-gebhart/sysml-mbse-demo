@@ -127,6 +127,77 @@ inside a package is a change to what that package represents in the other model.
 blast radius use `impact ... "Facility"` (Resource → 30+ dependents).
 Voice track: this is the drift check that runs on a schedule in the pilot.
 
+Q12 "Across the Berserker functional, allocated, product and test baselines — which requirements are
+actually verified, and what's missing?" (IGNITE set unzipped flat into `~/ignite/`; the root file name
+really is spelled `Beserker`)
+```
+python -m sysml_demo thread ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+    --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
+    --with ~/ignite/"Berserker Product Baseline Library.mdzip" --out out --stem berserker
+python -m sysml_demo thread ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+    --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
+    --with ~/ignite/"Berserker Product Baseline Library.mdzip" --requirement C-1.29
+```
+Evidence (committed copy in `examples/ignite/berserker_*`): 11 projects load in ~2 s, `MI Style
+Guide.mdzip` is reported missing (it is not in the set); 265 requirements, 245 without Satisfy; the
+233 FSA requirements have **no** `Verify` at all (the only 6 Verify links belong to CapyBARA's own
+requirements); 10 full chains, 129 partial, 126 with no outgoing link. The `--requirement C-1.29`
+tree is the live moment: `Final Systems Check` → Satisfy ← activity `Final Systems Check` → Allocate →
+`Executive Control Subsystem` → Realization ← `Allocated Nav Controller` (via port) → Realization ←
+`Curtiss-Wright Parvus DuraCOR Pi`; the activity is called by `Launch UAV`, which `Launch UAS Op
+Test Procedure` depends on — so the tool proposes that procedure as the Verify client with
+confidence `high`, and says `HEURISTIC PROPOSAL (not in model)` in the rationale. Point at
+`berserker_proposed_verify.xmi` / `.csv`: the ≥ medium proposals as `uml:Abstraction` + `sysml:Verify`
+against the real `xmi:id`s, ready for an engineer to review and import — the `.mdzip` files are untouched.
+
+## Part 4 — Cyber resiliency (IGNITE Berserker, optional 6 min)
+
+Needs the IGNITE `.mdzip` set unzipped flat into `~/ignite/` (not in this repo; `MI Style Guide.mdzip`
+is expected to be reported missing).
+
+Q13 "Which of the Berserker risk scenarios are modelled, and for the ground-station takeover, which
+attack-tree leaves are actually mitigated?"
+```
+python -m sysml_demo cyber "~/ignite/Berserker Cyber Res. Model.mdzip" --federate --list
+python -m sysml_demo cyber "~/ignite/Berserker Cyber Res. Model.mdzip" --federate --scenario "selected location" --out out
+```
+Evidence: 9 projects / ~77k elements federated; 8 risk scenarios RS-1..RS-8. For RS-2 the ASCII tree
+shows the STPA-Sec chain (4 losses, 6 hazards, 6 security constraints, 11 controllers, 12 loss scenarios,
+166 HCAs) and the probabilistic attack tree with the model's own P(success) 90 % CI per leaf, then a ranked
+gap table: 18 leaves, 6 with a cyber requirement, 17 with a D3FEND countermeasure, 5 both, 0 neither;
+**0 leaves are tied to a requirement by a direct model relationship** — the 6 are allocation+text proposals
+(the FSA "1.1.1.x Secure Boot / Crypto Module" spec reached through Trace → function → Allocate → block).
+D3FEND stereotypes applied to Berserker elements: 0 (from data). Assurance case: none of the 37 reached
+requirements is referenced by a Goal/Evidence (the case references 11 CSA requirements model-wide).
+Say out loud: ATT&CK / D3FEND / NIST lines are lexical or table proposals with a confidence + rationale, not
+model facts. `out/cyber_RS-2.mmd` renders the chain; `out/nist_controls_candidate.xmi` is the stub an
+engineer would import into the empty NIST project. Committed copies: `examples/ignite/`.
+
+Q14 "Does a contractor delivery follow *our* reference layer, and where does it plug into it?" (IGNITE set, `~/ignite/`)
+```
+IG=~/ignite
+python -m sysml_demo conform "$IG/Beserker System Level Test Model.mdzip" \
+    --reference "$IG/MissionArchitectureStyleGuide_Model_Version_1.0.mdzip" --rules-only
+python -m sysml_demo conform "$IG/Beserker System Level Test Model.mdzip" --federate \
+    --with "$IG/Berserker Allocated Baseline Model.mdzip" --with "$IG/Berserker Product Baseline Library.mdzip" \
+    --reference "$IG/MissionArchitectureStyleGuide_Model_Version_1.0.mdzip" --reference "$IG/Mission Meta Model.mdzip" \
+    --reference "$IG/UML Test Profile v2_1.mdzip" --reference "$IG/ClassificationProfileDistA.mdzip" \
+    --ujtl "$IG/UJTL.mdzip" --capybara "$IG/(U) CapyBARA.mdzip" --prefix berserker --out out/conform
+```
+1. Open with `--rules-only`: "here is what your own style guide says" — every rule quotes the
+   Style Guide / UTP 2.1 / Mission Meta Model text with the element it came from; ~80 of ~140 are
+   executable, the rest are listed as not automatable with their text.
+2. Full run (~5 s, 35k elements across 11 projects): `berserker_conformance.md` — pass / fail / n.a.
+   per rule with offending qualified names; the completeness section reports the mounted but
+   missing `MI Style Guide.mdzip` and the real `dangling-ref`s from federated `health`
+   (`library-ref`s excluded).
+3. `berserker_reference_links.md` — Berserker mission activities / test procedures / test data
+   matched to CapyBARA measures and UJTL operational activities with `link.match` rationale,
+   confidence and disagreements; the impact walk-through + `berserker_impact.mmd` shows a CapyBARA
+   measure change crossing into Berserker test procedures and the requirements they refine.
+Say so out loud: rules come from the reference models, links are proposals with evidence.
+Committed copies: `examples/ignite/`.
+
 ## Open floor (3 min)
 
 - "Ask anything you'd want to know about your own 19.x model." — `overview`, `structure`,

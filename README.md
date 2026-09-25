@@ -16,6 +16,10 @@ sysml_demo/
   model.py         normalised element index + navigation helpers
   queries.py       overview, requirements table, trace, structure, interfaces, profile usage, health check
   link.py          cross-model concept matching (with rationale + disagreements), impact traversal, Mermaid
+  thread.py        federated requirement -> function -> allocated -> product -> test RVTM, proposed Verify links + XMI/CSV patch
+  cyber.py         STPA-Sec risk scenario -> attack tree -> requirements -> ATT&CK/D3FEND -> candidate NIST 800-53 gap analysis
+  data/            nist80053_d3fend.json – authored D3FEND-tactic/technique -> NIST SP 800-53r5 starting table
+  conform.py       rules extracted from reference models (style guide, UTP, mission meta model, markings) -> conformance + cross-org links
   v2/profile.py    resolve custom stereotypes through their generalisation chain to a SysML base concept
   v2/transform.py  SysML v1 -> v2 textual notation; every element gets a clean/lossy/decision/unsupported record
   v2/validate.py   run the generated text through the OMG pilot-implementation kernel, parse diagnostics
@@ -23,6 +27,7 @@ sysml_demo/
   cli.py           `python -m sysml_demo <command>` – the entry points used live
 models/            public source models (see models/README.md for provenance)
 examples/          committed sample outputs (CSRM + DELS reports, generated .sysml, impact graph)
+examples/ignite/   IGNITE Berserker outputs: RVTM + proposed Verify links (thread), cyber gap analysis (cyber), conformance + reference links (conform)
 scripts/           setup_sysml_kernel.sh – installs the pilot kernel into a micromamba env
 tests/             pytest suite (synthetic fixture + the real models)
 ```
@@ -50,7 +55,125 @@ python -m sysml_demo migrate       models/CSRM.mdzip --profile models/CSRM-Profi
 python -m sysml_demo show-v2       models/CSRM.mdzip --profile models/CSRM-Profile.mdzip --subset "Power Subsystem"
 python -m sysml_demo link          models/CSRM.mdzip models/DELS.xml
 python -m sysml_demo impact        models/CSRM.mdzip models/DELS.xml "Power Subsystem" --mermaid out/impact.mmd
+python -m sysml_demo thread        ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+                                   --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
+                                   --with ~/ignite/"Berserker Product Baseline Library.mdzip" --out out --stem berserker
+python -m sysml_demo simulate      ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+                                   --requirement "MR - 25" --procedure "Operational Target Damage Assessment Test" --out out
 ```
+
+Every command also accepts `--federate` (follow the project's Cameo `projectUsages` and load the
+mounted `.mdzip` files found next to it, recursively) and `--with OTHER.mdzip` (load an explicit
+extra project). Federated loads resolve cross-project references, so `health` distinguishes real
+dangling references from references into unloaded or Cameo-bundled modules, and reports mounted
+projects that are missing on disk. Python: `load(path, federate=True)` / `load_federation([...])`.
+
+## Closing the digital thread (`thread`)
+
+`thread` builds a requirements verification traceability matrix across a federated set of
+baselines: for every SysML requirement (and subtype) it follows requirement → Satisfy / Refine /
+Trace / Allocate → activity or block in the functional baseline → Allocate / swimlane / owner →
+functional block → Realization / generalization / typed part → allocated-baseline block → the same
+again → product-baseline block, and records which UTP `TestCase` / `TestProcedure` touches any
+element in that chain (call closure, Dependency, Allocate, swimlane, typed pin / `ResourceInformation`
+test data) plus any existing `Verify`. Every hop is an existing relationship; the only inferred
+mapping is a `same-name (heuristic)` block match used when nothing realises a block, and it is
+labelled as such. Empty hops are marked `GAP:`; rows are `full` / `partial` / `none` and summarised
+per requirement package.
+
+For requirements without a `Verify`, `thread` ranks candidate tests by structural evidence (the
+test calls / depends on / is allocated to something in the chain), lexical overlap (requirement
+`Text` and name vs. test name, documentation, called test activities and test data; HTML stripped,
+stopwords dropped, requirement Ids such as `C-1.29` boosted) and existing `Trace` links between the
+pair. Every proposal carries `high` / `medium` / `low` and a rationale string that starts with
+`HEURISTIC PROPOSAL (not in model)`. Outputs (`--out DIR`, `--stem NAME`):
+
+- `<stem>_rvtm.{md,csv,json}` – the matrix, one row per requirement, one column per hop
+- `<stem>_proposed_verify.{md,json}` – ranked proposals (`--min-confidence low|medium|high`)
+- `<stem>_proposed_verify.xmi` – SysML v1 XMI fragment: one `uml:Abstraction` (client = test,
+  supplier = requirement) + `sysml:Verify` per proposal of confidence ≥ medium, using the real
+  `xmi:id`s of the loaded elements, for review and import
+- `<stem>_proposed_verify.csv` – the same pairs as `source id,target id,relationship` for Cameo's CSV import
+
+`--requirement ID` prints one requirement's chain as an ASCII tree with its gaps, touching tests
+and proposals instead of writing files. Committed IGNITE output is under `examples/ignite/`
+(`berserker_*`); the source `.mdzip` files are never modified. The IGNITE-gated tests run when
+`IGNITE_MODELS_DIR` points at the unzipped model set and skip otherwise.
+
+### Cyber resiliency gap analysis (`cyber`)
+
+```bash
+python -m sysml_demo cyber "ignite/Berserker Cyber Res. Model.mdzip" --federate --list
+python -m sysml_demo cyber "ignite/Berserker Cyber Res. Model.mdzip" --federate --scenario "selected location" --out examples/ignite
+```
+
+For one STPA-Sec risk scenario (default: the adversary-selected-location scenario) the command walks
+Loss ← Hazard ← Security constraint ← Controller / Hazardous control action ← Loss scenario ← Risk
+scenario → probabilistic attack tree → leaf nodes (P(success) 90 % CI, EML tags), then for every leaf
+reports the cybersecurity requirements it reaches through model relationships (Trace/Satisfy/Refine on the
+leaf, loss scenario, HCA or controller; Trace → function → Allocate → block paths), proposed ATT&CK
+techniques (lexical match on the D3FEND profile, boosted by explicit `Txxxx` ids), the D3FEND defensive
+techniques reachable through D3FEND associations (directly or via shared digital artifacts), and candidate
+NIST SP 800-53r5 controls from `sysml_demo/data/nist80053_d3fend.json`. Leaves are ranked by
+P(success) × no-requirement × no-countermeasure. It also reports how many Berserker elements actually carry a
+D3FEND stereotype (from data) and whether the reached requirements are referenced by the assurance case.
+
+Outputs: ASCII tree on stdout; `cyber_<RS>.md` / `.mmd`, `cyber_gaps.{md,json}`,
+`cyber_candidate_nist_controls.{md,csv}` and `nist_controls_candidate.xmi` (Requirement-stereotyped
+classes with Id + Text, importable into the empty NIST project) in `--out`. Everything heuristic carries a
+confidence and a rationale; only relationships found in the model are called model links. `--min-confidence`
+sets the threshold that counts as coverage. The NIST table is an authored starting point for review, not an
+official MITRE/NIST mapping.
+
+## Standards conformance (`conform`)
+
+`conform` checks a delivery against rules read out of reference models rather than hard-coded ones:
+Style Guide prose (package/comment documentation: diagram naming, required views, dependency
+matrices, swimlanes, Country properties …), the `Mission_Profile` stereotypes and their OCL
+constraints, the UML Testing Profile's «validationRule» constraints (68 in UTP 2.1), and the
+classification enumerations / marking stereotypes. Rules that map onto a structural check run
+(pass / fail / n.a. with offending qualified names); the rest are listed verbatim as "not automatable".
+The federated `health` result is folded in as delivery completeness (real `dangling-ref`s, mounted
+projects missing on disk). Optional `--capybara` / `--ujtl` reference models are matched against the
+delivery's mission-level content with `link.match` (candidates filtered by kind so UJTL's 30k elements
+stay fast) and one measure is walked with `link.cross_impact` into the delivery's test procedures and
+requirements.
+
+```bash
+python -m sysml_demo conform ROOT.mdzip --reference StyleGuide.mdzip --rules-only        # print the extracted rule set
+python -m sysml_demo conform ROOT.mdzip --federate --with Allocated.mdzip --with Product.mdzip \
+    --reference StyleGuide.mdzip --reference MissionMetaModel.mdzip --reference UTP.mdzip --reference Classification.mdzip \
+    --ujtl UJTL.mdzip --capybara CapyBARA.mdzip --out out/conform --prefix delivery
+```
+
+Writes `reference_rules.md`, `<prefix>_conformance.{md,json}`, `<prefix>_reference_links.{md,json}` and
+`<prefix>_impact.mmd` (or `--mermaid PATH`) into `--out`; `--prefix` defaults to a slug of the root
+model name. Every proposed link carries the matcher's rationale, confidence and disagreements; none is
+presented as a model fact. Sample output from the IGNITE Berserker delivery is committed under
+`examples/ignite/`.
+
+## Simulated test event (`simulate`)
+
+`simulate` runs a model-defined «TestProcedure» against a quantified requirement and evaluates a
+Measure of Performance. The model supplies the requirement text (the numeric threshold is parsed from
+it — `at least 700 meters` → `>= 700 m`), the procedure's steps in control-flow order with their
+swimlanes and the «ResourceInformation» items they exchange, and whether a Verify link exists. A
+notional sensor/operator model then generates the data the procedure would have logged (a test
+matrix of conditions × surveyed target stations), fits P(identify) against slant range, reports the
+range at P = 0.9 with a bootstrap confidence bound per condition, and writes a UTP-shaped TestLog
+with a pass / fail / inconclusive verdict. All generated numbers are synthetic; the output's
+`model_gaps` lists what the model would need (MOP definition, log attributes, TestLog/Verdict
+elements, Verify link, test conditions) for the result to be a real verification. Sample output for
+MR-25 is under `examples/ignite/mr25_testevent.*`.
+
+## Dashboard
+
+`examples/ignite/mq99_berserker_dashboard.html` is a self-contained, offline page built from the
+`thread`, `cyber` and `conform` outputs above plus a federated load of the functional, allocated and
+product baselines. It draws the MQ-99 air vehicle from the functional architecture's own parts,
+connectors and ports (select a subsystem for its allocated → product realization ledger, requirement
+coverage and STPA-Sec controllers) and shows the RVTM funnel, RS-2 attack-tree coverage and the
+conformance scorecard. Model facts and heuristic proposals are labelled separately throughout.
 
 ## What the migration does and does not claim
 

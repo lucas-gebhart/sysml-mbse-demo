@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.5.1" xmlns:xmi="http://www.omg.org/spec/XMI/20131001"
+         xmlns:uml="http://www.omg.org/spec/UML/20131001"
+         xmlns:sysml="http://www.omg.org/spec/SysML/20181001/SysML">
+  <!-- Proposed Verify relationships for Beserker System Level Test Model: HEURISTIC, for engineering review. -->
+  <!-- client / supplier idrefs point at elements in: (U) CapyBARA, Beserker System Level Test Model, MQ-99 Berserker Functional System Architecture -->
+  <uml:Package xmi:id="_proposed_verify_pkg" name="Proposed Verify links (101, review before applying)">
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_131db94a64bc9d27" name="verify: Test Event -&gt; System Functional Requirement">
+      <client xmi:idref="_2024x_d460245_1737955160639_563816_188906"/>
+      <supplier xmi:idref="_2024x_1_ebf0321_1749330394405_934585_33600"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_131db94a64bc9d27" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase Realization -&gt; Activity 'FBL System Activity' = function hop 'FBL System Activity'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_ab36b7ec743f2fb8" name="verify: Launch UAS Op Test Procedure -&gt; Communications System Backup Mode Switching">
+      <client xmi:idref="_2024x_2_2f610600_1772999910289_878899_5325"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947079_813012_2181"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_ab36b7ec743f2fb8" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 3/8 requirement tokens in test name/doc: command, communications, cyber"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_949c3838fea72699" name="verify: Operational Communication Test Procedure -&gt; Communications System Backup Mode Switching">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947079_813012_2181"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_949c3838fea72699" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 3/8 requirement tokens in test name/doc: command, communications, cyber"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f1db74b8f2812270" name="verify: Operational Communication Test Procedure -&gt; Flight Control System Backup Mode Switching">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947455_6461_10707"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f1db74b8f2812270" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 4/9 requirement tokens in test name/doc: command, control, cyber, flight"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_ca2aa2606a3c7d83" name="verify: Operational Communication Test Procedure -&gt; Ground Station Defensibility Capabilities">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947523_659982_13273"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_ca2aa2606a3c7d83" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/8 requirement tokens in test name/doc: ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_d241177214eef35a" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station Defensibility Capabilities">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947523_659982_13273"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_d241177214eef35a" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/8 requirement tokens in called test activities / test data: ground, monitoring, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f9c7a1f03d599451" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station Defensibility Capabilities">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947523_659982_13273"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f9c7a1f03d599451" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/8 requirement tokens in called test activities / test data: ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_20a1203111f44b30" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station IPS">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947291_462671_6133"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_20a1203111f44b30" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 5/22 requirement tokens in called test activities / test data: corrective, detection, ground, monitors, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_0d0e5e57a350eb10" name="verify: Operational Communication Test Procedure -&gt; Ground Station IPS">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947291_462671_6133"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_0d0e5e57a350eb10" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/22 requirement tokens in test name/doc: attempts, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_c17da8ca327772c0" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station IPS">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947291_462671_6133"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_c17da8ca327772c0" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 5/22 requirement tokens in called test activities / test data: attempts, detection, ground, station, unauthorized"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_930ce35bab5eb1c5" name="verify: Operational Communication Test Procedure -&gt; Ground Station Logging">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947022_710799_310"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_930ce35bab5eb1c5" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/9 requirement tokens in test name/doc: communications, ground, messages, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_fa25c47f478ebd49" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station Logging">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947022_710799_310"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_fa25c47f478ebd49" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/9 requirement tokens in called test activities / test data: communications, ground, log, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_261c26c5ef822ced" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station Logging">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947022_710799_310"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_261c26c5ef822ced" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/9 requirement tokens in test name/doc: communications"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_4cceda817ebf67c1" name="verify: Operational Communication Test Procedure -&gt; Ground Station Access Control">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947081_419572_2278"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_4cceda817ebf67c1" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/10 requirement tokens in test name/doc: control, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_125bdf68acae7780" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station Access Control">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947081_419572_2278"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_125bdf68acae7780" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/10 requirement tokens in called test activities / test data: control, controlled, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_640b55a8a0c51d3e" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station Access Control">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947081_419572_2278"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_640b55a8a0c51d3e" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/10 requirement tokens in test name/doc: control"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_2104e46bf997e6b2" name="verify: Operational Communication Test Procedure -&gt; Ground Station Access Logging">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947547_291851_14726"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_2104e46bf997e6b2" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/14 requirement tokens in test name/doc: attempts, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_fdeb3eb566c96edc" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station Access Logging">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947547_291851_14726"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_fdeb3eb566c96edc" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/14 requirement tokens in called test activities / test data: critical, ground, monitoring, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_673b002d137b4a36" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station Access Logging">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947547_291851_14726"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_673b002d137b4a36" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/14 requirement tokens in test name/doc: critical"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f062c2935d74197d" name="verify: Operational Communication Test Procedure -&gt; Ground Station MFA">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947543_859198_14455"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f062c2935d74197d" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/14 requirement tokens in test name/doc: authentication, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_a92c8ed54a5797cd" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station MFA">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947543_859198_14455"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_a92c8ed54a5797cd" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/14 requirement tokens in test name/doc: data"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_9d6d4b2908fa99bb" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station MFA">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947543_859198_14455"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_9d6d4b2908fa99bb" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/14 requirement tokens in test name/doc: authentication, data"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_9d82bce8d4dabc91" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station Network Segmentation">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947604_149238_16565"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_9d82bce8d4dabc91" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/15 requirement tokens in called test activities / test data: critical, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_8dbb8af921c53670" name="verify: Operational Target Damage Assessment Test -&gt; Ground Station Network Segmentation">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947604_149238_16565"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_8dbb8af921c53670" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/15 requirement tokens in test name/doc: critical, subsystems"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_d616f110019dfbbc" name="verify: Operational Communication Test Procedure -&gt; Ground Station Network Segmentation">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947604_149238_16565"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_d616f110019dfbbc" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/15 requirement tokens in test name/doc: ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_765a6866c0f15b75" name="verify: Operational Communication Test Procedure -&gt; Ground Station Role Based Access Control">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947482_779411_11714"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_765a6866c0f15b75" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/19 requirement tokens in test name/doc: control, ground, operations, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_009fa797b9fb683f" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Station Role Based Access Control">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947482_779411_11714"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_009fa797b9fb683f" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 6/19 requirement tokens in called test activities / test data: control, controlled, granted, ground, operations, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_836fb2f50527dd9c" name="verify: Operational Target Desctruction Test Procedure -&gt; Ground Station Role Based Access Control">
+      <client xmi:idref="_2024x_2_2f610600_1773369772322_54116_65"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947482_779411_11714"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_836fb2f50527dd9c" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/19 requirement tokens in test name/doc: only"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_e365151ac50fb9f5" name="verify: Operaitonal Power Test -&gt; Electrical Distribution Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1773006542738_508278_7709"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947081_296941_2264"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_e365151ac50fb9f5" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Provide System Power' = function hop 'Provide System Power' | lexical: 3/13 requirement tokens in test name/doc: electrical, power, subsystems"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_1f859c1cb6e461b9" name="verify: Berserker System Level Operational Flight Test -&gt; Electrical Distribution Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947081_296941_2264"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_1f859c1cb6e461b9" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Provide System Power' = function hop 'Provide System Power' | lexical: 2/13 requirement tokens in test name/doc: mission, performance"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_4ad4f1490b87b407" name="verify: Establish Navigation Operational Test Procedure -&gt; Establish Navigation  ">
+      <client xmi:idref="_2024x_2_2f610600_1772923762938_292216_101"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947236_982432_5435"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_4ad4f1490b87b407" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Establish Navigation' = function hop 'Establish Navigation' | lexical: 6/10 requirement tokens in test name/doc: accurate, data, establish, mission, navigation, reliable"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_0012dbcb59f9929a" name="verify: Berserker System Level Operational Flight Test -&gt; Establish Navigation  ">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947236_982432_5435"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_0012dbcb59f9929a" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Establish Navigation' = function hop 'Establish Navigation' | lexical: 2/10 requirement tokens in test name/doc: mission, navigation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_c943eee1080de83c" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Establish Navigation  ">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947236_982432_5435"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_c943eee1080de83c" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 4/10 requirement tokens in test name/doc: accurate, data, mission, navigation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_e9d702a915a01208" name="verify: Launch UAS Op Test Procedure -&gt; Final Systems Check">
+      <client xmi:idref="_2024x_2_2f610600_1772999910289_878899_5325"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947113_905181_3802"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_e9d702a915a01208" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Launch UAV' = parent hop 'Launch UAV' | lexical: 1/8 requirement tokens in test name/doc: launch"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_1739b21684f35a6e" name="verify: Berserker System Level Operational Flight Test -&gt; Final Systems Check">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947113_905181_3802"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_1739b21684f35a6e" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Launch UAV' = parent hop 'Launch UAV' | lexical: 1/8 requirement tokens in test name/doc: mission"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_e8aef207eec026f9" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Fly to Waypoint">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947538_165500_14187"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_e8aef207eec026f9" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 2/8 requirement tokens in test name/doc: navigation, waypoint"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_8f8fea65b68f61f9" name="verify: Berserker System Level Operational Flight Test -&gt; Fly to Waypoint">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947538_165500_14187"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_8f8fea65b68f61f9" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 1/8 requirement tokens in test name/doc: navigation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_cfcb3c61e1e9cd9b" name="verify: Berserker System Level Operational Flight Test -&gt; Operational Readiness Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947100_544582_3523"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_cfcb3c61e1e9cd9b" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Run Power Diagnostics' = function hop 'Run Power Diagnostics'; TestCase calls Activity 'Power Up Essential Systems' = function hop 'Power Up Essential Systems' | lexical: 1/10 requirement tokens in test name/doc: through"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_1ce4bed1d3b0f6ef" name="verify: Power Up Essential Systems Operational Test Procedure -&gt; Operational Readiness Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1772493983583_95130_3201"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947100_544582_3523"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_1ce4bed1d3b0f6ef" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Power Up Essential Systems' = function hop 'Power Up Essential Systems'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_51701d0565fc3e3b" name="verify: Operaitonal Power Test -&gt; Operational Readiness Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1773006542738_508278_7709"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947100_544582_3523"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_51701d0565fc3e3b" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Run Power Diagnostics' = function hop 'Run Power Diagnostics'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_748e26e72e119bb8" name="verify: Operaitonal Power Test -&gt; Power Diagnostics">
+      <client xmi:idref="_2024x_2_2f610600_1773006542738_508278_7709"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947099_98038_3447"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_748e26e72e119bb8" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Run Power Diagnostics' = function hop 'Run Power Diagnostics' | lexical: 2/14 requirement tokens in test name/doc: electrical, power"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_6cafe1dc2a70c2c7" name="verify: Berserker System Level Operational Flight Test -&gt; Power Diagnostics">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947099_98038_3447"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_6cafe1dc2a70c2c7" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Run Power Diagnostics' = function hop 'Run Power Diagnostics'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_de21a0fbae7a5d36" name="verify: Operaitonal Power Test -&gt; Power Management Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1773006542738_508278_7709"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947101_855998_3634"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_de21a0fbae7a5d36" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Provide System Power' = function hop 'Provide System Power' | lexical: 3/14 requirement tokens in test name/doc: power, safely, subsystems"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_e507fdc2c83a0fc0" name="verify: Berserker System Level Operational Flight Test -&gt; Power Management Requirement">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947101_855998_3634"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_e507fdc2c83a0fc0" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Provide System Power' = function hop 'Provide System Power'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_fb2548c303ca8b67" name="verify: Operational Communication Test Procedure -&gt; HT-2 Detect Unauthorized Data">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947333_532745_8179"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_fb2548c303ca8b67" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 1/4 requirement tokens in test name/doc: detect"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_a4426d814bb66dc9" name="verify: Operational Target Desctruction Test Procedure -&gt; HT-2 Detect Unauthorized Data">
+      <client xmi:idref="_2024x_2_2f610600_1773369772322_54116_65"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947333_532745_8179"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_a4426d814bb66dc9" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 1/4 requirement tokens in test name/doc: data"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f75af3a5cd743582" name="verify: Operational Communication Test Procedure -&gt; HT-6 Detect Anomalous Behavior">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947063_980244_1499"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f75af3a5cd743582" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 3/4 requirement tokens in test name/doc: anomalous, behavior, detect"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_5cb048c6f18fe023" name="verify: Operational Target Desctruction Test Procedure -&gt; Arid Deployment">
+      <client xmi:idref="_2024x_2_2f610600_1773369772322_54116_65"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947551_185605_14986"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_5cb048c6f18fe023" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Perform Mass Data Transfer' = function hop 'Perform Mass Data Transfer'; TestProcedure calls Activity 'Perform Mass Data Transfer' = function hop 'Perform Mass Data Transfer'; TestProcedure Dependency -&gt; Activity 'Launch Weapon' = function hop 'Launch Weapon'; TestProcedure calls Activity 'Launch Weapon' = function hop 'Launch Weapon'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/17 requirement tokens in test name/doc: conditions, full"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_235b8ac6b2851c4f" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Arid Deployment">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947551_185605_14986"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_235b8ac6b2851c4f" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure Dependency -&gt; Activity 'Conduct Waypoint Communications' = function hop 'Conduct Waypoint Communications'; TestProcedure calls Activity 'Conduct Waypoint Communications' = function hop 'Conduct Waypoint Communications'; TestProcedure Dependency -&gt; Activity 'Ingest Nav Sensor Parameters' = function hop 'Ingest Nav Sensor Parameters'; TestProcedure calls Activity 'Ingest Nav Sensor Parameters' = function hop 'Ingest Nav Sensor Parameters'; TestProcedure Dependency -&gt; Activity 'Process No Fly Zones' = function hop 'Process No Fly Zones'; TestProcedure calls Activity 'Process No Fly Zones' = function hop 'Process No Fly Zones'; TestProcedure calls Activity 'Provide Flight Status Update' = function hop 'Provide Flight Status Update'; TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 6/17 requirement tokens in called test activities / test data: conditions, control, gcs, ground, performance, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_467b95cade9a621e" name="verify: Operational Target Detection Procedure -&gt; Arid Deployment">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947551_185605_14986"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_467b95cade9a621e" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure Dependency -&gt; Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown'; TestProcedure calls Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown'; TestProcedure calls Activity 'Loiter' = function hop 'Loiter' | lexical: 6/17 requirement tokens in called test activities / test data: conditions, control, gcs, ground, performance, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f2e6e212f0aa8ded" name="verify: Operational Target Damage Assessment Test -&gt; Dropped Frames">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947452_186563_10573"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f2e6e212f0aa8ded" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure Dependency -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed' | lexical: 4/8 requirement tokens in called test activities / test data: eo/ir, sensor, transmission, video"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_a3b1bce04d26e6d5" name="verify: Berserker System Level Operational Flight Test -&gt; Dropped Frames">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947452_186563_10573"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_a3b1bce04d26e6d5" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_7cd24a57f9cb1fcd" name="verify: Operational Communication Test Procedure -&gt; Dropped Packets">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947102_647361_3684"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_7cd24a57f9cb1fcd" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Maintain GCS Communications' = function hop 'Maintain GCS Communications'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/16 requirement tokens in test name/doc: control, ground, maintain, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_32eab67b9f1da425" name="verify: Berserker System Level Operational Flight Test -&gt; Dropped Packets">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947102_647361_3684"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_32eab67b9f1da425" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Maintain GCS Communications' = function hop 'Maintain GCS Communications'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_3a71457d93622909" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Dropped Packets">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947102_647361_3684"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_3a71457d93622909" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 2/16 requirement tokens in test name/doc: data, transmission"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_6e7cac2520d0ba76" name="verify: Operational Target Detection Procedure -&gt; EO/IR Accuracy">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947526_460465_13431"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_6e7cac2520d0ba76" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure Dependency -&gt; Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown'; TestProcedure calls Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown' | lexical: 4/10 requirement tokens in test name/doc: eo/ir, operating, sensor, targets"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_46bb2eb704fcc4f6" name="verify: Operational Target Damage Assessment Test -&gt; EO/IR Accuracy">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947526_460465_13431"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_46bb2eb704fcc4f6" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan' | lexical: 2/10 requirement tokens in called test activities / test data: eo/ir, sensor"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_1b5dd23fb971c958" name="verify: Berserker System Level Operational Flight Test -&gt; EO/IR Accuracy">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947526_460465_13431"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_1b5dd23fb971c958" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown'; TestCase calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_fc9458cb3c6b34e6" name="verify: Operational Target Detection Procedure -&gt; EO/IR False Classification Rate">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947077_372426_2075"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_fc9458cb3c6b34e6" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan' | lexical: 4/8 requirement tokens in test name/doc: eo/ir, false, operating, sensor"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_5ceb113eeb93424c" name="verify: Operational Target Damage Assessment Test -&gt; EO/IR False Classification Rate">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947077_372426_2075"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_5ceb113eeb93424c" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan' | lexical: 2/8 requirement tokens in called test activities / test data: eo/ir, sensor"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_30ce1c19a7c96d9f" name="verify: Berserker System Level Operational Flight Test -&gt; EO/IR False Classification Rate">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947077_372426_2075"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_30ce1c19a7c96d9f" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_2bdcd55008ddf86b" name="verify: Operational Target Damage Assessment Test -&gt; EO/IR Frame Tran. Rate">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947074_104393_1890"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_2bdcd55008ddf86b" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure Dependency -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed' | lexical: 5/14 requirement tokens in called test activities / test data: eo/ir, feed, sensor, transmit, video"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_3e44bed24352bce6" name="verify: Berserker System Level Operational Flight Test -&gt; EO/IR Frame Tran. Rate">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947074_104393_1890"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_3e44bed24352bce6" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_0c347a74d3197ece" name="verify: Operational Target Damage Assessment Test -&gt; Effective IR Resolution Distance">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947100_99491_3559"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_0c347a74d3197ece" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan' | lexical: 2/10 requirement tokens in called test activities / test data: eo/ir, sensor"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_83f349fa3b0d56a8" name="verify: Operational Target Detection Procedure -&gt; Effective IR Resolution Distance">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947100_99491_3559"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_83f349fa3b0d56a8" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan'; TestProcedure calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan' | lexical: 2/10 requirement tokens in test name/doc: eo/ir, sensor"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_a65ad41eaffbaeaf" name="verify: Berserker System Level Operational Flight Test -&gt; Effective IR Resolution Distance">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947100_99491_3559"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_a65ad41eaffbaeaf" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Conduct Routine EO/IR Scene Scan' = function hop 'Conduct Routine EO/IR Scene Scan' | lexical: 1/10 requirement tokens in test name/doc: identification"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_64d01b637ec02159" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Flight Time">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947317_146203_7348"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_64d01b637ec02159" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 1/13 requirement tokens in test name/doc: flight; requirement name 'Flight Time' appears verbatim in test text"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_38a7885b2d9360e1" name="verify: Operational Target Detection Procedure -&gt; Flight Time">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947317_146203_7348"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_38a7885b2d9360e1" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure calls Activity 'Loiter' = function hop 'Loiter' | lexical: 1/13 requirement tokens in test name/doc: operating"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_243cd3ea20650495" name="verify: Berserker System Level Operational Flight Test -&gt; Flight Time">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947317_146203_7348"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_243cd3ea20650495" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_421333977421a22f" name="verify: Operational Communication Test Procedure -&gt; Ground Control Deployability">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947091_764792_2904"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_421333977421a22f" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 3/13 requirement tokens in test name/doc: control, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_6ad3182fdabc1344" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Control Deployability">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947091_764792_2904"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_6ad3182fdabc1344" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 4/13 requirement tokens in called test activities / test data: conditions, control, ground, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_16881e41fab511c9" name="verify: Operational Target Desctruction Test Procedure -&gt; Ground Control Deployability">
+      <client xmi:idref="_2024x_2_2f610600_1773369772322_54116_65"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947091_764792_2904"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_16881e41fab511c9" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/13 requirement tokens in test name/doc: conditions"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_dc910d8ca46487a2" name="verify: Operational Communication Test Procedure -&gt; Ground Control latency">
+      <client xmi:idref="_2024x_2_2f610600_1773006900509_714694_7843"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947070_367502_1779"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_dc910d8ca46487a2" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Maintain GCS Communications' = function hop 'Maintain GCS Communications'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 5/14 requirement tokens in test name/doc: communication, control, ground, maintain, station"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_b0fc62734a31f657" name="verify: Berserker System Level Operational Flight Test -&gt; Ground Control latency">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947070_367502_1779"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_b0fc62734a31f657" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Maintain GCS Communications' = function hop 'Maintain GCS Communications'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_204694506c23e1f3" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Ground Control latency">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947070_367502_1779"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_204694506c23e1f3" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure swimlane represents Class 'Ground Control Station' = function hop 'Ground Control Station'; TestProcedure Allocate -&gt; Class 'Ground Control Station' = function hop 'Ground Control Station' | lexical: 1/14 requirement tokens in test name/doc: data"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_ca72544f60246fb4" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Lateral Acceleration">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947310_307651_7016"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_ca72544f60246fb4" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_31a8c487fa7ff80f" name="verify: Berserker System Level Operational Flight Test -&gt; Lateral Acceleration">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947310_307651_7016"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_31a8c487fa7ff80f" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_891446cfcc6806d7" name="verify: Operational Target Detection Procedure -&gt; Lateral Acceleration">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947310_307651_7016"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_891446cfcc6806d7" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure calls Activity 'Loiter' = function hop 'Loiter'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_3e9d8c2d9e560499" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Max Altitude">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947098_895106_3404"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_3e9d8c2d9e560499" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 2/8 requirement tokens in called test activities / test data: operate, performance"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_c24521fabc7a9bf2" name="verify: Berserker System Level Operational Flight Test -&gt; Max Altitude">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947098_895106_3404"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_c24521fabc7a9bf2" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 1/8 requirement tokens in test name/doc: performance"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_a316b08c7b422e1e" name="verify: Operational Target Detection Procedure -&gt; Max Altitude">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947098_895106_3404"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_a316b08c7b422e1e" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure calls Activity 'Loiter' = function hop 'Loiter'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_4710eef8d07b6d87" name="verify: Operational Semi Autonomous Flight Test Procedure -&gt; Max Speed">
+      <client xmi:idref="_2024x_2_2f610600_1773007113571_347563_7909"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947017_841226_135"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_4710eef8d07b6d87" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data'; TestProcedure calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 1/10 requirement tokens in test name/doc: flight"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f4c4a31ffb18c1a0" name="verify: Berserker System Level Operational Flight Test -&gt; Max Speed">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947017_841226_135"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f4c4a31ffb18c1a0" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Fly UAS Based on Waypoint Data' = function hop 'Fly UAS Based on Waypoint Data' | lexical: 2/10 requirement tokens in test name/doc: flight, level"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_51008201aa88a330" name="verify: Operational Target Detection Procedure -&gt; Max Speed">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947017_841226_135"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_51008201aa88a330" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure calls Activity 'Loiter' = function hop 'Loiter' | lexical: 2/10 requirement tokens in called test activities / test data: conditions, flight"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_6b09908560185dd1" name="verify: Berserker System Level Operational Flight Test -&gt; Recovery Rate">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947545_816796_14548"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_6b09908560185dd1" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Land UAS' = function hop 'Land UAS'; TestCase calls Activity 'Set Landing Location' = function hop 'Set Landing Location'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_f23faf07a90d0636" name="verify: Operational Landing Test Procedure -&gt; Recovery Rate">
+      <client xmi:idref="_2024x_2_2f610600_1773369924110_726506_123"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947545_816796_14548"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_f23faf07a90d0636" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Land UAS' = function hop 'Land UAS' | lexical: 2/13 requirement tokens in test name/doc: conditions, landing"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_fe96ce8ead7fd12f" name="verify: Operational Target Detection Procedure -&gt; Survivability">
+      <client xmi:idref="_2024x_2_2f610600_1773369705718_899434_30"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947097_484972_3280"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_fe96ce8ead7fd12f" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown'; TestProcedure calls Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown' | lexical: 2/13 requirement tokens in test name/doc: detection, mission"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_999dec3d57a303d6" name="verify: Berserker System Level Operational Flight Test -&gt; Survivability">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947097_484972_3280"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_999dec3d57a303d6" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Process Red/Blue Force Laydown' = function hop 'Process Red/Blue Force Laydown'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_9115deef71a737bb" name="verify: Operational Target Desctruction Test Procedure -&gt; Target Lethality">
+      <client xmi:idref="_2024x_2_2f610600_1773369772322_54116_65"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947581_477484_15242"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_9115deef71a737bb" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Perform Mass Data Transfer' = function hop 'Perform Mass Data Transfer'; TestProcedure calls Activity 'Perform Mass Data Transfer' = function hop 'Perform Mass Data Transfer'; TestProcedure Dependency -&gt; Activity 'Launch Weapon' = function hop 'Launch Weapon'; TestProcedure calls Activity 'Launch Weapon' = function hop 'Launch Weapon' | lexical: 2/11 requirement tokens in test name/doc: conditions, target"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_51bcef3e3fd0b074" name="verify: Berserker System Level Operational Flight Test -&gt; Target Lethality">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947581_477484_15242"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_51bcef3e3fd0b074" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Launch Weapon' = function hop 'Launch Weapon'; TestCase calls Activity 'Perform Mass Data Transfer' = function hop 'Perform Mass Data Transfer' | lexical: 2/11 requirement tokens in test name/doc: against, target"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_0e836f1bdfdf918f" name="verify: Operational Target Damage Assessment Test -&gt; Target Lethality">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947581_477484_15242"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_0e836f1bdfdf918f" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_06f0b26d37f455fc" name="verify: Berserker System Level Operational Flight Test -&gt; Time to Deploy">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947058_39366_1288"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_06f0b26d37f455fc" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Establish Navigation' = function hop 'Establish Navigation'; TestCase calls Activity 'Establish Communications' = function hop 'Establish Communications'; TestCase calls Activity 'Power Up Essential Systems' = function hop 'Power Up Essential Systems'; TestCase calls Activity 'Launch UAV' = function hop 'Launch UAV'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_c2a9462fe59d6fda" name="verify: Power Up Essential Systems Operational Test Procedure -&gt; Time to Deploy">
+      <client xmi:idref="_2024x_2_2f610600_1772493983583_95130_3201"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947058_39366_1288"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_c2a9462fe59d6fda" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Power Up Essential Systems' = function hop 'Power Up Essential Systems'; TestProcedure Dependency -&gt; Activity 'Establish Communications' = function hop 'Establish Communications'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_2f63c156e7871017" name="verify: Launch UAS Op Test Procedure -&gt; Time to Deploy">
+      <client xmi:idref="_2024x_2_2f610600_1772999910289_878899_5325"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947058_39366_1288"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_2f63c156e7871017" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Launch UAV' = function hop 'Launch UAV' | lexical: 1/8 requirement tokens in test name/doc: launch"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_b127934561038099" name="verify: Berserker System Level Operational Flight Test -&gt; Time to Launch">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947525_305375_13375"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_b127934561038099" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Establish Navigation' = function hop 'Establish Navigation'; TestCase calls Activity 'Establish Communications' = function hop 'Establish Communications'; TestCase calls Activity 'Power Up Essential Systems' = function hop 'Power Up Essential Systems'; TestCase calls Activity 'Launch UAV' = function hop 'Launch UAV'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_45d4451ebbb14db8" name="verify: Power Up Essential Systems Operational Test Procedure -&gt; Time to Launch">
+      <client xmi:idref="_2024x_2_2f610600_1772493983583_95130_3201"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947525_305375_13375"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_45d4451ebbb14db8" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Power Up Essential Systems' = function hop 'Power Up Essential Systems'; TestProcedure Dependency -&gt; Activity 'Establish Communications' = function hop 'Establish Communications'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_82ba38f617d2fff8" name="verify: Establish Navigation Operational Test Procedure -&gt; Time to Launch">
+      <client xmi:idref="_2024x_2_2f610600_1772923762938_292216_101"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947525_305375_13375"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_82ba38f617d2fff8" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Dependency -&gt; Activity 'Establish Navigation' = function hop 'Establish Navigation' | lexical: 3/12 requirement tokens in called test activities / test data: configured, ready, time"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_e7247f1a187d85a4" name="verify: Operational Target Damage Assessment Test -&gt; Video Latency">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947595_99979_16031"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_e7247f1a187d85a4" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestProcedure Trace -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'; TestProcedure Dependency -&gt; Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed' | lexical: 4/10 requirement tokens in called test activities / test data: eo/ir, sensor, transmit, video"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_014218c290310cc2" name="verify: Berserker System Level Operational Flight Test -&gt; Video Latency">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947595_99979_16031"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_014218c290310cc2" body="confidence=high; HEURISTIC PROPOSAL (not in model) - structural: TestCase calls Activity 'Provide Live Video Feed' = function hop 'Provide Live Video Feed'"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_1b46ac909eb76529" name="verify: Berserker System Level Operational Flight Test -&gt; Weapons on Target">
+      <client xmi:idref="_2024x_2_2f610600_1771644049541_706031_221348"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947369_50113_9633"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_1b46ac909eb76529" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 3/5 requirement tokens in test name/doc: mission, target, weapons"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_proposed_verify_afb3499dfb2ec900" name="verify: Operational Target Damage Assessment Test -&gt; Weapons on Target">
+      <client xmi:idref="_2024x_2_2f610600_1773453918431_306242_6781"/>
+      <supplier xmi:idref="_2021x_2_2f610600_1727179947369_50113_9633"/>
+      <ownedComment xmi:type="uml:Comment" xmi:id="_proposed_comment_afb3499dfb2ec900" body="confidence=medium; HEURISTIC PROPOSAL (not in model) - lexical: 2/5 requirement tokens in test name/doc: mission, target"/>
+    </packagedElement>
+  </uml:Package>
+  <sysml:Verify xmi:id="_proposed_stereo_131db94a64bc9d27" base_Abstraction="_proposed_verify_131db94a64bc9d27"/>
+  <sysml:Verify xmi:id="_proposed_stereo_ab36b7ec743f2fb8" base_Abstraction="_proposed_verify_ab36b7ec743f2fb8"/>
+  <sysml:Verify xmi:id="_proposed_stereo_949c3838fea72699" base_Abstraction="_proposed_verify_949c3838fea72699"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f1db74b8f2812270" base_Abstraction="_proposed_verify_f1db74b8f2812270"/>
+  <sysml:Verify xmi:id="_proposed_stereo_ca2aa2606a3c7d83" base_Abstraction="_proposed_verify_ca2aa2606a3c7d83"/>
+  <sysml:Verify xmi:id="_proposed_stereo_d241177214eef35a" base_Abstraction="_proposed_verify_d241177214eef35a"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f9c7a1f03d599451" base_Abstraction="_proposed_verify_f9c7a1f03d599451"/>
+  <sysml:Verify xmi:id="_proposed_stereo_20a1203111f44b30" base_Abstraction="_proposed_verify_20a1203111f44b30"/>
+  <sysml:Verify xmi:id="_proposed_stereo_0d0e5e57a350eb10" base_Abstraction="_proposed_verify_0d0e5e57a350eb10"/>
+  <sysml:Verify xmi:id="_proposed_stereo_c17da8ca327772c0" base_Abstraction="_proposed_verify_c17da8ca327772c0"/>
+  <sysml:Verify xmi:id="_proposed_stereo_930ce35bab5eb1c5" base_Abstraction="_proposed_verify_930ce35bab5eb1c5"/>
+  <sysml:Verify xmi:id="_proposed_stereo_fa25c47f478ebd49" base_Abstraction="_proposed_verify_fa25c47f478ebd49"/>
+  <sysml:Verify xmi:id="_proposed_stereo_261c26c5ef822ced" base_Abstraction="_proposed_verify_261c26c5ef822ced"/>
+  <sysml:Verify xmi:id="_proposed_stereo_4cceda817ebf67c1" base_Abstraction="_proposed_verify_4cceda817ebf67c1"/>
+  <sysml:Verify xmi:id="_proposed_stereo_125bdf68acae7780" base_Abstraction="_proposed_verify_125bdf68acae7780"/>
+  <sysml:Verify xmi:id="_proposed_stereo_640b55a8a0c51d3e" base_Abstraction="_proposed_verify_640b55a8a0c51d3e"/>
+  <sysml:Verify xmi:id="_proposed_stereo_2104e46bf997e6b2" base_Abstraction="_proposed_verify_2104e46bf997e6b2"/>
+  <sysml:Verify xmi:id="_proposed_stereo_fdeb3eb566c96edc" base_Abstraction="_proposed_verify_fdeb3eb566c96edc"/>
+  <sysml:Verify xmi:id="_proposed_stereo_673b002d137b4a36" base_Abstraction="_proposed_verify_673b002d137b4a36"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f062c2935d74197d" base_Abstraction="_proposed_verify_f062c2935d74197d"/>
+  <sysml:Verify xmi:id="_proposed_stereo_a92c8ed54a5797cd" base_Abstraction="_proposed_verify_a92c8ed54a5797cd"/>
+  <sysml:Verify xmi:id="_proposed_stereo_9d6d4b2908fa99bb" base_Abstraction="_proposed_verify_9d6d4b2908fa99bb"/>
+  <sysml:Verify xmi:id="_proposed_stereo_9d82bce8d4dabc91" base_Abstraction="_proposed_verify_9d82bce8d4dabc91"/>
+  <sysml:Verify xmi:id="_proposed_stereo_8dbb8af921c53670" base_Abstraction="_proposed_verify_8dbb8af921c53670"/>
+  <sysml:Verify xmi:id="_proposed_stereo_d616f110019dfbbc" base_Abstraction="_proposed_verify_d616f110019dfbbc"/>
+  <sysml:Verify xmi:id="_proposed_stereo_765a6866c0f15b75" base_Abstraction="_proposed_verify_765a6866c0f15b75"/>
+  <sysml:Verify xmi:id="_proposed_stereo_009fa797b9fb683f" base_Abstraction="_proposed_verify_009fa797b9fb683f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_836fb2f50527dd9c" base_Abstraction="_proposed_verify_836fb2f50527dd9c"/>
+  <sysml:Verify xmi:id="_proposed_stereo_e365151ac50fb9f5" base_Abstraction="_proposed_verify_e365151ac50fb9f5"/>
+  <sysml:Verify xmi:id="_proposed_stereo_1f859c1cb6e461b9" base_Abstraction="_proposed_verify_1f859c1cb6e461b9"/>
+  <sysml:Verify xmi:id="_proposed_stereo_4ad4f1490b87b407" base_Abstraction="_proposed_verify_4ad4f1490b87b407"/>
+  <sysml:Verify xmi:id="_proposed_stereo_0012dbcb59f9929a" base_Abstraction="_proposed_verify_0012dbcb59f9929a"/>
+  <sysml:Verify xmi:id="_proposed_stereo_c943eee1080de83c" base_Abstraction="_proposed_verify_c943eee1080de83c"/>
+  <sysml:Verify xmi:id="_proposed_stereo_e9d702a915a01208" base_Abstraction="_proposed_verify_e9d702a915a01208"/>
+  <sysml:Verify xmi:id="_proposed_stereo_1739b21684f35a6e" base_Abstraction="_proposed_verify_1739b21684f35a6e"/>
+  <sysml:Verify xmi:id="_proposed_stereo_e8aef207eec026f9" base_Abstraction="_proposed_verify_e8aef207eec026f9"/>
+  <sysml:Verify xmi:id="_proposed_stereo_8f8fea65b68f61f9" base_Abstraction="_proposed_verify_8f8fea65b68f61f9"/>
+  <sysml:Verify xmi:id="_proposed_stereo_cfcb3c61e1e9cd9b" base_Abstraction="_proposed_verify_cfcb3c61e1e9cd9b"/>
+  <sysml:Verify xmi:id="_proposed_stereo_1ce4bed1d3b0f6ef" base_Abstraction="_proposed_verify_1ce4bed1d3b0f6ef"/>
+  <sysml:Verify xmi:id="_proposed_stereo_51701d0565fc3e3b" base_Abstraction="_proposed_verify_51701d0565fc3e3b"/>
+  <sysml:Verify xmi:id="_proposed_stereo_748e26e72e119bb8" base_Abstraction="_proposed_verify_748e26e72e119bb8"/>
+  <sysml:Verify xmi:id="_proposed_stereo_6cafe1dc2a70c2c7" base_Abstraction="_proposed_verify_6cafe1dc2a70c2c7"/>
+  <sysml:Verify xmi:id="_proposed_stereo_de21a0fbae7a5d36" base_Abstraction="_proposed_verify_de21a0fbae7a5d36"/>
+  <sysml:Verify xmi:id="_proposed_stereo_e507fdc2c83a0fc0" base_Abstraction="_proposed_verify_e507fdc2c83a0fc0"/>
+  <sysml:Verify xmi:id="_proposed_stereo_fb2548c303ca8b67" base_Abstraction="_proposed_verify_fb2548c303ca8b67"/>
+  <sysml:Verify xmi:id="_proposed_stereo_a4426d814bb66dc9" base_Abstraction="_proposed_verify_a4426d814bb66dc9"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f75af3a5cd743582" base_Abstraction="_proposed_verify_f75af3a5cd743582"/>
+  <sysml:Verify xmi:id="_proposed_stereo_5cb048c6f18fe023" base_Abstraction="_proposed_verify_5cb048c6f18fe023"/>
+  <sysml:Verify xmi:id="_proposed_stereo_235b8ac6b2851c4f" base_Abstraction="_proposed_verify_235b8ac6b2851c4f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_467b95cade9a621e" base_Abstraction="_proposed_verify_467b95cade9a621e"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f2e6e212f0aa8ded" base_Abstraction="_proposed_verify_f2e6e212f0aa8ded"/>
+  <sysml:Verify xmi:id="_proposed_stereo_a3b1bce04d26e6d5" base_Abstraction="_proposed_verify_a3b1bce04d26e6d5"/>
+  <sysml:Verify xmi:id="_proposed_stereo_7cd24a57f9cb1fcd" base_Abstraction="_proposed_verify_7cd24a57f9cb1fcd"/>
+  <sysml:Verify xmi:id="_proposed_stereo_32eab67b9f1da425" base_Abstraction="_proposed_verify_32eab67b9f1da425"/>
+  <sysml:Verify xmi:id="_proposed_stereo_3a71457d93622909" base_Abstraction="_proposed_verify_3a71457d93622909"/>
+  <sysml:Verify xmi:id="_proposed_stereo_6e7cac2520d0ba76" base_Abstraction="_proposed_verify_6e7cac2520d0ba76"/>
+  <sysml:Verify xmi:id="_proposed_stereo_46bb2eb704fcc4f6" base_Abstraction="_proposed_verify_46bb2eb704fcc4f6"/>
+  <sysml:Verify xmi:id="_proposed_stereo_1b5dd23fb971c958" base_Abstraction="_proposed_verify_1b5dd23fb971c958"/>
+  <sysml:Verify xmi:id="_proposed_stereo_fc9458cb3c6b34e6" base_Abstraction="_proposed_verify_fc9458cb3c6b34e6"/>
+  <sysml:Verify xmi:id="_proposed_stereo_5ceb113eeb93424c" base_Abstraction="_proposed_verify_5ceb113eeb93424c"/>
+  <sysml:Verify xmi:id="_proposed_stereo_30ce1c19a7c96d9f" base_Abstraction="_proposed_verify_30ce1c19a7c96d9f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_2bdcd55008ddf86b" base_Abstraction="_proposed_verify_2bdcd55008ddf86b"/>
+  <sysml:Verify xmi:id="_proposed_stereo_3e44bed24352bce6" base_Abstraction="_proposed_verify_3e44bed24352bce6"/>
+  <sysml:Verify xmi:id="_proposed_stereo_0c347a74d3197ece" base_Abstraction="_proposed_verify_0c347a74d3197ece"/>
+  <sysml:Verify xmi:id="_proposed_stereo_83f349fa3b0d56a8" base_Abstraction="_proposed_verify_83f349fa3b0d56a8"/>
+  <sysml:Verify xmi:id="_proposed_stereo_a65ad41eaffbaeaf" base_Abstraction="_proposed_verify_a65ad41eaffbaeaf"/>
+  <sysml:Verify xmi:id="_proposed_stereo_64d01b637ec02159" base_Abstraction="_proposed_verify_64d01b637ec02159"/>
+  <sysml:Verify xmi:id="_proposed_stereo_38a7885b2d9360e1" base_Abstraction="_proposed_verify_38a7885b2d9360e1"/>
+  <sysml:Verify xmi:id="_proposed_stereo_243cd3ea20650495" base_Abstraction="_proposed_verify_243cd3ea20650495"/>
+  <sysml:Verify xmi:id="_proposed_stereo_421333977421a22f" base_Abstraction="_proposed_verify_421333977421a22f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_6ad3182fdabc1344" base_Abstraction="_proposed_verify_6ad3182fdabc1344"/>
+  <sysml:Verify xmi:id="_proposed_stereo_16881e41fab511c9" base_Abstraction="_proposed_verify_16881e41fab511c9"/>
+  <sysml:Verify xmi:id="_proposed_stereo_dc910d8ca46487a2" base_Abstraction="_proposed_verify_dc910d8ca46487a2"/>
+  <sysml:Verify xmi:id="_proposed_stereo_b0fc62734a31f657" base_Abstraction="_proposed_verify_b0fc62734a31f657"/>
+  <sysml:Verify xmi:id="_proposed_stereo_204694506c23e1f3" base_Abstraction="_proposed_verify_204694506c23e1f3"/>
+  <sysml:Verify xmi:id="_proposed_stereo_ca72544f60246fb4" base_Abstraction="_proposed_verify_ca72544f60246fb4"/>
+  <sysml:Verify xmi:id="_proposed_stereo_31a8c487fa7ff80f" base_Abstraction="_proposed_verify_31a8c487fa7ff80f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_891446cfcc6806d7" base_Abstraction="_proposed_verify_891446cfcc6806d7"/>
+  <sysml:Verify xmi:id="_proposed_stereo_3e9d8c2d9e560499" base_Abstraction="_proposed_verify_3e9d8c2d9e560499"/>
+  <sysml:Verify xmi:id="_proposed_stereo_c24521fabc7a9bf2" base_Abstraction="_proposed_verify_c24521fabc7a9bf2"/>
+  <sysml:Verify xmi:id="_proposed_stereo_a316b08c7b422e1e" base_Abstraction="_proposed_verify_a316b08c7b422e1e"/>
+  <sysml:Verify xmi:id="_proposed_stereo_4710eef8d07b6d87" base_Abstraction="_proposed_verify_4710eef8d07b6d87"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f4c4a31ffb18c1a0" base_Abstraction="_proposed_verify_f4c4a31ffb18c1a0"/>
+  <sysml:Verify xmi:id="_proposed_stereo_51008201aa88a330" base_Abstraction="_proposed_verify_51008201aa88a330"/>
+  <sysml:Verify xmi:id="_proposed_stereo_6b09908560185dd1" base_Abstraction="_proposed_verify_6b09908560185dd1"/>
+  <sysml:Verify xmi:id="_proposed_stereo_f23faf07a90d0636" base_Abstraction="_proposed_verify_f23faf07a90d0636"/>
+  <sysml:Verify xmi:id="_proposed_stereo_fe96ce8ead7fd12f" base_Abstraction="_proposed_verify_fe96ce8ead7fd12f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_999dec3d57a303d6" base_Abstraction="_proposed_verify_999dec3d57a303d6"/>
+  <sysml:Verify xmi:id="_proposed_stereo_9115deef71a737bb" base_Abstraction="_proposed_verify_9115deef71a737bb"/>
+  <sysml:Verify xmi:id="_proposed_stereo_51bcef3e3fd0b074" base_Abstraction="_proposed_verify_51bcef3e3fd0b074"/>
+  <sysml:Verify xmi:id="_proposed_stereo_0e836f1bdfdf918f" base_Abstraction="_proposed_verify_0e836f1bdfdf918f"/>
+  <sysml:Verify xmi:id="_proposed_stereo_06f0b26d37f455fc" base_Abstraction="_proposed_verify_06f0b26d37f455fc"/>
+  <sysml:Verify xmi:id="_proposed_stereo_c2a9462fe59d6fda" base_Abstraction="_proposed_verify_c2a9462fe59d6fda"/>
+  <sysml:Verify xmi:id="_proposed_stereo_2f63c156e7871017" base_Abstraction="_proposed_verify_2f63c156e7871017"/>
+  <sysml:Verify xmi:id="_proposed_stereo_b127934561038099" base_Abstraction="_proposed_verify_b127934561038099"/>
+  <sysml:Verify xmi:id="_proposed_stereo_45d4451ebbb14db8" base_Abstraction="_proposed_verify_45d4451ebbb14db8"/>
+  <sysml:Verify xmi:id="_proposed_stereo_82ba38f617d2fff8" base_Abstraction="_proposed_verify_82ba38f617d2fff8"/>
+  <sysml:Verify xmi:id="_proposed_stereo_e7247f1a187d85a4" base_Abstraction="_proposed_verify_e7247f1a187d85a4"/>
+  <sysml:Verify xmi:id="_proposed_stereo_014218c290310cc2" base_Abstraction="_proposed_verify_014218c290310cc2"/>
+  <sysml:Verify xmi:id="_proposed_stereo_1b46ac909eb76529" base_Abstraction="_proposed_verify_1b46ac909eb76529"/>
+  <sysml:Verify xmi:id="_proposed_stereo_afb3499dfb2ec900" base_Abstraction="_proposed_verify_afb3499dfb2ec900"/>
+</xmi:XMI>

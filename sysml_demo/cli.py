@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
+from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import link, queries
+from . import conform, cyber, link, queries, testevent, thread
 from .ingest import load, strip_html
 from .model import Element, Model
 from .v2.profile import index_profile
@@ -17,10 +19,25 @@ from .v2.transform import transform
 from .v2.validate import annotate, kernel_available, validate
 
 
+@dataclass
+class _LoadOpts:
+    federate: bool = False
+    extra: list[str] = field(default_factory=list)
+
+
+_LOAD_OPTS = _LoadOpts()
+
+
 def _load(path: str, name: str | None = None) -> Model:
     t = time.time()
-    m = load(path, name)
-    print(f"[loaded {m.name}: {len(m.elements)} elements from {Path(path).name} in {time.time() - t:.1f}s]", file=sys.stderr)
+    path = str(Path(path).expanduser())
+    m = load(path, name, federate=_LOAD_OPTS.federate, extra=_LOAD_OPTS.extra)
+    src = Path(path).name if len(m.projects) == 1 else f"{len(m.projects)} projects"
+    print(f"[loaded {m.name}: {len(m.elements)} elements from {src} in {time.time() - t:.1f}s]", file=sys.stderr)
+    if len(m.projects) > 1:
+        print("  " + ", ".join(f"{p} ({n})" for p, n in m.projects.items()), file=sys.stderr)
+    for miss in m.missing_projects:
+        print(f"  [used project not found next to the model: {miss}]", file=sys.stderr)
     return m
 
 
@@ -51,6 +68,12 @@ def cmd_overview(a: argparse.Namespace) -> None:
         f"{o['name']}  ({o['exporter'] or 'XMI'}; {o['elements']} elements, {o['blocks']} blocks, "
         f"{o['requirements']} requirements, {sum(o['diagrams'].values())} diagrams)"
     )
+    if len(o["projects"]) > 1:
+        print("\nProjects loaded:")
+        for name, n in o["projects"].items():
+            print(f"  {name:55} {n:>6} elements")
+        for miss in o["missing_projects"]:
+            print(f"  {miss:55} MISSING")
     print("\nTop-level packages:")
     for name, n in o["top_level_packages"]:
         print(f"  {name:55} {n:>6} elements")
@@ -219,6 +242,27 @@ def cmd_show_v2(a: argparse.Namespace) -> None:
     print(res.model_text)
 
 
+def cmd_cyber(a: argparse.Namespace) -> None:
+    m = _load(a.model)
+    if a.list:
+        scen = cyber.risk_scenarios(m)
+        print(f"{len(scen)} risk scenarios in {m.name}:")
+        for s in scen:
+            n = len(cyber._linked(m, s, "Roll_Up_To", "<-", cyber.ST_LOSS_SCENARIO))
+            print(f"  {cyber._id(s):<6} {cyber._name(s)}   ({n} loss scenarios)")
+        return
+    scenario = cyber.find_scenario(m, a.scenario)
+    t = time.time()
+    sc = cyber.analyse(m, scenario, a.min_confidence)
+    print(f"[analysed {sc.sid} {sc.name}: {len(sc.leaves)} leaves in {time.time() - t:.1f}s]", file=sys.stderr)
+    print("\n".join(cyber.render_ascii(sc)))
+    cmd = f'python -m sysml_demo cyber "{Path(a.model).name}"' + (" --federate" if _LOAD_OPTS.federate else "")
+    cmd += f' --scenario "{a.scenario}"' if a.scenario else ""
+    cmd += f" --min-confidence {a.min_confidence}" if a.min_confidence != "medium" else ""
+    files = cyber.write_outputs(sc, m, Path(a.out), cmd, Path(a.mermaid) if a.mermaid else None)
+    print("\nWritten: " + ", ".join(str(f) for f in files))
+
+
 def cmd_link(a: argparse.Namespace) -> None:
     ma, mb = _load(a.model_a, a.name_a), _load(a.model_b, a.name_b)
     links = link.match(ma, mb, a.min_confidence)
@@ -247,13 +291,121 @@ def cmd_impact(a: argparse.Namespace) -> None:
         print(f"\n[mermaid graph written to {a.mermaid}]")
 
 
+def cmd_thread(a: argparse.Namespace) -> None:
+    m = _load(a.model)
+    out = None if a.requirement else Path(a.out)
+    t = time.time()
+    res = thread.run(m, out, stem=a.stem, min_confidence=a.min_confidence)
+    print(f"[thread: {len(res.chains)} requirements x {len(res.tests)} tests analysed in {time.time() - t:.1f}s]", file=sys.stderr)
+    if a.requirement:
+        req = thread.find_requirement(m, a.requirement)
+        if req is None:
+            sys.exit(f"no requirement matching {a.requirement!r}")
+        chain = next(c for c in res.chains if c.requirement.id == req.id)
+        print("\n".join(thread.render_chain_tree(m, chain, res.proposals)))
+        return
+    print("\n".join(thread.render_summary(res.summary)))
+    print("  written: " + ", ".join(p.name for p in res.written) + f"  (in {out})")
+
+
+def cmd_conform(a: argparse.Namespace) -> None:
+    t0 = time.time()
+    refs = [load(p) for p in a.reference]
+    rules = conform.extract_rules(refs)
+    if a.rules_only:
+        print(conform.rules_text(rules))
+        return
+    out = Path(a.out)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "reference_rules.md").write_text(conform.rules_markdown(rules))
+
+    m = _load(a.model)
+    prefix = a.prefix or re.sub(r"[^a-z0-9]+", "_", m.name.lower()).strip("_")
+    roots = [Path(p).stem for p in [a.model, *_LOAD_OPTS.extra]]
+    scope = conform.Scope(m, conform.delivery_projects(m, roots, [r.name for r in refs]))
+    results = conform.evaluate(scope, rules)
+    comp = conform.completeness(scope)
+    rep = conform.conformance_report(m, results, comp, [r.name for r in refs])
+    (out / f"{prefix}_conformance.md").write_text(conform.conformance_markdown(rep))
+    conform.write_json(out / f"{prefix}_conformance.json", rep)
+    s = rep["summary"]
+    print(
+        f"{s['rules']} rules ({s['executable']} executable): {s['pass']} pass, {s['fail']} fail, {s['n.a.']} n.a.; "
+        f"{comp.dangling_count} dangling refs, missing projects: {comp.missing_projects or 'none'}"
+    )
+
+    references: list[conform.Reference] = []
+    if a.capybara:
+        capy = load(a.capybara)
+        references.append(conform.Reference(capy.name, capy, conform.reference_candidates(capy, "capybara")))
+    for r in refs:
+        kind = conform.detect_reference_kind(r)
+        if kind == "mission-meta-model":
+            references.append(conform.Reference(r.name, r, conform.reference_candidates(r, kind)))
+    if a.ujtl:
+        ujtl = load(a.ujtl)
+        references.append(conform.Reference(ujtl.name, ujtl, conform.reference_candidates(ujtl, "ujtl")))
+    if not references:
+        print(f"[no --capybara / --ujtl / Mission Meta Model reference: linking skipped; {time.time() - t0:.1f}s]", file=sys.stderr)
+        return
+    links = conform.cross_link(scope, references, a.min_confidence)
+    lrep = conform.links_report(scope, references, links)
+    impact_text: list[str] = []
+    mermaid = a.mermaid or str(out / f"{prefix}_impact.mmd")
+    ref = references[0]
+    start = conform.pick_impact_start(scope, ref, links[ref.name])
+    if start is not None:
+        res = conform.impact_from_reference(scope, ref, links[ref.name], start, a.depth)
+        impact_text = link.render_impact(ref.model, m, res)
+        Path(mermaid).write_text(link.mermaid(ref.model, m, res))
+        lrep["impact"] = {
+            "start": ref.model.qualified_name(start.id),
+            "reference": ref.name,
+            "mermaid": Path(mermaid).name,
+            "text": impact_text,
+        }
+    (out / f"{prefix}_reference_links.md").write_text(conform.links_markdown(lrep, impact_text, Path(mermaid).name))
+    conform.write_json(out / f"{prefix}_reference_links.json", lrep)
+    for name, r in lrep["references"].items():
+        print(f"{name}: {r['links']} proposals ({r['high']} high)")
+    print(f"[reports written to {out}/ in {time.time() - t0:.1f}s]", file=sys.stderr)
+
+
+def cmd_simulate(a: argparse.Namespace) -> None:
+    m = _load(a.model)
+    t = time.time()
+    res = testevent.run(m, a.requirement, a.procedure, Path(a.out), stem=a.stem, passes=a.passes, seed=a.seed)
+    r = res.requirement
+    print(
+        f"{r['req_id']} {r['name']}: threshold {res.threshold or 'none'}; "
+        f"procedure '{res.procedure.name}' ({len(res.procedure.steps)} steps)"
+    )
+    for mr in res.mop:
+        print(
+            f"  {mr.condition:<16} R90 {mr.r90_m:6.0f} m  CI {mr.r90_ci_m[0]:.0f}-{mr.r90_ci_m[1]:.0f}  "
+            f"{'meets' if mr.meets_threshold else 'below'} threshold  ({mr.identified}/{mr.passes} identified)"
+        )
+    print(f"  verdict: {res.verdict.upper()} - {res.arbitration}")
+    print(
+        f"  model gaps: {len(res.gaps)}; written: {', '.join(p.name for p in res.written)}  (in {a.out}, {time.time() - t:.1f}s)",
+        file=sys.stderr,
+    )
+
+
 # --------------------------------------------------------------------------- parser
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="sysml_demo", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument(
+        "--federate",
+        action="store_true",
+        help="also load the .mdzip projects this model mounts (found next to it), so cross-project refs resolve",
+    )
+    common.add_argument("--with", dest="with_", action="append", metavar="MDZIP", help="load this extra project into the same model")
 
     def add(name: str, fn, help_: str) -> argparse.ArgumentParser:
-        sp = sub.add_parser(name, help=help_)
+        sp = sub.add_parser(name, help=help_, parents=[common])
         sp.set_defaults(fn=fn)
         return sp
 
@@ -290,10 +442,30 @@ def main(argv: list[str] | None = None) -> None:
     s.add_argument("--no-validate", action="store_true")
     s.add_argument("--show-warnings", action="store_true")
     s.add_argument("--brief", action="store_true")
+    s = add("thread", cmd_thread, "requirement -> function -> allocated -> product -> test RVTM, plus proposed Verify links")
+    s.add_argument("model")
+    s.add_argument("--out", default="out", help="directory for <stem>_rvtm.{md,csv,json} and <stem>_proposed_verify.{md,json,xmi,csv}")
+    s.add_argument("--stem", default="thread", help="file-name stem for the outputs (e.g. berserker)")
+    s.add_argument("--min-confidence", choices=["low", "medium", "high"], default="low", help="floor for reported proposals")
+    s.add_argument("--requirement", help="print one requirement's chain as a tree instead of writing files (Id, name or xmi:id)")
     s = add("show-v2", cmd_show_v2, "print the generated SysML v2 for a subset")
     s.add_argument("model")
     s.add_argument("--profile")
     s.add_argument("--subset")
+    s = add(
+        "cyber", cmd_cyber, "STPA-Sec risk scenario -> attack tree -> requirements -> ATT&CK/D3FEND -> candidate NIST 800-53 gap analysis"
+    )
+    s.add_argument("model")
+    s.add_argument("--list", action="store_true", help="list the risk scenarios and exit")
+    s.add_argument("--scenario", help="risk scenario id, name or substring (default: the adversary-selected-location scenario)")
+    s.add_argument("--out", default="out")
+    s.add_argument("--mermaid", help="write the Mermaid graph to this file instead of <out>/cyber_<scenario>.mmd")
+    s.add_argument(
+        "--min-confidence",
+        choices=("high", "medium", "low"),
+        default="medium",
+        help="proposals below this are listed but not counted as coverage",
+    )
     for name, fn, help_ in (
         ("link", cmd_link, "match concepts across two models and list disagreements"),
         ("impact", cmd_impact, "what is affected across both models if an element changes"),
@@ -310,7 +482,33 @@ def main(argv: list[str] | None = None) -> None:
             s.add_argument("element")
             s.add_argument("--depth", type=int, default=3)
             s.add_argument("--mermaid", help="write a Mermaid graph to this file")
+    s = add("conform", cmd_conform, "check a delivery against rules extracted from reference models, and link it to them")
+    s.add_argument("model")
+    s.add_argument(
+        "--reference",
+        action="append",
+        required=True,
+        metavar="MDZIP",
+        help="style guide / meta model / UTP / classification profile (repeatable)",
+    )
+    s.add_argument("--ujtl", metavar="MDZIP")
+    s.add_argument("--capybara", metavar="MDZIP")
+    s.add_argument("--rules-only", action="store_true", help="print the extracted rule set and stop")
+    s.add_argument("--out", default="out")
+    s.add_argument("--prefix", help="output file prefix (default: slug of the root model name)")
+    s.add_argument("--mermaid", help="impact graph path (default: OUT/<prefix>_impact.mmd)")
+    s.add_argument("--min-confidence", type=float, default=conform.MIN_CONFIDENCE)
+    s.add_argument("--depth", type=int, default=3)
+    s = add("simulate", cmd_simulate, "simulate a test event: run a model-defined test procedure against a quantified requirement")
+    s.add_argument("model")
+    s.add_argument("--requirement", required=True, help="requirement Id or name, e.g. 'MR - 25'")
+    s.add_argument("--procedure", required=True, help="«TestProcedure»/«TestCase» name")
+    s.add_argument("--passes", type=int, default=240)
+    s.add_argument("--seed", type=int, default=7)
+    s.add_argument("--out", default="out/testevent")
+    s.add_argument("--stem", default="testevent")
     a = p.parse_args(argv)
+    _LOAD_OPTS.federate, _LOAD_OPTS.extra = a.federate, a.with_ or []
     a.fn(a)
 
 
