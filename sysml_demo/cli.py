@@ -10,7 +10,7 @@ import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import conform, cyber, link, queries, thread
+from . import conform, cyber, link, queries, testevent, thread
 from .ingest import load, strip_html
 from .model import Element, Model
 from .v2.profile import index_profile
@@ -371,6 +371,27 @@ def cmd_conform(a: argparse.Namespace) -> None:
     print(f"[reports written to {out}/ in {time.time() - t0:.1f}s]", file=sys.stderr)
 
 
+def cmd_simulate(a: argparse.Namespace) -> None:
+    m = _load(a.model)
+    t = time.time()
+    res = testevent.run(m, a.requirement, a.procedure, Path(a.out), stem=a.stem, passes=a.passes, seed=a.seed)
+    r = res.requirement
+    print(
+        f"{r['req_id']} {r['name']}: threshold {res.threshold or 'none'}; "
+        f"procedure '{res.procedure.name}' ({len(res.procedure.steps)} steps)"
+    )
+    for mr in res.mop:
+        print(
+            f"  {mr.condition:<16} R90 {mr.r90_m:6.0f} m  CI {mr.r90_ci_m[0]:.0f}-{mr.r90_ci_m[1]:.0f}  "
+            f"{'meets' if mr.meets_threshold else 'below'} threshold  ({mr.identified}/{mr.passes} identified)"
+        )
+    print(f"  verdict: {res.verdict.upper()} - {res.arbitration}")
+    print(
+        f"  model gaps: {len(res.gaps)}; written: {', '.join(p.name for p in res.written)}  (in {a.out}, {time.time() - t:.1f}s)",
+        file=sys.stderr,
+    )
+
+
 # --------------------------------------------------------------------------- parser
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="sysml_demo", description=__doc__)
@@ -478,6 +499,14 @@ def main(argv: list[str] | None = None) -> None:
     s.add_argument("--mermaid", help="impact graph path (default: OUT/<prefix>_impact.mmd)")
     s.add_argument("--min-confidence", type=float, default=conform.MIN_CONFIDENCE)
     s.add_argument("--depth", type=int, default=3)
+    s = add("simulate", cmd_simulate, "simulate a test event: run a model-defined test procedure against a quantified requirement")
+    s.add_argument("model")
+    s.add_argument("--requirement", required=True, help="requirement Id or name, e.g. 'MR - 25'")
+    s.add_argument("--procedure", required=True, help="«TestProcedure»/«TestCase» name")
+    s.add_argument("--passes", type=int, default=240)
+    s.add_argument("--seed", type=int, default=7)
+    s.add_argument("--out", default="out/testevent")
+    s.add_argument("--stem", default="testevent")
     a = p.parse_args(argv)
     _LOAD_OPTS.federate, _LOAD_OPTS.extra = a.federate, a.with_ or []
     a.fn(a)

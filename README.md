@@ -58,6 +58,8 @@ python -m sysml_demo impact        models/CSRM.mdzip models/DELS.xml "Power Subs
 python -m sysml_demo thread        ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
                                    --with ~/ignite/"Berserker Allocated Baseline Model.mdzip" \
                                    --with ~/ignite/"Berserker Product Baseline Library.mdzip" --out out --stem berserker
+python -m sysml_demo simulate      ~/ignite/"Beserker System Level Test Model.mdzip" --federate \
+                                   --requirement "MR - 25" --procedure "Operational Target Damage Assessment Test" --out out
 ```
 
 Every command also accepts `--federate` (follow the project's Cameo `projectUsages` and load the
@@ -149,6 +151,20 @@ Writes `reference_rules.md`, `<prefix>_conformance.{md,json}`, `<prefix>_referen
 model name. Every proposed link carries the matcher's rationale, confidence and disagreements; none is
 presented as a model fact. Sample output from the IGNITE Berserker delivery is committed under
 `examples/ignite/`.
+
+## Simulated test event (`simulate`)
+
+`simulate` runs a model-defined «TestProcedure» against a quantified requirement and evaluates a
+Measure of Performance. The model supplies the requirement text (the numeric threshold is parsed from
+it — `at least 700 meters` → `>= 700 m`), the procedure's steps in control-flow order with their
+swimlanes and the «ResourceInformation» items they exchange, and whether a Verify link exists. A
+notional sensor/operator model then generates the data the procedure would have logged (a test
+matrix of conditions × surveyed target stations), fits P(identify) against slant range, reports the
+range at P = 0.9 with a bootstrap confidence bound per condition, and writes a UTP-shaped TestLog
+with a pass / fail / inconclusive verdict. All generated numbers are synthetic; the output's
+`model_gaps` lists what the model would need (MOP definition, log attributes, TestLog/Verdict
+elements, Verify link, test conditions) for the result to be a real verification. Sample output for
+MR-25 is under `examples/ignite/mr25_testevent.*`.
 
 ## Dashboard
 
