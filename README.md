@@ -17,13 +17,16 @@ sysml_demo/
   queries.py       overview, requirements table, trace, structure, interfaces, profile usage, health check
   link.py          cross-model concept matching (with rationale + disagreements), impact traversal, Mermaid
   thread.py        federated requirement -> function -> allocated -> product -> test RVTM, proposed Verify links + XMI/CSV patch
+  cyber.py         STPA-Sec risk scenario -> attack tree -> requirements -> ATT&CK/D3FEND -> candidate NIST 800-53 gap analysis
+  data/            nist80053_d3fend.json – authored D3FEND-tactic/technique -> NIST SP 800-53r5 starting table
   v2/profile.py    resolve custom stereotypes through their generalisation chain to a SysML base concept
   v2/transform.py  SysML v1 -> v2 textual notation; every element gets a clean/lossy/decision/unsupported record
   v2/validate.py   run the generated text through the OMG pilot-implementation kernel, parse diagnostics
   v2/report.py     migration gap report (Markdown + JSON)
   cli.py           `python -m sysml_demo <command>` – the entry points used live
 models/            public source models (see models/README.md for provenance)
-examples/          committed sample outputs (CSRM + DELS reports, generated .sysml, impact graph, ignite/ Berserker RVTM)
+examples/          committed sample outputs (CSRM + DELS reports, generated .sysml, impact graph)
+examples/ignite/   IGNITE Berserker outputs: RVTM + proposed Verify links (thread), cyber gap analysis (cyber)
 scripts/           setup_sysml_kernel.sh – installs the pilot kernel into a micromamba env
 tests/             pytest suite (synthetic fixture + the real models)
 ```
@@ -93,6 +96,31 @@ pair. Every proposal carries `high` / `medium` / `low` and a rationale string th
 and proposals instead of writing files. Committed IGNITE output is under `examples/ignite/`
 (`berserker_*`); the source `.mdzip` files are never modified. The IGNITE-gated tests run when
 `IGNITE_MODELS_DIR` points at the unzipped model set and skip otherwise.
+
+### Cyber resiliency gap analysis (`cyber`)
+
+```bash
+python -m sysml_demo cyber "ignite/Berserker Cyber Res. Model.mdzip" --federate --list
+python -m sysml_demo cyber "ignite/Berserker Cyber Res. Model.mdzip" --federate --scenario "selected location" --out examples/ignite
+```
+
+For one STPA-Sec risk scenario (default: the adversary-selected-location scenario) the command walks
+Loss ← Hazard ← Security constraint ← Controller / Hazardous control action ← Loss scenario ← Risk
+scenario → probabilistic attack tree → leaf nodes (P(success) 90 % CI, EML tags), then for every leaf
+reports the cybersecurity requirements it reaches through model relationships (Trace/Satisfy/Refine on the
+leaf, loss scenario, HCA or controller; Trace → function → Allocate → block paths), proposed ATT&CK
+techniques (lexical match on the D3FEND profile, boosted by explicit `Txxxx` ids), the D3FEND defensive
+techniques reachable through D3FEND associations (directly or via shared digital artifacts), and candidate
+NIST SP 800-53r5 controls from `sysml_demo/data/nist80053_d3fend.json`. Leaves are ranked by
+P(success) × no-requirement × no-countermeasure. It also reports how many Berserker elements actually carry a
+D3FEND stereotype (from data) and whether the reached requirements are referenced by the assurance case.
+
+Outputs: ASCII tree on stdout; `cyber_<RS>.md` / `.mmd`, `cyber_gaps.{md,json}`,
+`cyber_candidate_nist_controls.{md,csv}` and `nist_controls_candidate.xmi` (Requirement-stereotyped
+classes with Id + Text, importable into the empty NIST project) in `--out`. Everything heuristic carries a
+confidence and a rationale; only relationships found in the model are called model links. `--min-confidence`
+sets the threshold that counts as coverage. The NIST table is an authored starting point for review, not an
+official MITRE/NIST mapping.
 
 ## What the migration does and does not claim
 
