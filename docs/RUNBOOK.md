@@ -173,6 +173,31 @@ Say out loud: ATT&CK / D3FEND / NIST lines are lexical or table proposals with a
 model facts. `out/cyber_RS-2.mmd` renders the chain; `out/nist_controls_candidate.xmi` is the stub an
 engineer would import into the empty NIST project. Committed copies: `examples/ignite/`.
 
+Q14 "Does a contractor delivery follow *our* reference layer, and where does it plug into it?" (IGNITE set, `~/ignite/`)
+```
+IG=~/ignite
+python -m sysml_demo conform "$IG/Beserker System Level Test Model.mdzip" \
+    --reference "$IG/MissionArchitectureStyleGuide_Model_Version_1.0.mdzip" --rules-only
+python -m sysml_demo conform "$IG/Beserker System Level Test Model.mdzip" --federate \
+    --with "$IG/Berserker Allocated Baseline Model.mdzip" --with "$IG/Berserker Product Baseline Library.mdzip" \
+    --reference "$IG/MissionArchitectureStyleGuide_Model_Version_1.0.mdzip" --reference "$IG/Mission Meta Model.mdzip" \
+    --reference "$IG/UML Test Profile v2_1.mdzip" --reference "$IG/ClassificationProfileDistA.mdzip" \
+    --ujtl "$IG/UJTL.mdzip" --capybara "$IG/(U) CapyBARA.mdzip" --prefix berserker --out out/conform
+```
+1. Open with `--rules-only`: "here is what your own style guide says" — every rule quotes the
+   Style Guide / UTP 2.1 / Mission Meta Model text with the element it came from; ~80 of ~140 are
+   executable, the rest are listed as not automatable with their text.
+2. Full run (~5 s, 35k elements across 11 projects): `berserker_conformance.md` — pass / fail / n.a.
+   per rule with offending qualified names; the completeness section reports the mounted but
+   missing `MI Style Guide.mdzip` and the real `dangling-ref`s from federated `health`
+   (`library-ref`s excluded).
+3. `berserker_reference_links.md` — Berserker mission activities / test procedures / test data
+   matched to CapyBARA measures and UJTL operational activities with `link.match` rationale,
+   confidence and disagreements; the impact walk-through + `berserker_impact.mmd` shows a CapyBARA
+   measure change crossing into Berserker test procedures and the requirements they refine.
+Say so out loud: rules come from the reference models, links are proposals with evidence.
+Committed copies: `examples/ignite/`.
+
 ## Open floor (3 min)
 
 - "Ask anything you'd want to know about your own 19.x model." — `overview`, `structure`,
