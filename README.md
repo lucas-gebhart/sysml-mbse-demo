@@ -150,6 +150,15 @@ model name. Every proposed link carries the matcher's rationale, confidence and 
 presented as a model fact. Sample output from the IGNITE Berserker delivery is committed under
 `examples/ignite/`.
 
+## Dashboard
+
+`examples/ignite/mq99_berserker_dashboard.html` is a self-contained, offline page built from the
+`thread`, `cyber` and `conform` outputs above plus a federated load of the functional, allocated and
+product baselines. It draws the MQ-99 air vehicle from the functional architecture's own parts,
+connectors and ports (select a subsystem for its allocated → product realization ledger, requirement
+coverage and STPA-Sec controllers) and shows the RVTM funnel, RS-2 attack-tree coverage and the
+conformance scorecard. Model facts and heuristic proposals are labelled separately throughout.
+
 ## What the migration does and does not claim
 
 The transformer follows the OMG SysML v1-to-v2 transformation mapping for the structural,
